@@ -322,7 +322,8 @@ const App: React.FC = () => {
           <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-neutral-100 p-6 flex flex-col gap-6 font-bold uppercase tracking-widest text-xs animate-in slide-in-from-top-2 duration-300">
             <button onClick={() => navigateTo('home')} className="text-left">{t.nav.home}</button>
             <button onClick={() => navigateTo('works')} className="text-left">{t.nav.works}</button>
-            <button onClick={toggleLanguage} className="text-[#E61919]">{language === 'en' ? '切换中文' : 'SWITCH TO ENGLISH'}</button>
+            <button onClick={toggleLanguage} className="text-left text-[#E61919]">{language === 'en' ? '切换中文' : 'SWITCH TO ENGLISH'}</button>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-left px-4 py-3 bg-neutral-900 text-white rounded-sm text-center">{t.nav.inquiry}</a>
           </div>
         )}
       </nav>
