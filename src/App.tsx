@@ -160,7 +160,7 @@ const App: React.FC = () => {
       category: "AI 插画 / AI Illustration",
       image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1200&auto=format&fit=crop", 
       desc: language === 'cn' ? "非遗鱼灯与未来 AI 光影的结合。" : "Merging Chinese Heritage with futuristic AI lighting.",
-      fullDesc: "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。",
+      fullDesc: language === 'cn' ? "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。" : "This project explores the intersection of traditional Chinese lantern festivals and modern digital aesthetics. Redefining Oriental light and shadow through customized Stable Diffusion models.",
       client: "自主创作 / Self-initiated",
       year: "2025"
     },
@@ -170,7 +170,7 @@ const App: React.FC = () => {
       category: "数字艺术 / Digital Art",
       image: "https://images.unsplash.com/photo-1535083145413-91b7d41d4c22?q=80&w=1200&auto=format&fit=crop",
       desc: language === 'cn' ? "将汉代拓片纹样重塑为高端时尚视觉。" : "Ancient stone rubbing textures for fashion branding.",
-      fullDesc: "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。",
+      fullDesc: language === 'cn' ? "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。" : "Inspired by Han Dynasty stone reliefs, focusing on the collision between 'ink' rubbing techniques and modern fashion typography.",
       client: "时尚集团 / Fashion Group",
       year: "2024"
     },
@@ -180,7 +180,7 @@ const App: React.FC = () => {
       category: "品牌设计 / Branding",
       image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1200&auto=format&fit=crop",
       desc: language === 'cn' ? "为科技平台构建的极简视觉识别系统。" : "Minimalist visual system for technology platform.",
-      fullDesc: "为金融科技初创公司创建一个可靠、创新且具备国际化视野的品牌形象。",
+      fullDesc: language === 'cn' ? "为金融科技初创公司创建一个可靠、创新且具备国际化视野的品牌形象。" : "Creating a reliable, innovative, and international brand image for a FinTech startup.",
       client: "Nexus Capital",
       year: "2023"
     }
