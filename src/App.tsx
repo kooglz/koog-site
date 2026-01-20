@@ -138,7 +138,7 @@ const App: React.FC = () => {
       id: 1,
       title: "鱼灯 AIGC 视觉研究",
       category: "AI 插画 / AI Illustration",
-      image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1200&auto=format&fit=crop", 
+      image: "/works/work1.jpg", 
       desc: language === 'cn' ? "非遗鱼灯与未来 AI 光影的结合。" : "Merging Chinese Heritage with futuristic AI lighting.",
       fullDesc: language === 'cn' ? "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。" : "This project explores the intersection of traditional Chinese lantern festivals and modern digital aesthetics. Redefining Oriental light and shadow through customized Stable Diffusion models.",
       client: "自主创作 / Self-initiated",
@@ -148,7 +148,7 @@ const App: React.FC = () => {
       id: 2,
       title: "汉代拓片重构",
       category: "数字艺术 / Digital Art",
-      image: "https://images.unsplash.com/photo-1535083145413-91b7d41d4c22?q=80&w=1200&auto=format&fit=crop",
+      image: "/works/work2.jpg",
       desc: language === 'cn' ? "将汉代拓片纹样重塑为高端时尚视觉。" : "Ancient stone rubbing textures for fashion branding.",
       fullDesc: language === 'cn' ? "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。" : "Inspired by Han Dynasty stone reliefs, focusing on the collision between 'ink' rubbing techniques and modern fashion typography.",
       client: "时尚集团 / Fashion Group",
@@ -158,7 +158,7 @@ const App: React.FC = () => {
       id: 3,
       title: "FinTech 品牌识别",
       category: "品牌设计 / Branding",
-      image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1200&auto=format&fit=crop",
+      image: "/works/work3.jpg",
       desc: language === 'cn' ? "为科技平台构建的极简视觉识别系统。" : "Minimalist visual system for technology platform.",
       fullDesc: language === 'cn' ? "为金融科技初创公司创建一个可靠、创新且具备国际化视野的品牌形象。" : "Creating a reliable, innovative, and international brand image for a FinTech startup.",
       client: "Nexus Capital",
@@ -399,7 +399,7 @@ const App: React.FC = () => {
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden">
                   <img 
-                    src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=QR%20code%20for%20WeChat%20profile%20with%20WeChat%20logo%20in%20center%2C%20black%20and%20white%2C%20high%20contrast%2C%20sharp%20details&image_size=square" 
+                    src="/qrcode/wechat.jpg" 
                     alt="WeChat QR Code" 
                     className="w-full h-full object-cover"
                   />
@@ -415,7 +415,7 @@ const App: React.FC = () => {
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden text-black flex items-center justify-center font-black text-lg">
                   <img 
-                    src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=QR%20code%20for%20Xiaohongshu%20profile%2C%20red%20and%20white%2C%20modern%20style%2C%20high%20contrast&image_size=square" 
+                    src="/qrcode/xhs.jpg" 
                     alt="Xiaohongshu QR Code" 
                     className="w-full h-full object-cover"
                   />
