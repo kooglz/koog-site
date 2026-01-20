@@ -127,10 +127,10 @@ const App: React.FC = () => {
   const t = content[language];
 
   const heroSlides = [
-    { url: "/hero/slide1.jpg", title: "2026 New Year" },
-    { url: "/hero/slide2.jpg", title: "Geometric Horses" },
-    { url: "/hero/slide3.jpg", title: "Han Dynasty Horses" },
-    { url: "/hero/slide4.jpg", title: "Folk Customs" }
+    { url: "/koog-site/hero/slide1.jpg", title: "2026 New Year" },
+    { url: "/koog-site/hero/slide2.jpg", title: "Geometric Horses" },
+    { url: "/koog-site/hero/slide3.jpg", title: "Han Dynasty Horses" },
+    { url: "/koog-site/hero/slide4.jpg", title: "Folk Customs" }
   ];
 
   const allWorks: WorkItem[] = [
@@ -138,7 +138,7 @@ const App: React.FC = () => {
       id: 1,
       title: "鱼灯 AIGC 视觉研究",
       category: "AI 插画 / AI Illustration",
-      image: "/works/work1.jpg", 
+      image: "/koog-site/works/work1.jpg", 
       desc: language === 'cn' ? "非遗鱼灯与未来 AI 光影的结合。" : "Merging Chinese Heritage with futuristic AI lighting.",
       fullDesc: language === 'cn' ? "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。" : "This project explores the intersection of traditional Chinese lantern festivals and modern digital aesthetics. Redefining Oriental light and shadow through customized Stable Diffusion models.",
       client: "自主创作 / Self-initiated",
@@ -148,7 +148,7 @@ const App: React.FC = () => {
       id: 2,
       title: "汉代拓片重构",
       category: "数字艺术 / Digital Art",
-      image: "/works/work2.jpg",
+      image: "/koog-site/works/work2.jpg",
       desc: language === 'cn' ? "将汉代拓片纹样重塑为高端时尚视觉。" : "Ancient stone rubbing textures for fashion branding.",
       fullDesc: language === 'cn' ? "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。" : "Inspired by Han Dynasty stone reliefs, focusing on the collision between 'ink' rubbing techniques and modern fashion typography.",
       client: "时尚集团 / Fashion Group",
@@ -158,7 +158,7 @@ const App: React.FC = () => {
       id: 3,
       title: "FinTech 品牌识别",
       category: "品牌设计 / Branding",
-      image: "/works/work3.jpg",
+      image: "/koog-site/works/work3.jpg",
       desc: language === 'cn' ? "为科技平台构建的极简视觉识别系统。" : "Minimalist visual system for technology platform.",
       fullDesc: language === 'cn' ? "为金融科技初创公司创建一个可靠、创新且具备国际化视野的品牌形象。" : "Creating a reliable, innovative, and international brand image for a FinTech startup.",
       client: "Nexus Capital",
@@ -278,7 +278,7 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
             <div className="h-8 md:h-11 w-auto">
               {!logoError ? (
-                <img src="/new-logo.png" alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
+                <img src="/koog-site/new-logo.png" alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
               ) : (
                 <div className="h-full aspect-square bg-neutral-900 text-white flex items-center justify-center font-bold px-2">K</div>
               )}
@@ -399,7 +399,7 @@ const App: React.FC = () => {
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden">
                   <img 
-                    src="/qrcode/wechat.jpg" 
+                    src="/koog-site/qrcode/wechat.jpg" 
                     alt="WeChat QR Code" 
                     className="w-full h-full object-cover"
                   />
@@ -415,7 +415,7 @@ const App: React.FC = () => {
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden text-black flex items-center justify-center font-black text-lg">
                   <img 
-                    src="/qrcode/xhs.jpg" 
+                    src="/koog-site/qrcode/xhs.jpg" 
                     alt="Xiaohongshu QR Code" 
                     className="w-full h-full object-cover"
                   />
