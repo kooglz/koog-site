@@ -1,24 +1,3 @@
-/**
- * KOOG Portfolio - TypeScript Edition
- * * --- 本地环境修复指南 ---
- * * 1. 确保你在项目文件夹内：
- * 在终端输入 `ls`，确认能看到 `package.json` 文件。
- * * 2. 检查 package.json 的 scripts 部分：
- * 确保包含以下内容：
- * "scripts": {
- * "dev": "vite",
- * "build": "tsc && vite build",
- * "preview": "vite preview"
- * }
- * * 3. 解决 "Command not found #" 错误：
- * 不要复制带 # 号的注释行到终端运行。直接运行以下命令：
- * npm install
- * npm install lucide-react
- * npm run dev
- * * 4. 如果依然显示布局不对（Tailwind 未生效）：
- * 确保安装了 postcss：npm install -D tailwindcss postcss autoprefixer
- */
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   ArrowRight, Menu, X, Languages, ChevronLeft, ArrowUpRight
@@ -418,7 +397,11 @@ const App: React.FC = () => {
               {/* WeChat */}
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden">
-                  <div className="w-full h-full bg-neutral-100 flex items-center justify-center text-[10px] text-neutral-400 uppercase font-bold tracking-tighter">WeChat</div>
+                  <img 
+                    src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=QR%20code%20for%20WeChat%20profile%20with%20WeChat%20logo%20in%20center%2C%20black%20and%20white%2C%20high%20contrast%2C%20sharp%20details&image_size=square" 
+                    alt="WeChat QR Code" 
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-[#E61919]/50 animate-scan opacity-0 group-hover:opacity-100"></div>
                 </div>
                 <div>
@@ -430,12 +413,16 @@ const App: React.FC = () => {
               {/* Xiaohongshu (RED) */}
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden text-black flex items-center justify-center font-black text-lg">
-                  <span className="text-[#E61919]">R.</span>
+                  <img 
+                    src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=QR%20code%20for%20Xiaohongshu%20profile%2C%20red%20and%20white%2C%20modern%20style%2C%20high%20contrast&image_size=square" 
+                    alt="Xiaohongshu QR Code" 
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-[#E61919]/50 animate-scan opacity-0 group-hover:opacity-100"></div>
                 </div>
                 <div>
                   <p className="text-[9px] font-bold tracking-[0.2em] text-neutral-600 uppercase mb-1">{t.footer.xhsTitle}</p>
-                  <h4 className="text-sm font-bold tracking-tight">{t.footer.xhsID}</h4>
+                  <h4 className="text-sm font-bold tracking-tight">2632739343</h4>
                 </div>
               </div>
             </div>
