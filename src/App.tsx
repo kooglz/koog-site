@@ -278,7 +278,7 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
             <div className="h-8 md:h-11 w-auto">
               {!logoError ? (
-                <img src="/logoxinkoog.png" alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
+                <img src="/new-logo.png" alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
               ) : (
                 <div className="h-full aspect-square bg-neutral-900 text-white flex items-center justify-center font-bold px-2">K</div>
               )}
