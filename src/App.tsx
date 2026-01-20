@@ -127,10 +127,10 @@ const App: React.FC = () => {
   const t = content[language];
 
   const heroSlides = [
-    { url: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Happy%20New%20Year%202026%20poster%20design%2C%20horse%20theme%2C%20gold%20text%20on%20red-to-cream%20gradients%2C%20modern%20style&image_size=landscape_16_9", title: "2026 New Year" },
-    { url: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Grid%20of%20colorful%20geometric%20horse%20illustrations%2C%20abstract%20pop%20art%20style%2C%20vibrant%20colors&image_size=landscape_16_9", title: "Geometric Horses" },
-    { url: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Han%20Dynasty%20horse%20pattern%20art%2C%20traditional%20Chinese%20style%2C%20textured%20lines%20on%20light%20gray%20hemp%20background&image_size=landscape_16_9", title: "Han Dynasty Horses" },
-    { url: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Chinese%20intangible%20cultural%20heritage%20folk%20customs%20paper-cut%20art%2C%20warm%20beige%20background%2C%20red%20paper-cut%20motifs&image_size=landscape_16_9", title: "Folk Customs" }
+    { url: "/hero/slide1.jpg", title: "2026 New Year" },
+    { url: "/hero/slide2.jpg", title: "Geometric Horses" },
+    { url: "/hero/slide3.jpg", title: "Han Dynasty Horses" },
+    { url: "/hero/slide4.jpg", title: "Folk Customs" }
   ];
 
   const allWorks: WorkItem[] = [
