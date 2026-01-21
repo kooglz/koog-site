@@ -37,5 +37,19 @@ jobs:
           BUCKET: ${{ secrets.COS_BUCKET }}
           REGION: ${{ secrets.COS_REGION }}
         run: |
-          ./coscli config set --secret_id $SECRET_ID --secret_key $SECRET_KEY --bucket $BUCKET --region $REGION
-          ./coscli cp ./dist/ cos://$BUCKET/ -r
+          # 创建配置文件
+          cat > ./cos.yaml <<EOF
+          cos:
+            base:
+              secretid: $SECRET_ID
+              secretkey: $SECRET_KEY
+              sessiontoken: ""
+            buckets:
+            - name: $BUCKET
+              alias: $BUCKET
+              region: $REGION
+              endpoint: cos.$REGION.myqcloud.com
+          EOF
+          
+          # 使用配置文件进行上传
+          ./coscli cp ./dist/ cos://$BUCKET/ -r -c ./cos.yaml
