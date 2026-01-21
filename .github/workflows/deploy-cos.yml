@@ -33,4 +33,4 @@ jobs:
           SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
           BUCKET: ${{ secrets.COS_BUCKET }}
           REGION: ${{ secrets.COS_REGION }}
-        run: node scripts/upload-cos.js
+        run: node scripts/upload-cos.cjs
