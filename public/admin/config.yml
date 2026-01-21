@@ -19,7 +19,7 @@ collections:
             widget: "list"
             summary: "{{fields.image}}"
             fields:
-              - {label: "图片", name: "image", widget: "image"}
+              - {label: "图片", name: "image", widget: "image", hint: "⚠️ 推荐尺寸：1920x1080 (16:9)，最大 2MB"}
               - {label: "图片描述 (Alt Text)", name: "alt", widget: "string", required: false}
           
           - name: "works"
@@ -27,9 +27,22 @@ collections:
             widget: "list"
             summary: "{{fields.title}} ({{fields.year}})"
             fields:
-              - {label: "ID", name: "id", widget: "string"}
+              - {label: "ID", name: "id", widget: "string", hint: "唯一标识符，不要重复 (例如: 1, 2, work-001)"}
               - {label: "标题 (Title)", name: "title", widget: "string"}
               - {label: "类别 (Category)", name: "category", widget: "string"}
               - {label: "年份 (Year)", name: "year", widget: "string"}
-              - {label: "描述 (Description)", name: "description", widget: "text"}
-              - {label: "封面图 (Image)", name: "image", widget: "image"}
+              - {label: "列表页封面图 (Cover Image)", name: "image", widget: "image", hint: "⚠️ 推荐尺寸：800x600 (4:3) 或 1:1 方图"}
+              - {label: "简短描述 (Short Description)", name: "description", widget: "text", hint: "显示在列表页的简短介绍"}
+              
+              - label: "详情页内容 (Detail Page)"
+                name: "detail_content"
+                widget: "object"
+                fields:
+                  - {label: "详细介绍 (Full Description)", name: "full_desc", widget: "markdown", hint: "详情页的长文本介绍，支持换行和加粗"}
+                  - label: "详情页配图 (Detail Images)"
+                    name: "images"
+                    widget: "list"
+                    hint: "详情页展示的横版大图"
+                    fields:
+                      - {label: "图片", name: "src", widget: "image", hint: "⚠️ 推荐尺寸：1920x宽，高度自适应"}
+                      - {label: "图片说明", name: "caption", widget: "string", required: false}
