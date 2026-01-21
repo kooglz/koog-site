@@ -3,7 +3,7 @@ backend:
   branch: main
 
 media_folder: "public/works" # 图片上传位置
-  public_folder: "/works" # 图片在前端访问的路径
+public_folder: "/works" # 图片在前端访问的路径
 
 collections:
   - name: "content"
