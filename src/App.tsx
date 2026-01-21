@@ -62,6 +62,15 @@ const App: React.FC = () => {
   const [language, setLanguage] = useState<LangMode>('cn'); 
   const [logoError, setLogoError] = useState<boolean>(false);
   const [heroSlide, setHeroSlide] = useState<number>(0);
+  const [allWorks, setAllWorks] = useState<WorkItem[]>([]);
+
+  // 加载作品数据
+  useEffect(() => {
+    fetch(getAssetUrl('content/works.json'))
+      .then(res => res.json())
+      .then(data => setAllWorks(data.works))
+      .catch(err => console.error('Failed to load works:', err));
+  }, []);
 
   // 滚动监听
   useEffect(() => {
@@ -139,39 +148,6 @@ const App: React.FC = () => {
     { url: getAssetUrl("hero/slide2.jpg"), title: "Geometric Horses" },
     { url: getAssetUrl("hero/slide3.jpg"), title: "Han Dynasty Horses" },
     { url: getAssetUrl("hero/slide4.jpg"), title: "Folk Customs" }
-  ];
-
-  const allWorks: WorkItem[] = [
-    {
-      id: 1,
-      title: "鱼灯 AIGC 视觉研究",
-      category: "AI 插画 / AI Illustration",
-      image: getAssetUrl("works/work1.jpg"), 
-      desc: language === 'cn' ? "非遗鱼灯与未来 AI 光影的结合。" : "Merging Chinese Heritage with futuristic AI lighting.",
-      fullDesc: language === 'cn' ? "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。" : "This project explores the intersection of traditional Chinese lantern festivals and modern digital aesthetics. Redefining Oriental light and shadow through customized Stable Diffusion models.",
-      client: "自主创作 / Self-initiated",
-      year: "2025"
-    },
-    {
-      id: 2,
-      title: "汉代拓片重构",
-      category: "数字艺术 / Digital Art",
-      image: getAssetUrl("works/work2.jpg"),
-      desc: language === 'cn' ? "将汉代拓片纹样重塑为高端时尚视觉。" : "Ancient stone rubbing textures for fashion branding.",
-      fullDesc: language === 'cn' ? "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。" : "Inspired by Han Dynasty stone reliefs, focusing on the collision between 'ink' rubbing techniques and modern fashion typography.",
-      client: "时尚集团 / Fashion Group",
-      year: "2024"
-    },
-    {
-      id: 3,
-      title: "FinTech 品牌识别",
-      category: "品牌设计 / Branding",
-      image: getAssetUrl("works/work3.jpg"),
-      desc: language === 'cn' ? "为科技平台构建的极简视觉识别系统。" : "Minimalist visual system for technology platform.",
-      fullDesc: language === 'cn' ? "为金融科技初创公司创建一个可靠、创新且具备国际化视野的品牌形象。" : "Creating a reliable, innovative, and international brand image for a FinTech startup.",
-      client: "Nexus Capital",
-      year: "2023"
-    }
   ];
 
   const toggleLanguage = () => setLanguage(prev => prev === 'cn' ? 'en' : 'cn');

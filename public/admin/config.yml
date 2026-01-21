@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: kooglz/koog-site # 您的 GitHub 仓库路径
+  branch: main # 部署分支
+
+media_folder: "public/works" # 图片上传位置
+public_folder: "/works" # 图片引用路径
+
+collections:
+  - name: "works"
+    label: "作品 (Works)"
+    folder: "public/content/works" # 数据存储位置
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "ID", name: "id", widget: "number"}
+      - {label: "标题 (Title)", name: "title", widget: "string"}
+      - {label: "分类 (Category)", name: "category", widget: "string"}
+      - {label: "封面图 (Image)", name: "image", widget: "image"}
+      - {label: "客户 (Client)", name: "client", widget: "string"}
+      - {label: "年份 (Year)", name: "year", widget: "string"}
+      - {label: "简述 (中文)", name: "desc_cn", widget: "string"}
+      - {label: "简述 (英文)", name: "desc_en", widget: "string"}
+      - {label: "详情 (中文)", name: "fullDesc_cn", widget: "text"}
+      - {label: "详情 (英文)", name: "fullDesc_en", widget: "text"}
