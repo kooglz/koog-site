@@ -204,7 +204,7 @@ const App: React.FC = () => {
               {t.hero.tag}
             </div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl xl:text-7xl font-black tracking-tight text-neutral-900 leading-[1.1]">
+              <h1 className="text-5xl md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[1.1]">
                 <span className="block mb-2">{t.hero.title[0]}</span>
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm pb-1">
                   {t.hero.title[1]}
@@ -285,10 +285,10 @@ const App: React.FC = () => {
               )}
             </div>
             <div className="flex flex-col border-l border-neutral-200 pl-4 py-0.5 h-10 md:h-11 justify-between">
-              <h2 className="text-xl md:text-2xl font-black tracking-[-0.03em] leading-none text-neutral-900 uppercase">KOOG</h2>
+              <h2 className="text-xl md:text-2xl font-black tracking-[0.1em] leading-none text-neutral-900 uppercase">KOOG</h2>
               <div className="flex justify-between w-full">
                 {['D','E','S','I','G','N'].map((char, i) => (
-                  <span key={i} className="text-[7px] md:text-[8px] font-bold text-[#E61919] leading-none">{char}</span>
+                  <span key={i} className="text-[7px] md:text-[8px] font-bold text-[#E61919] leading-none tracking-tighter">{char}</span>
                 ))}
               </div>
             </div>
