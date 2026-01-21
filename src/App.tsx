@@ -276,21 +276,17 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled || currentPage !== 'home' ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
-            <div className="h-8 md:h-11 w-auto">
+          <div className="flex items-center gap-0 cursor-pointer group" onClick={() => navigateTo('home')}>
+            <div className="h-8 md:h-10 w-auto">
               {!logoError ? (
                 <img src={getAssetUrl("new-logo.png")} alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
               ) : (
                 <div className="h-full aspect-square bg-neutral-900 text-white flex items-center justify-center font-bold px-2">K</div>
               )}
             </div>
-            <div className="flex flex-col border-l border-neutral-200 pl-4 py-0.5 h-10 md:h-11 justify-between">
-              <h2 className="text-xl md:text-2xl font-black tracking-[0.1em] leading-none text-neutral-900 uppercase">KOOG</h2>
-              <div className="flex justify-between w-full">
-                {['D','E','S','I','G','N'].map((char, i) => (
-                  <span key={i} className="text-[7px] md:text-[8px] font-bold text-[#E61919] leading-none tracking-tighter" style={{letterSpacing: '-0.05em', fontWeight: 900}}>{char}</span>
-                ))}
-              </div>
+            <div className="flex flex-col border-l border-neutral-200 pl-3 ml-3 justify-center">
+              <h2 className="text-2xl md:text-3xl font-black tracking-tighter leading-none text-neutral-900 uppercase scale-y-110">KOOG</h2>
+              <span className="text-[10px] md:text-[11px] font-bold text-[#E61919] leading-none tracking-[0.36em] pl-[1px] mt-[2px]">DESIGN</span>
             </div>
           </div>
           
