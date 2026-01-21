@@ -1,7 +1,6 @@
 backend:
-  name: github
-  repo: kooglz/koog-site # 您的 GitHub 仓库路径
-  branch: main # 部署分支
+  name: git-gateway
+  branch: main
 
 media_folder: "public/works" # 图片上传位置
 public_folder: "/works" # 图片引用路径
