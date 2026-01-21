@@ -19,7 +19,7 @@ collections:
             widget: "list"
             summary: "{{fields.image}}"
             fields:
-              - {label: "图片", name: "image", widget: "image", hint: "⚠️ 推荐尺寸：1920x1080 (16:9)，最大 2MB"}
+              - {label: "图片", name: "image", widget: "image", hint: "⚠️ 推荐尺寸：1200x1200 (1:1 方图) 或 1200x1500 (4:5 竖图)"}
               - {label: "图片描述 (Alt Text)", name: "alt", widget: "string", required: false}
           
           - name: "works"
