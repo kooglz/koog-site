@@ -276,7 +276,7 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled || currentPage !== 'home' ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-0 cursor-pointer group" onClick={() => navigateTo('home')}>
+          <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
             <div className="h-8 md:h-10 w-auto">
               {!logoError ? (
                 <img src={getAssetUrl("new-logo.png")} alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
@@ -284,9 +284,9 @@ const App: React.FC = () => {
                 <div className="h-full aspect-square bg-neutral-900 text-white flex items-center justify-center font-bold px-2">K</div>
               )}
             </div>
-            <div className="flex flex-col border-l border-neutral-200 pl-3 ml-3 justify-center">
-              <h2 className="text-2xl md:text-3xl font-black tracking-tighter leading-none text-neutral-900 uppercase scale-y-110">KOOG</h2>
-              <span className="text-[10px] md:text-[11px] font-bold text-[#E61919] leading-none tracking-[0.36em] pl-[1px] mt-[2px]">DESIGN</span>
+            <div className="flex flex-col border-l border-neutral-200 pl-4 justify-center h-8 md:h-10">
+              <h2 className="text-xl md:text-2xl font-black tracking-tight leading-none text-neutral-900 uppercase">KOOG</h2>
+              <span className="text-[10px] md:text-[11px] font-bold text-[#E61919] leading-none tracking-[0.2em] mt-0.5">DESIGN</span>
             </div>
           </div>
           
