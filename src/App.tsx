@@ -230,11 +230,11 @@ const App: React.FC = () => {
             <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium border-l-2 border-[#E61919]/10 pl-6">
               {t.hero.desc}
             </p>
-            <div className="flex items-center gap-10 pt-4">
-              <button onClick={() => navigateTo('works')} className="group px-8 py-4 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all flex items-center gap-3 font-bold text-[10px] tracking-widest uppercase shadow-xl hover:shadow-[#E61919]/20">
+            <div className="flex items-center gap-4 md:gap-10 pt-4">
+              <button onClick={() => navigateTo('works')} className="group px-6 md:px-8 py-3 md:py-4 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all flex items-center gap-3 font-bold text-[10px] tracking-widest uppercase shadow-xl hover:shadow-[#E61919]/20">
                 {t.hero.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <div className="hidden sm:block scale-90"><RotatingStamp /></div>
+              <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
             </div>
           </div>
           <div className="lg:col-span-6 relative h-[50vh] lg:h-[75vh] w-full order-1 lg:order-2 group">
