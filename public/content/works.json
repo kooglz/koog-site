@@ -1,15 +1,15 @@
 {
   "hero_images": [
     {
-      "image": "/works/hero-1.jpg",
+      "image": "/works/12001200-2.jpg",
       "alt": "Hero Image 1"
     },
     {
-      "image": "/works/hero-2.jpg",
+      "image": "/works/work3.jpg",
       "alt": "Hero Image 2"
     },
     {
-      "image": "/works/hero-3.jpg",
+      "image": "/works/1200x1200-3.jpg",
       "alt": "Hero Image 3"
     }
   ],
@@ -32,7 +32,7 @@
       "category": "数字艺术 / Digital Art",
       "year": "2024",
       "image": "/works/work2.jpg",
-      "description": "将汉代拓片纹样重塑为高端时尚视觉。",
+      "description": "将汉代拓片十二生肖纹样重塑为高端时尚视觉符号。",
       "detail_content": {
         "full_desc": "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。",
         "images": []
