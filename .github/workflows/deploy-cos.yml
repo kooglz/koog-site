@@ -24,11 +24,9 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Install COSCLI
+      - name: Install COSCMD
         run: |
-          wget https://cosbrowser.cloud.tencent.com/software/coscli/coscli-linux
-          mv coscli-linux coscli
-          chmod +x coscli
+          pip install coscmd
 
       - name: Upload to Tencent Cloud COS
         env:
@@ -37,19 +35,5 @@ jobs:
           BUCKET: ${{ secrets.COS_BUCKET }}
           REGION: ${{ secrets.COS_REGION }}
         run: |
-          # 创建配置文件
-          cat > ./cos.yaml <<EOF
-          cos:
-            base:
-              secretid: $SECRET_ID
-              secretkey: $SECRET_KEY
-              sessiontoken: ""
-            buckets:
-            - name: $BUCKET
-              alias: $BUCKET
-              region: $REGION
-              endpoint: cos.$REGION.myqcloud.com
-          EOF
-          
-          # 使用配置文件进行上传
-          ./coscli cp ./dist/ cos://$BUCKET/ -r -c ./cos.yaml
+          coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+          coscmd upload -r ./dist/ /
