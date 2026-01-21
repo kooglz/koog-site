@@ -62,13 +62,21 @@ const App: React.FC = () => {
   const [language, setLanguage] = useState<LangMode>('cn'); 
   const [logoError, setLogoError] = useState<boolean>(false);
   const [heroSlide, setHeroSlide] = useState<number>(0);
+  const [heroImages, setHeroImages] = useState<string[]>([]);
   const [allWorks, setAllWorks] = useState<WorkItem[]>([]);
 
   // 加载作品数据
   useEffect(() => {
     fetch(getAssetUrl('content/works.json'))
       .then(res => res.json())
-      .then(data => setAllWorks(data.works))
+      .then(data => {
+        if (data.works) {
+          setAllWorks(data.works);
+        }
+        if (data.hero_images) {
+          setHeroImages(data.hero_images.map((item: any) => item.image));
+        }
+      })
       .catch(err => console.error('Failed to load works:', err));
   }, []);
 
@@ -215,12 +223,21 @@ const App: React.FC = () => {
           </div>
           <div className="lg:col-span-6 relative h-[50vh] lg:h-[75vh] w-full order-1 lg:order-2 group">
             <div className="absolute inset-0 bg-neutral-100 rounded-sm overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-neutral-100">
-              {heroSlides.map((slide, idx) => (
-                <div key={idx} className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                  <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
-                </div>
-              ))}
+              {heroImages.length > 0 ? (
+                heroImages.map((img, idx) => (
+                  <div key={idx} className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
+                    <img src={getAssetUrl(img)} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
+                  </div>
+                ))
+              ) : (
+                heroSlides.map((slide, idx) => (
+                  <div key={idx} className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
+                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

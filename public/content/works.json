@@ -1,4 +1,18 @@
 {
+  "hero_images": [
+    {
+      "image": "/works/hero-1.jpg",
+      "alt": "Hero Image 1"
+    },
+    {
+      "image": "/works/hero-2.jpg",
+      "alt": "Hero Image 2"
+    },
+    {
+      "image": "/works/hero-3.jpg",
+      "alt": "Hero Image 3"
+    }
+  ],
   "works": [
     {
       "id": 1,

@@ -3,20 +3,29 @@ backend:
   branch: main
 
 media_folder: "public/works" # 图片上传位置
-public_folder: "/works" # 图片引用路径
+  public_folder: "/works" # 图片在前端访问的路径
 
 collections:
   - name: "content"
-    label: "内容管理"
+    label: "网站内容管理"
     files:
-      - name: "works"
-        label: "作品列表"
+      - name: "home"
+        label: "首页配置 (Home)"
         file: "public/content/works.json"
-        description: "管理首页和作品页展示的所有作品"
+        description: "管理首页轮播图和作品列表"
         fields:
-          - name: "works"
-            label: "作品集"
+          - name: "hero_images"
+            label: "首页轮播图 (Hero Images)"
             widget: "list"
+            summary: "{{fields.image}}"
+            fields:
+              - {label: "图片", name: "image", widget: "image"}
+              - {label: "图片描述 (Alt Text)", name: "alt", widget: "string", required: false}
+          
+          - name: "works"
+            label: "作品列表 (Works)"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.year}})"
             fields:
               - {label: "ID", name: "id", widget: "string"}
               - {label: "标题 (Title)", name: "title", widget: "string"}
