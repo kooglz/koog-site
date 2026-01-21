@@ -26,8 +26,8 @@ jobs:
 
       - name: Install COSCLI
         run: |
-          wget https://github.com/tencentyun/coscli/releases/download/v0.13.0-beta/coscli-linux-amd64
-          mv coscli-linux-amd64 coscli
+          wget https://cosbrowser.cloud.tencent.com/software/coscli/coscli-linux
+          mv coscli-linux coscli
           chmod +x coscli
 
       - name: Upload to Tencent Cloud COS
