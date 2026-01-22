@@ -43,13 +43,13 @@
     },
     {
       "id": "3",
-      "title": "FinTech 品牌识别",
+      "title": "品牌识别系统",
       "category": "品牌设计 / Branding",
       "year": "2023",
       "image": "/works/work3.jpg",
-      "description": "为科技平台构建的极简视觉识别系统。",
+      "description": "为文创初创公司构建的极简视觉识别系统。",
       "detail_content": {
-        "full_desc": "为金融科技初创公司创建一个可靠、创新且具备国际化视野的品牌形象。",
+        "full_desc": "为文创初创公司创建一个可靠、创新且具备国际化视野的品牌形象。",
         "images": []
       }
     }
