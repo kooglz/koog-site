@@ -228,7 +228,7 @@ const App: React.FC = () => {
               {t.hero.tag}
             </div>
             <div className="space-y-4">
-              <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.1]">
+              <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.1] antialiased safari-font-fix">
                 <span className="block mb-2">{t.hero.title[0]}</span>
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm pb-1">
                   {t.hero.title[1]}

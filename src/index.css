@@ -5,5 +5,15 @@
 @layer base {
   body {
     @apply antialiased text-neutral-900 bg-white;
+    font-family: 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* 针对 Safari 的特殊调整：降低字重 */
+@supports (-webkit-hyphens:none) {
+  .safari-font-fix {
+    font-weight: 800 !important; /* 从 900 降到 800 */
   }
 }
