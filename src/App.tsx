@@ -24,10 +24,15 @@ interface WorkItem {
   title: string;
   category: string;
   image: string;
-  desc: string;
-  fullDesc: string;
-  client: string;
-  year: string;
+  desc?: string;
+  description?: string;
+  fullDesc?: string;
+  client?: string;
+  year?: string;
+  detail_content?: {
+    full_desc?: string;
+    images?: { url: string }[];
+  };
 }
 
 interface FooterContent {
@@ -168,8 +173,9 @@ const App: React.FC = () => {
   };
 
   const nextHeroSlide = useCallback(() => {
-    setHeroSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
-  }, [heroSlides.length]);
+    const totalSlides = heroImages.length > 0 ? heroImages.length : heroSlides.length;
+    setHeroSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+  }, [heroImages.length, heroSlides.length]);
 
   useEffect(() => {
     const timer = setInterval(nextHeroSlide, 5000);
@@ -177,8 +183,6 @@ const App: React.FC = () => {
   }, [nextHeroSlide]);
 
   const RotatingStamp: React.FC = () => (
-    <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-      <svg viewBox="0 0 100 100" className="w-full h-full absolute inset-0 animate-spin-slow">
         <defs>
           <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
         </defs>
@@ -351,7 +355,10 @@ const App: React.FC = () => {
                   <p className="text-[11px] uppercase tracking-[0.4em] text-[#E61919] font-bold mb-4">{selectedProject.category}</p>
                   <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none text-neutral-900">{selectedProject.title}</h2>
                 </div>
-                <p className="text-xl text-neutral-500 font-medium leading-relaxed">{selectedProject.fullDesc}</p>
+                {/* 优先显示详情内容里的完整描述，如果没有则显示普通描述 */}
+                <div className="text-xl text-neutral-500 font-medium leading-relaxed prose">
+                  {selectedProject.detail_content?.full_desc || selectedProject.description || selectedProject.fullDesc}
+                </div>
                 <div className="pt-8 grid grid-cols-2 gap-12">
                   <div className="space-y-2">
                     <p className="text-[10px] uppercase text-neutral-400 tracking-[0.3em] font-bold">Client</p>
