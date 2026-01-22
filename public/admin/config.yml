@@ -2,47 +2,47 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/works" # 图片上传位置
-public_folder: "/works" # 图片在前端访问的路径
+# Local backend for development (when running locally)
+local_backend: true
+
+media_folder: "public/works"
+public_folder: "/works"
 
 collections:
   - name: "content"
-    label: "网站内容管理"
+    label: "网站内容"
     files:
-      - name: "home"
-        label: "首页配置 (Home)"
+      - name: "works"
+        label: "作品集与首页数据"
         file: "public/content/works.json"
-        description: "管理首页轮播图和作品列表"
+        description: "编辑首页轮播图和作品列表"
         fields:
-          - name: "hero_images"
-            label: "首页轮播图 (Hero Images)"
+          - label: "首页轮播图 (Hero Images)"
+            name: "hero_images"
             widget: "list"
-            summary: "{{fields.image}}"
+            summary: "{{fields.alt}}"
             fields:
-              - {label: "图片", name: "image", widget: "image", hint: "⚠️ 推荐尺寸：1200x1200 (1:1 方图) 或 1200x1500 (4:5 竖图)"}
-              - {label: "图片描述 (Alt Text)", name: "alt", widget: "string", required: false}
+              - {label: "图片", name: "image", widget: "image"}
+              - {label: "描述 (Alt Text)", name: "alt", widget: "string", required: false}
           
-          - name: "works"
-            label: "作品列表 (Works)"
+          - label: "作品列表 (Works)"
+            name: "works"
             widget: "list"
-            summary: "{{fields.title}} ({{fields.year}})"
+            summary: "{{fields.title}}"
             fields:
-              - {label: "ID", name: "id", widget: "string", hint: "唯一标识符，不要重复 (例如: 1, 2, work-001)"}
-              - {label: "标题 (Title)", name: "title", widget: "string"}
-              - {label: "类别 (Category)", name: "category", widget: "string"}
-              - {label: "年份 (Year)", name: "year", widget: "string"}
-              - {label: "列表页封面图 (Cover Image)", name: "image", widget: "image", hint: "⚠️ 推荐尺寸：800x600 (4:3) 或 1:1 方图"}
-              - {label: "简短描述 (Short Description)", name: "description", widget: "text", hint: "显示在列表页的简短介绍"}
-              
-              - label: "详情页内容 (Detail Page)"
+              - {label: "ID (唯一编号)", name: "id", widget: "string"}
+              - {label: "标题", name: "title", widget: "string"}
+              - {label: "分类", name: "category", widget: "string"}
+              - {label: "年份", name: "year", widget: "string"}
+              - {label: "封面图", name: "image", widget: "image"}
+              - {label: "简短描述", name: "description", widget: "text"}
+              - label: "详情页内容"
                 name: "detail_content"
                 widget: "object"
                 fields:
-                  - {label: "详细介绍 (Full Description)", name: "full_desc", widget: "markdown", hint: "详情页的长文本介绍，支持换行和加粗"}
-                  - label: "详情页配图 (Detail Images)"
+                  - {label: "详细介绍", name: "full_desc", widget: "markdown"}
+                  - label: "作品详情图集"
                     name: "images"
                     widget: "list"
-                    hint: "详情页展示的横版大图"
                     fields:
-                      - {label: "图片", name: "src", widget: "image", hint: "⚠️ 推荐尺寸：1920x宽，高度自适应"}
-                      - {label: "图片说明", name: "caption", widget: "string", required: false}
+                      - {label: "图片", name: "url", widget: "image"}
