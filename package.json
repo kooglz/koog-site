@@ -13,7 +13,8 @@
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cms": "npx decap-server"
+    "cms": "npx decap-server",
+    "deploy-site": "git add . && git commit -m \"Update content via CMS\" && git push"
   },
   "dependencies": {
     "lucide-react": "^0.562.0",
