@@ -25,11 +25,13 @@ jobs:
           npm install
           npm install cos-nodejs-sdk-v5 --save-dev
 
-      - name: Build project
+      # ----------------------------------------------------------------
+      # 1. 为腾讯云 COS 构建 (根路径 /)
+      # ----------------------------------------------------------------
+      - name: Build for Tencent Cloud COS
         run: npm run build
-
-      - name: Install COS SDK
-        run: npm install cos-nodejs-sdk-v5
+        env:
+          GITHUB_PAGES: 'false'
 
       - name: Upload to Tencent Cloud COS
         env:
@@ -38,6 +40,14 @@ jobs:
           BUCKET: ${{ secrets.COS_BUCKET }}
           REGION: ${{ secrets.COS_REGION }}
         run: node scripts/upload-cos.cjs
+
+      # ----------------------------------------------------------------
+      # 2. 为 GitHub Pages 构建 (子路径 /koog-site/)
+      # ----------------------------------------------------------------
+      - name: Build for GitHub Pages
+        run: npm run build
+        env:
+          GITHUB_PAGES: 'true'
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

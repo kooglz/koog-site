@@ -5,7 +5,8 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // 使用相对路径，兼容所有部署环境（腾讯云、GitHub Pages等）
+  // 如果是生产环境构建，且部署到 GitHub Pages，则使用仓库名作为 base
+  base: process.env.GITHUB_PAGES === 'true' ? '/koog-site/' : './',
   build: {
     rollupOptions: {
       input: {

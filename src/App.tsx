@@ -159,16 +159,19 @@ const App: React.FC = () => {
 
   // 获取基础路径，自动适配 GitHub Pages 或本地环境
   const getAssetUrl = (path: string) => {
-    // 移除 path 开头的 /，防止双重斜杠
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    
+    // 移除 path 开头的 /
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     
-    // 如果已经在 koog-site 目录下（GitHub Pages），且 path 没有包含这个前缀
-    if (window.location.pathname.includes('/koog-site/') && !cleanPath.startsWith('koog-site/')) {
-      return `/koog-site/${cleanPath}`;
-    }
+    // 获取 Vite 注入的 base url (在 vite.config.ts 中配置)
+    const baseUrl = import.meta.env.BASE_URL;
     
-    // 本地开发或腾讯云根路径部署
-    return `/${cleanPath}`;
+    // 确保 baseUrl 以 / 结尾，cleanPath 不以 / 开头
+    const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+    
+    return `${cleanBase}${cleanPath}`;
   };
 
   const heroSlides = [
