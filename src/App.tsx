@@ -183,6 +183,8 @@ const App: React.FC = () => {
   }, [nextHeroSlide]);
 
   const RotatingStamp: React.FC = () => (
+    <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
+      <svg viewBox="0 0 100 100" className="w-full h-full absolute inset-0 animate-spin-slow">
         <defs>
           <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
         </defs>
