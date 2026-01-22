@@ -76,10 +76,19 @@ const App: React.FC = () => {
       .then(res => res.json())
       .then(data => {
         if (data.works) {
-          setAllWorks(data.works);
+          // 处理作品图片路径，确保兼容 GitHub Pages
+          const processedWorks = data.works.map((work: WorkItem) => ({
+            ...work,
+            image: work.image.startsWith('http') ? work.image : getAssetUrl(work.image)
+          }));
+          setAllWorks(processedWorks);
         }
         if (data.hero_images) {
-          setHeroImages(data.hero_images.map((item: any) => item.image));
+          // 处理轮播图路径
+          setHeroImages(data.hero_images.map((item: any) => {
+            const imgPath = item.image;
+            return imgPath.startsWith('http') ? imgPath : getAssetUrl(imgPath);
+          }));
         }
       })
       .catch(err => console.error('Failed to load works:', err));
@@ -149,11 +158,17 @@ const App: React.FC = () => {
   const t = content[language];
 
   // 获取基础路径，自动适配 GitHub Pages 或本地环境
-  const baseUrl = import.meta.env.BASE_URL;
   const getAssetUrl = (path: string) => {
     // 移除 path 开头的 /，防止双重斜杠
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-    return `${baseUrl}${cleanPath}`;
+    
+    // 如果已经在 koog-site 目录下（GitHub Pages），且 path 没有包含这个前缀
+    if (window.location.pathname.includes('/koog-site/') && !cleanPath.startsWith('koog-site/')) {
+      return `/koog-site/${cleanPath}`;
+    }
+    
+    // 本地开发或腾讯云根路径部署
+    return `/${cleanPath}`;
   };
 
   const heroSlides = [
@@ -232,7 +247,7 @@ const App: React.FC = () => {
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={getAssetUrl(img)} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
+                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
                   </div>
                 ))
