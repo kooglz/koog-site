@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Local backend for development (when running locally)
+local_backend: true
+
+media_folder: "public/works"
+public_folder: "/works"
+
+collections:
+  - name: "content"
+    label: "网站内容"
+    files:
+      - name: "works"
+        label: "作品集与首页数据"
+        file: "public/content/works.json"
+        description: "编辑首页轮播图和作品列表"
+        fields:
+          - label: "首页轮播图 (Hero Images)"
+            name: "hero_images"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "图片", name: "image", widget: "image"}
+              - {label: "描述 (Alt Text)", name: "alt", widget: "string", required: false}
+          
+          - label: "作品列表 (Works)"
+            name: "works"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "ID (唯一编号)", name: "id", widget: "string"}
+              - {label: "标题", name: "title", widget: "string"}
+              - {label: "分类", name: "category", widget: "string"}
+              - {label: "年份", name: "year", widget: "string"}
+              - {label: "封面图", name: "image", widget: "image"}
+              - {label: "简短描述", name: "description", widget: "text"}
+              - label: "详情页内容"
+                name: "detail_content"
+                widget: "object"
+                fields:
+                  - {label: "详细介绍", name: "full_desc", widget: "markdown"}
+                  - label: "作品详情图集"
+                    name: "images"
+                    widget: "list"
+                    fields:
+                      - {label: "图片", name: "url", widget: "image"}

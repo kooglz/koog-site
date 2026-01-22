@@ -1,0 +1,57 @@
+{
+  "hero_images": [
+    {
+      "image": "/works/1200-1200-4.jpg",
+      "alt": "Hero Image 1"
+    },
+    {
+      "image": "/works/work3.jpg",
+      "alt": "Hero Image 2"
+    },
+    {
+      "image": "/works/1200x1200-3.jpg",
+      "alt": "Hero Image 3"
+    },
+    {
+      "image": "/works/1200x1200-1.jpg"
+    }
+  ],
+  "works": [
+    {
+      "id": "1",
+      "title": "鱼灯 AIGC 视觉研究",
+      "category": "AI 插画 / AI Illustration",
+      "year": "2025",
+      "image": "/works/work1.jpg",
+      "description": "非遗鱼灯与未来 AI 光影的结合。",
+      "detail_content": {
+        "full_desc": "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。",
+        "images": []
+      }
+    },
+    {
+      "id": "2",
+      "title": "汉代拓片重构",
+      "category": "数字艺术 / Digital Art",
+      "year": "2024",
+      "image": "/works/work2.jpg",
+      "description": "将汉代拓片十二生肖纹样重塑为高端时尚视觉符号。",
+      "detail_content": {
+        "full_desc": "汲取汉代石刻浮雕灵感，专注于“水墨”拓片技法与现代时尚排版的碰撞。",
+        "images": []
+      }
+    },
+    {
+      "id": "3",
+      "title": "品牌识别系统",
+      "category": "品牌设计 / Branding",
+      "year": "2023",
+      "image": "/works/work3.jpg",
+      "description": "为文创初创公司构建的极简视觉识别系统。",
+      "detail_content": {
+        "full_desc": "为文创初创公司创建一个可靠、创新且具备国际化视野的品牌形象。",
+        "images": []
+      }
+    }
+  ]
+}
