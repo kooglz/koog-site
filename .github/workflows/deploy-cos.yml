@@ -24,12 +24,11 @@ jobs:
         run: |
           npm install
           npm install cos-nodejs-sdk-v5 --save-dev
-          npm install @volcengine/tos-sdk --save-dev
 
       # ----------------------------------------------------------------
-      # 1. 为腾讯云 COS 和火山引擎 TOS 构建 (根路径 /)
+      # 1. 为腾讯云 COS 构建 (根路径 /)
       # ----------------------------------------------------------------
-      - name: Build for Cloud Storage (Root Path)
+      - name: Build for Tencent Cloud COS
         run: npm run build
         env:
           GITHUB_PAGES: 'false'
@@ -41,15 +40,6 @@ jobs:
           BUCKET: ${{ secrets.COS_BUCKET }}
           REGION: ${{ secrets.COS_REGION }}
         run: node scripts/upload-cos.cjs
-
-      - name: Upload to Volcengine TOS
-        env:
-          TOS_ACCESS_KEY: ${{ secrets.TOS_ACCESS_KEY }}
-          TOS_SECRET_KEY: ${{ secrets.TOS_SECRET_KEY }}
-          TOS_BUCKET: ${{ secrets.TOS_BUCKET }}
-          TOS_REGION: ${{ secrets.TOS_REGION }}
-          TOS_ENDPOINT: ${{ secrets.TOS_ENDPOINT }}
-        run: node scripts/upload-tos.cjs
 
       # ----------------------------------------------------------------
       # 2. 为 GitHub Pages 构建 (子路径 /koog-site/)
