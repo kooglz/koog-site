@@ -196,9 +196,18 @@ const App: React.FC = () => {
   }, [heroImages.length, heroSlides.length]);
 
   useEffect(() => {
-    const timer = setInterval(nextHeroSlide, 5000);
+    const timer = setInterval(nextHeroSlide, 3500);
     return () => clearInterval(timer);
   }, [nextHeroSlide]);
+
+  // 图片预加载优化
+  useEffect(() => {
+    const imagesToPreload = heroImages.length > 0 ? heroImages : heroSlides.map(s => s.url);
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [heroImages, heroSlides]);
 
   const RotatingStamp: React.FC = () => (
     <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
@@ -249,14 +258,14 @@ const App: React.FC = () => {
             <div className="absolute inset-0 bg-neutral-100 rounded-sm overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-neutral-100">
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
-                  <div key={idx} className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
+                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
                     <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
                   </div>
                 ))
               ) : (
                 heroSlides.map((slide, idx) => (
-                  <div key={idx} className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
+                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
                     <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
                   </div>
