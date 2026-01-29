@@ -285,7 +285,7 @@ const App: React.FC = () => {
       {/* Featured Works Section */}
       <section className="py-32 bg-neutral-50 border-y border-neutral-100 w-full">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
             <div className="space-y-4">
               <div className="w-12 h-1 bg-[#E61919]"></div>
               <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-neutral-400">{t.works.subtitle}</p>
