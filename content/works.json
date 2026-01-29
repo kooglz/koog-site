@@ -18,19 +18,6 @@
   ],
   "works": [
     {
-      "id": "1",
-      "title": "鱼灯 AIGC 视觉研究",
-      "category": "AI 插画 / AI Illustration",
-      "client": "KOOG STUDIO (Internal Research)",
-      "year": "2025",
-      "image": "/works/work1.jpg",
-      "description": "非遗鱼灯与未来 AI 光影的结合。",
-      "detail_content": {
-        "full_desc": "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。",
-        "images": []
-      }
-    },
-    {
       "id": "2",
       "title": "汉代拓片重构",
       "category": "数字艺术 / Digital Art",
@@ -53,6 +40,19 @@
       "description": "为文创初创公司构建的极简视觉识别系统。",
       "detail_content": {
         "full_desc": "为文创初创公司创建一个可靠、创新且具备国际化视野的品牌形象。",
+        "images": []
+      }
+    },
+    {
+      "id": "1",
+      "title": "鱼灯 AIGC 视觉研究",
+      "category": "AI 插画 / AI Illustration",
+      "client": "KOOG STUDIO (Internal Research)",
+      "year": "2025",
+      "image": "/works/work1.jpg",
+      "description": "非遗鱼灯与未来 AI 光影的结合。",
+      "detail_content": {
+        "full_desc": "该项目探索了中国传统灯会与现代数字美学的交汇点。通过定制化 Stable Diffusion 模型，重新定义东方光影。",
         "images": []
       }
     }
