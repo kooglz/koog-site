@@ -69,9 +69,16 @@ const App: React.FC = () => {
   const [heroSlide, setHeroSlide] = useState<number>(0);
   const [heroImages, setHeroImages] = useState<string[]>([]);
   const [allWorks, setAllWorks] = useState<WorkItem[]>([]);
+  const [siteSettings, setSiteSettings] = useState<any>(null);
 
   // 加载作品数据
   useEffect(() => {
+    // 加载全局设置
+    fetch(getAssetUrl(`content/site.json?v=${new Date().getTime()}`))
+      .then(res => res.json())
+      .then(data => setSiteSettings(data))
+      .catch(err => console.error('Failed to load site settings:', err));
+
     // 添加时间戳防止浏览器缓存 works.json
     fetch(getAssetUrl(`content/works.json?v=${new Date().getTime()}`))
       .then(res => res.json())
@@ -105,13 +112,21 @@ const App: React.FC = () => {
   // 多语言配置
   const content: Record<LangMode, LanguageContent> = {
     cn: {
-      nav: { home: "首页", works: "作品", services: "服务", inquiry: "咨询合作" },
+      nav: { 
+        home: siteSettings?.nav?.home_cn || "首页", 
+        works: siteSettings?.nav?.works_cn || "作品", 
+        services: siteSettings?.nav?.services_cn || "服务", 
+        inquiry: siteSettings?.nav?.inquiry_cn || "咨询合作" 
+      },
       hero: {
-        tag: "全球业务开放中",
-        title: ["理性的", "视觉构建者"],
-        desc: "15年设计积淀。定义 AI 与 东方美学 的新边界。",
-        cta: "浏览作品",
-        stamp: "KOOG STUDIO • EST 2011 • DESIGN & ART "
+        tag: siteSettings?.hero?.tag_cn || "全球业务开放中",
+        title: [
+          siteSettings?.hero?.title1_cn || "理性的", 
+          siteSettings?.hero?.title2_cn || "视觉构建者"
+        ],
+        desc: siteSettings?.hero?.desc_cn || "15年设计积淀。定义 AI 与 东方美学 的新边界。",
+        cta: siteSettings?.hero?.cta_cn || "浏览作品",
+        stamp: siteSettings?.hero?.stamp_cn || "KOOG STUDIO • EST 2011 • DESIGN & ART "
       },
       works: {
         title: "精选项目",
@@ -119,24 +134,32 @@ const App: React.FC = () => {
         back: "返回列表",
       },
       footer: {
-        tagline: "设计并非装饰，而是对世界的理性翻译。",
-        cta: "开启下一个项目",
-        xhsTitle: "小红书 / RED",
-        xhsID: "KOOG_DESIGN",
-        wechatTitle: "微信 / WECHAT",
-        wechatID: "kooglz",
+        tagline: siteSettings?.footer?.tagline_cn || "设计并非装饰，而是对世界的理性翻译。",
+        cta: siteSettings?.footer?.cta_cn || "开启下一个项目",
+        xhsTitle: siteSettings?.footer?.xhsTitle_cn || "小红书 / RED",
+        xhsID: siteSettings?.footer?.xhsID || "KOOG_DESIGN",
+        wechatTitle: siteSettings?.footer?.wechatTitle_cn || "微信 / WECHAT",
+        wechatID: siteSettings?.footer?.wechatID || "kooglz",
         scan: "扫码开启合作",
-        location: "中国 / 上海 · 北京"
+        location: siteSettings?.footer?.location_cn || "中国 / 上海 · 北京"
       }
     },
     en: {
-      nav: { home: "Home", works: "Works", services: "Services", inquiry: "Inquiry" },
+      nav: { 
+        home: siteSettings?.nav?.home_en || "Home", 
+        works: siteSettings?.nav?.works_en || "Works", 
+        services: siteSettings?.nav?.services_en || "Services", 
+        inquiry: siteSettings?.nav?.inquiry_en || "Inquiry" 
+      },
       hero: {
-        tag: "Global Inquiries Welcome",
-        title: ["Rational", "Visualist"],
-        desc: "15 years of design excellence. Defining AIGC & Oriental Aesthetics.",
-        cta: "Explore Works",
-        stamp: "KOOG STUDIO • EST 2011 • DESIGN & ART "
+        tag: siteSettings?.hero?.tag_en || "Global Inquiries Welcome",
+        title: [
+          siteSettings?.hero?.title1_en || "Rational", 
+          siteSettings?.hero?.title2_en || "Visualist"
+        ],
+        desc: siteSettings?.hero?.desc_en || "15 years of design excellence. Defining AIGC & Oriental Aesthetics.",
+        cta: siteSettings?.hero?.cta_en || "Explore Works",
+        stamp: siteSettings?.hero?.stamp_en || "KOOG STUDIO • EST 2011 • DESIGN & ART "
       },
       works: {
         title: "Selected Projects",
@@ -144,14 +167,14 @@ const App: React.FC = () => {
         back: "Back",
       },
       footer: {
-        tagline: "Design is not decoration, but a rational translation of the world.",
-        cta: "Next Project",
-        xhsTitle: "Xiaohongshu / RED",
-        xhsID: "KOOG_DESIGN",
-        wechatTitle: "WeChat",
-        wechatID: "kooglz",
+        tagline: siteSettings?.footer?.tagline_en || "Design is not decoration, but a rational translation of the world.",
+        cta: siteSettings?.footer?.cta_en || "Next Project",
+        xhsTitle: siteSettings?.footer?.xhsTitle_en || "Xiaohongshu / RED",
+        xhsID: siteSettings?.footer?.xhsID || "KOOG_DESIGN",
+        wechatTitle: siteSettings?.footer?.wechatTitle_en || "WeChat",
+        wechatID: siteSettings?.footer?.wechatID || "kooglz",
         scan: "Scan QR to Start",
-        location: "CHINA / SH · BJ"
+        location: siteSettings?.footer?.location_en || "CHINA / SH · BJ"
       }
     }
   };
@@ -318,7 +341,7 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
             <div className="h-8 md:h-10 w-auto">
               {!logoError ? (
-                <img src={getAssetUrl("new-logo.png")} alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
+                <img src={getAssetUrl(siteSettings?.logo || "new-logo.png")} alt="KOOG" className="h-full w-auto object-contain transition-transform group-hover:scale-110" onError={() => setLogoError(true)} />
               ) : (
                 <div className="h-full aspect-square bg-neutral-900 text-white flex items-center justify-center font-bold px-2">K</div>
               )}
@@ -439,7 +462,7 @@ const App: React.FC = () => {
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden">
                   <img 
-                    src={getAssetUrl("qrcode/wechat.jpg")} 
+                    src={getAssetUrl(siteSettings?.footer?.wechatQR || "qrcode/wechat.jpg")} 
                     alt="WeChat QR Code" 
                     className="w-full h-full object-cover"
                   />
@@ -455,7 +478,7 @@ const App: React.FC = () => {
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden text-black flex items-center justify-center font-black text-lg">
                   <img 
-                    src={getAssetUrl("qrcode/xhs.jpg")} 
+                    src={getAssetUrl(siteSettings?.footer?.xhsQR || "qrcode/xhs.jpg")} 
                     alt="Xiaohongshu QR Code" 
                     className="w-full h-full object-cover"
                   />

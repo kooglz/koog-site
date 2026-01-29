@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home_cn": "首页",
+    "works_cn": "作品",
+    "services_cn": "服务",
+    "inquiry_cn": "咨询合作",
+    "home_en": "Home",
+    "works_en": "Works",
+    "services_en": "Services",
+    "inquiry_en": "Inquiry"
+  },
+  "hero": {
+    "tag_cn": "全球业务开放中",
+    "title1_cn": "理性的",
+    "title2_cn": "视觉构建者",
+    "desc_cn": "15年设计积淀。定义 AI 与 东方美学 的新边界。",
+    "cta_cn": "浏览作品",
+    "stamp_cn": "KOOG STUDIO • EST 2011 • DESIGN & ART ",
+    "tag_en": "Global Inquiries Welcome",
+    "title1_en": "Rational",
+    "title2_en": "Visualist",
+    "desc_en": "15 years of design excellence. Defining AIGC & Oriental Aesthetics.",
+    "cta_en": "Explore Works",
+    "stamp_en": "KOOG STUDIO • EST 2011 • DESIGN & ART "
+  },
+  "footer": {
+    "tagline_cn": "设计并非装饰，而是对世界的理性翻译。",
+    "cta_cn": "开启下一个项目",
+    "xhsTitle_cn": "小红书 / RED",
+    "xhsID": "KOOG_DESIGN",
+    "wechatTitle_cn": "微信 / WECHAT",
+    "wechatID": "kooglz",
+    "location_cn": "中国 / 上海 · 北京",
+    "tagline_en": "Design is not decoration, but a rational translation of the world.",
+    "cta_en": "Next Project",
+    "xhsTitle_en": "Xiaohongshu / RED",
+    "wechatTitle_en": "WeChat",
+    "location_en": "CHINA / SH · BJ",
+    "email": "kooglz@foxmail.com",
+    "wechatQR": "/qrcode/wechat.jpg",
+    "xhsQR": "/qrcode/xhs.jpg"
+  },
+  "logo": "/new-logo.png"
+}
