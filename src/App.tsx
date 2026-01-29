@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { 
   ArrowRight, Menu, X, Languages, ChevronLeft, ArrowUpRight
 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 // --- 类型定义 ---
 interface NavContent {
@@ -414,8 +415,10 @@ const App: React.FC = () => {
                   <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none text-neutral-900">{selectedProject.title}</h2>
                 </div>
                 {/* 优先显示详情内容里的完整描述，如果没有则显示普通描述 */}
-                <div className="text-xl text-neutral-500 font-medium leading-relaxed prose">
-                  {selectedProject.detail_content?.full_desc || selectedProject.description || selectedProject.fullDesc}
+                <div className="prose prose-neutral prose-lg max-w-none text-neutral-500 font-medium leading-relaxed">
+                  <ReactMarkdown>
+                    {selectedProject.detail_content?.full_desc || selectedProject.description || selectedProject.fullDesc || ""}
+                  </ReactMarkdown>
                 </div>
                 <div className="pt-8 grid grid-cols-2 gap-12">
                   <div className="space-y-2">
