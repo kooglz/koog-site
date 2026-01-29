@@ -33,6 +33,7 @@ collections:
               - {label: "ID (唯一编号)", name: "id", widget: "string"}
               - {label: "标题", name: "title", widget: "string"}
               - {label: "分类", name: "category", widget: "string"}
+              - {label: "委托方 (Client)", name: "client", widget: "string", required: false}
               - {label: "年份", name: "year", widget: "string"}
               - {label: "封面图", name: "image", widget: "image"}
               - {label: "简短描述", name: "description", widget: "text"}

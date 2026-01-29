@@ -20,7 +20,7 @@ interface HeroContent {
 }
 
 interface WorkItem {
-  id: number;
+  id: string | number;
   title: string;
   category: string;
   image: string;
@@ -186,8 +186,13 @@ const App: React.FC = () => {
   const navigateTo = (page: 'home' | 'works' | 'detail', project: WorkItem | null = null) => {
     setCurrentPage(page);
     setSelectedProject(project);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsMenuOpen(false);
+    
+    // 使用 setTimeout 确保在 React 渲染更新后执行滚动到顶部
+    // 解决手机端点击后可能跳转到页面底部的问题
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   };
 
   const nextHeroSlide = useCallback(() => {
