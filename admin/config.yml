@@ -15,9 +15,9 @@ collections:
       - name: "site_general"
         label: "全局设置 (导航/首页/页脚)"
         file: "public/content/site.json"
-        description: "编辑网站Logo、导航文字、首页标语及页脚联系方式"
+        description: "建议：图片上传前请使用 TinyPNG 等工具压缩以保证加载速度。"
         fields:
-          - {label: "网站 Logo", name: "logo", widget: "image"}
+          - {label: "网站 Logo", name: "logo", widget: "image", hint: "建议尺寸：高度 80px-120px，透明背景 PNG 格式"}
           - label: "导航栏 (Navigation)"
             name: "nav"
             widget: "object"
@@ -52,22 +52,22 @@ collections:
               - {label: "CTA标题 (中)", name: "cta_cn", widget: "string"}
               - {label: "邮箱", name: "email", widget: "string"}
               - {label: "微信 ID", name: "wechatID", widget: "string"}
-              - {label: "微信二维码", name: "wechatQR", widget: "image"}
+              - {label: "微信二维码", name: "wechatQR", widget: "image", hint: "建议尺寸：400x400px 正方形"}
               - {label: "小红书 ID", name: "xhsID", widget: "string"}
-              - {label: "小红书二维码", name: "xhsQR", widget: "image"}
+              - {label: "小红书二维码", name: "xhsQR", widget: "image", hint: "建议尺寸：400x400px 正方形"}
               - {label: "地点 (中)", name: "location_cn", widget: "string"}
 
       - name: "works"
         label: "作品集与首页数据"
         file: "public/content/works.json"
-        description: "编辑首页轮播图和作品列表"
+        description: "建议：封面图建议比例 4:5 或 3:4，详情图建议宽度不小于 1200px"
         fields:
           - label: "首页轮播图 (Hero Images)"
             name: "hero_images"
             widget: "list"
             summary: "{{fields.alt}}"
             fields:
-              - {label: "图片", name: "image", widget: "image"}
+              - {label: "图片", name: "image", widget: "image", hint: "建议尺寸：1600x1200px 或更高，比例 4:3"}
               - {label: "描述 (Alt Text)", name: "alt", widget: "string", required: false}
           
           - label: "作品列表 (Works)"
@@ -80,7 +80,7 @@ collections:
               - {label: "分类", name: "category", widget: "string"}
               - {label: "委托方 (Client)", name: "client", widget: "string", required: false}
               - {label: "年份", name: "year", widget: "string"}
-              - {label: "封面图", name: "image", widget: "image"}
+              - {label: "封面图", name: "image", widget: "image", hint: "建议尺寸：800x1000px，比例 4:5"}
               - {label: "简短描述", name: "description", widget: "text"}
               - label: "详情页内容"
                 name: "detail_content"
@@ -91,4 +91,4 @@ collections:
                     name: "images"
                     widget: "list"
                     fields:
-                      - {label: "图片", name: "url", widget: "image"}
+                      - {label: "图片", name: "url", widget: "image", hint: "建议宽度：1200px-2000px，高度不限"}
