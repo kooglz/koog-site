@@ -12,6 +12,51 @@ collections:
   - name: "content"
     label: "网站内容"
     files:
+      - name: "site_general"
+        label: "全局设置 (导航/首页/页脚)"
+        file: "public/content/site.json"
+        description: "编辑网站Logo、导航文字、首页标语及页脚联系方式"
+        fields:
+          - {label: "网站 Logo", name: "logo", widget: "image"}
+          - label: "导航栏 (Navigation)"
+            name: "nav"
+            widget: "object"
+            fields:
+              - {label: "首页 (中)", name: "home_cn", widget: "string"}
+              - {label: "作品 (中)", name: "works_cn", widget: "string"}
+              - {label: "咨询合作 (中)", name: "inquiry_cn", widget: "string"}
+              - {label: "首页 (英)", name: "home_en", widget: "string"}
+              - {label: "作品 (英)", name: "works_en", widget: "string"}
+              - {label: "咨询合作 (英)", name: "inquiry_en", widget: "string"}
+          - label: "首页首屏 (Hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "标签 (中)", name: "tag_cn", widget: "string"}
+              - {label: "大标题1 (中)", name: "title1_cn", widget: "string"}
+              - {label: "大标题2 (中)", name: "title2_cn", widget: "string"}
+              - {label: "描述 (中)", name: "desc_cn", widget: "text"}
+              - {label: "按钮文字 (中)", name: "cta_cn", widget: "string"}
+              - {label: "旋转印章文字 (中)", name: "stamp_cn", widget: "string"}
+              - {label: "标签 (英)", name: "tag_en", widget: "string"}
+              - {label: "大标题1 (英)", name: "title1_en", widget: "string"}
+              - {label: "大标题2 (英)", name: "title2_en", widget: "string"}
+              - {label: "描述 (英)", name: "desc_en", widget: "text"}
+              - {label: "按钮文字 (英)", name: "cta_en", widget: "string"}
+              - {label: "旋转印章文字 (英)", name: "stamp_en", widget: "string"}
+          - label: "页脚 (Footer)"
+            name: "footer"
+            widget: "object"
+            fields:
+              - {label: "Slogan (中)", name: "tagline_cn", widget: "text"}
+              - {label: "CTA标题 (中)", name: "cta_cn", widget: "string"}
+              - {label: "邮箱", name: "email", widget: "string"}
+              - {label: "微信 ID", name: "wechatID", widget: "string"}
+              - {label: "微信二维码", name: "wechatQR", widget: "image"}
+              - {label: "小红书 ID", name: "xhsID", widget: "string"}
+              - {label: "小红书二维码", name: "xhsQR", widget: "image"}
+              - {label: "地点 (中)", name: "location_cn", widget: "string"}
+
       - name: "works"
         label: "作品集与首页数据"
         file: "public/content/works.json"
