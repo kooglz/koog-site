@@ -408,6 +408,20 @@ const App: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-20">
               <div className="space-y-8">
                 <img src={selectedProject.image} alt={selectedProject.title} className="w-full aspect-video object-cover shadow-2xl rounded-sm border border-neutral-100" />
+                
+                {/* 渲染详情图集 */}
+                {selectedProject.detail_content?.images && selectedProject.detail_content.images.length > 0 && (
+                  <div className="space-y-8 pt-8">
+                    {selectedProject.detail_content.images.map((img, idx) => (
+                      <img 
+                        key={idx} 
+                        src={img.url.startsWith('http') ? img.url : getAssetUrl(img.url)} 
+                        alt={`${selectedProject.title} detail ${idx + 1}`} 
+                        className="w-full h-auto shadow-lg rounded-sm border border-neutral-100" 
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="space-y-10">
                 <div className="border-b border-neutral-100 pb-8">
