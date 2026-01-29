@@ -72,7 +72,8 @@ const App: React.FC = () => {
 
   // 加载作品数据
   useEffect(() => {
-    fetch(getAssetUrl('content/works.json'))
+    // 添加时间戳防止浏览器缓存 works.json
+    fetch(getAssetUrl(`content/works.json?v=${new Date().getTime()}`))
       .then(res => res.json())
       .then(data => {
         if (data.works) {
