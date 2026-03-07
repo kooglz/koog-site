@@ -285,19 +285,17 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="lg:col-span-6 relative h-[50vh] lg:h-[75vh] w-full order-1 lg:order-2 group">
-            <div className="absolute inset-0 bg-neutral-100 rounded-sm overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-neutral-100">
+            <div className="absolute inset-0 bg-white rounded-sm overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-neutral-100">
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
+                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
                   </div>
                 ))
               ) : (
                 heroSlides.map((slide, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-110' : 'scale-100'}`} />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
+                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
                   </div>
                 ))
               )}
@@ -320,7 +318,7 @@ const App: React.FC = () => {
             {allWorks.map(work => (
               <div key={work.id} className="group cursor-pointer space-y-6" onClick={() => navigateTo('detail', work)}>
                 <div className="aspect-[4/5] overflow-hidden bg-neutral-100 rounded-sm shadow-sm border border-neutral-100 relative">
-                  <img src={work.image} alt={work.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+                  <img src={work.image} alt={work.title} className="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
                 </div>
                 <div className="space-y-2">
                   <p className="text-[10px] text-[#E61919] uppercase tracking-[0.2em] font-bold">{work.category}</p>
@@ -390,7 +388,7 @@ const App: React.FC = () => {
               {allWorks.map(work => (
                 <div key={work.id} className="group cursor-pointer" onClick={() => navigateTo('detail', work)}>
                   <div className="aspect-[3/4] overflow-hidden bg-neutral-100 mb-6 rounded-sm shadow-sm border border-neutral-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-                    <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                    <img src={work.image} alt={work.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" />
                   </div>
                   <h4 className="text-xl font-bold group-hover:text-[#E61919] transition-colors tracking-tight">{work.title}</h4>
                   <p className="text-[10px] text-neutral-400 mt-2 uppercase tracking-[0.2em] font-bold">{work.category}</p>
@@ -407,7 +405,7 @@ const App: React.FC = () => {
             </button>
             <div className="grid lg:grid-cols-2 gap-20">
               <div className="space-y-8">
-                <img src={selectedProject.image} alt={selectedProject.title} className="w-full aspect-video object-cover shadow-2xl rounded-sm border border-neutral-100" />
+                <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-auto object-contain shadow-2xl rounded-sm border border-neutral-100" />
                 
                 {/* 渲染详情图集 */}
                 {selectedProject.detail_content?.images && selectedProject.detail_content.images.length > 0 && (
