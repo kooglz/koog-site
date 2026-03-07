@@ -289,13 +289,13 @@ const App: React.FC = () => {
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover object-center transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
                   </div>
                 ))
               ) : (
                 heroSlides.map((slide, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover object-center transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
                   </div>
                 ))
               )}
