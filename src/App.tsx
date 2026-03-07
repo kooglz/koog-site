@@ -285,17 +285,29 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="lg:col-span-6 relative h-[50vh] lg:h-[75vh] w-full order-1 lg:order-2 group">
-            <div className="absolute inset-0 bg-white rounded-sm overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-neutral-100">
+            <div className="absolute inset-0 bg-neutral-100 rounded-sm overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-neutral-100">
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
-                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover object-center transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+                    {/* 毛玻璃背景层 */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      <img src={img} alt="" className="w-full h-full object-cover blur-2xl scale-110 opacity-50" />
+                      <div className="absolute inset-0 bg-neutral-100/30"></div>
+                    </div>
+                    {/* 主体图片层 - 保持完整比例 */}
+                    <img src={img} alt={`Hero ${idx + 1}`} className={`relative w-full h-full object-contain p-4 md:p-8 transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-100' : 'scale-95'}`} />
                   </div>
                 ))
               ) : (
                 heroSlides.map((slide, idx) => (
-                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
-                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover object-center transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+                    {/* 毛玻璃背景层 */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      <img src={slide.url} alt="" className="w-full h-full object-cover blur-2xl scale-110 opacity-50" />
+                      <div className="absolute inset-0 bg-neutral-100/30"></div>
+                    </div>
+                    {/* 主体图片层 */}
+                    <img src={slide.url} alt={slide.title} className={`relative w-full h-full object-contain p-4 md:p-8 transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-100' : 'scale-95'}`} />
                   </div>
                 ))
               )}
