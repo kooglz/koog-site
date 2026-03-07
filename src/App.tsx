@@ -284,22 +284,41 @@ const App: React.FC = () => {
               <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
             </div>
           </div>
-          <div className="lg:col-span-6 w-full order-1 lg:order-2 group">
+          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
             {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="relative aspect-[3/4] w-full max-w-[500px] mx-auto bg-neutral-100 rounded-sm overflow-hidden shadow-xl border-[4px] border-white ring-1 ring-neutral-100 flex items-center justify-center">
-              {heroImages.length > 0 ? (
-                heroImages.map((img, idx) => (
-                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto flex items-center justify-center">
+              {/* 渲染轮播图 */}
+              {(heroImages.length > 0 ? heroImages : heroSlides).map((item, idx) => {
+                const imgUrl = typeof item === 'string' ? item : item.url;
+                const total = heroImages.length > 0 ? heroImages.length : heroSlides.length;
+                
+                // 计算位置：prev, current, next
+                let position = 'hidden';
+                if (idx === heroSlide) position = 'current';
+                else if (idx === (heroSlide - 1 + total) % total) position = 'prev';
+                else if (idx === (heroSlide + 1) % total) position = 'next';
+
+                // 样式逻辑
+                let styles = '';
+                if (position === 'current') {
+                  styles = 'opacity-100 scale-100 z-20 translate-x-0 shadow-2xl';
+                } else if (position === 'prev') {
+                  styles = 'opacity-40 scale-[0.85] z-10 -translate-x-[65%] blur-[1px] grayscale-[30%]';
+                } else if (position === 'next') {
+                  styles = 'opacity-40 scale-[0.85] z-10 translate-x-[65%] blur-[1px] grayscale-[30%]';
+                } else {
+                  styles = 'opacity-0 scale-75 z-0 hidden';
+                }
+
+                return (
+                  <div 
+                    key={idx} 
+                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] bg-neutral-100 rounded-sm overflow-hidden border-[4px] border-white ring-1 ring-neutral-100/50 ${styles}`}
+                  >
+                    <img src={imgUrl} alt="Hero" className="w-full h-full object-contain" />
                   </div>
-                ))
-              ) : (
-                heroSlides.map((slide, idx) => (
-                  <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
-                  </div>
-                ))
-              )}
+                );
+              })}
             </div>
           </div>
         </div>
