@@ -6,11 +6,11 @@
     },
     {
       "image": "/works/f001.jpg",
-      "alt": "Hero Image 3"
+      "alt": "Hero Image 2"
     },
     {
       "image": "/works/fvdf.jpg",
-      "alt": "Hero Image 2"
+      "alt": "Hero Image 3"
     },
     {
       "image": "/works/frame-152624.jpg",
@@ -25,8 +25,16 @@
       "alt": "Hero Image 6"
     },
     {
-      "image": "/works/fdvfd4.png",
+      "image": "/works/s2c2ds.jpg",
       "alt": "Hero Image 7"
+    },
+    {
+      "image": "/works/work2.jpg",
+      "alt": "Hero Image 8"
+    },
+    {
+      "image": "/works/work1.jpg",
+      "alt": "Hero Image 9"
     }
   ],
   "works": [
