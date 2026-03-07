@@ -284,19 +284,19 @@ const App: React.FC = () => {
               <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
             </div>
           </div>
-          <div className="lg:col-span-6 relative h-[60vh] lg:h-[80vh] w-full order-1 lg:order-2 group">
+          <div className="lg:col-span-6 w-full order-1 lg:order-2 group">
             {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="absolute inset-0 bg-neutral-100 rounded-sm overflow-hidden shadow-xl border-[4px] border-white ring-1 ring-neutral-100 flex items-center justify-center">
+            <div className="relative aspect-[3/4] w-full max-w-[500px] mx-auto bg-neutral-100 rounded-sm overflow-hidden shadow-xl border-[4px] border-white ring-1 ring-neutral-100 flex items-center justify-center">
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-cover object-center transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+                    <img src={img} alt={`Hero ${idx + 1}`} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
                   </div>
                 ))
               ) : (
                 heroSlides.map((slide, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-cover object-center transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
+                    <img src={slide.url} alt={slide.title} className={`w-full h-full object-contain transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-105' : 'scale-100'}`} />
                   </div>
                 ))
               )}
