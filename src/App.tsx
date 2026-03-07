@@ -289,25 +289,31 @@ const App: React.FC = () => {
               {heroImages.length > 0 ? (
                 heroImages.map((img, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-                    {/* 毛玻璃背景层 */}
+                    {/* 毛玻璃背景层 - 增强模糊和融合感 */}
                     <div className="absolute inset-0 overflow-hidden">
-                      <img src={img} alt="" className="w-full h-full object-cover blur-2xl scale-110 opacity-50" />
-                      <div className="absolute inset-0 bg-neutral-100/30"></div>
+                      <img src={img} alt="" className="w-full h-full object-cover blur-3xl scale-125 opacity-40" />
+                      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
                     </div>
-                    {/* 主体图片层 - 保持完整比例 */}
-                    <img src={img} alt={`Hero ${idx + 1}`} className={`relative w-full h-full object-contain p-4 md:p-8 transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-100' : 'scale-95'}`} />
+                    {/* 主体图片层 - 保持完整比例，添加轻微投影 */}
+                    <div className="relative w-full h-full p-6 md:p-10 flex items-center justify-center">
+                      <img src={img} alt={`Hero ${idx + 1}`} className={`max-w-full max-h-full w-auto h-auto object-contain drop-shadow-2xl transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-100' : 'scale-95'}`} />
+                    </div>
                   </div>
                 ))
               ) : (
                 heroSlides.map((slide, idx) => (
                   <div key={idx} className={`absolute inset-0 transition-all duration-[1000ms] ease-in-out ${idx === heroSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-                    {/* 毛玻璃背景层 */}
+                    {/* 毛玻璃背景层 - 增强模糊和融合感 */}
                     <div className="absolute inset-0 overflow-hidden">
-                      <img src={slide.url} alt="" className="w-full h-full object-cover blur-2xl scale-110 opacity-50" />
-                      <div className="absolute inset-0 bg-neutral-100/30"></div>
+                      <img src={slide.url} alt="" className="w-full h-full object-cover blur-3xl scale-125 opacity-40" />
+                      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
                     </div>
                     {/* 主体图片层 */}
-                    <img src={slide.url} alt={slide.title} className={`relative w-full h-full object-contain p-4 md:p-8 transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-100' : 'scale-95'}`} />
+                    <div className="relative w-full h-full p-6 md:p-10 flex items-center justify-center">
+                      <img src={slide.url} alt={slide.title} className={`max-w-full max-h-full w-auto h-auto object-contain drop-shadow-2xl transition-transform duration-[8000ms] ease-out ${idx === heroSlide ? 'scale-100' : 'scale-95'}`} />
+                    </div>
                   </div>
                 ))
               )}
