@@ -29,12 +29,16 @@
       "alt": "Hero Image 7"
     },
     {
-      "image": "/works/work2.jpg",
+      "image": "/works/fr4degv.jpg",
       "alt": "Hero Image 8"
     },
     {
-      "image": "/works/work1.jpg",
+      "image": "/works/frame-8924.jpg",
       "alt": "Hero Image 9"
+    },
+    {
+      "alt": "Hero Image 10",
+      "image": "/works/mawen.jpg"
     }
   ],
   "works": [
