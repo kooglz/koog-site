@@ -199,13 +199,6 @@ const App: React.FC = () => {
     return `${cleanBase}${cleanPath}`;
   };
 
-  const heroSlides = [
-    { url: getAssetUrl("hero/slide1.jpg"), title: "2026 New Year" },
-    { url: getAssetUrl("hero/slide2.jpg"), title: "Geometric Horses" },
-    { url: getAssetUrl("hero/slide3.jpg"), title: "Han Dynasty Horses" },
-    { url: getAssetUrl("hero/slide4.jpg"), title: "Folk Customs" }
-  ];
-
   const toggleLanguage = () => setLanguage(prev => prev === 'cn' ? 'en' : 'cn');
 
   const navigateTo = (page: 'home' | 'works' | 'detail', project: WorkItem | null = null) => {
@@ -221,9 +214,9 @@ const App: React.FC = () => {
   };
 
   const nextHeroSlide = useCallback(() => {
-    const totalSlides = heroImages.length > 0 ? heroImages.length : heroSlides.length;
-    setHeroSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  }, [heroImages.length, heroSlides.length]);
+    if (heroImages.length === 0) return;
+    setHeroSlide((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
+  }, [heroImages.length]);
 
   useEffect(() => {
     const timer = setInterval(nextHeroSlide, 3500);
@@ -232,12 +225,13 @@ const App: React.FC = () => {
 
   // 图片预加载优化
   useEffect(() => {
-    const imagesToPreload = heroImages.length > 0 ? heroImages : heroSlides.map(s => s.url);
-    imagesToPreload.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, [heroImages, heroSlides]);
+    if (heroImages.length > 0) {
+      heroImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+  }, [heroImages]);
 
   const RotatingStamp: React.FC = () => (
     <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
@@ -288,9 +282,9 @@ const App: React.FC = () => {
             {/* 3:4 比例容器，适配竖版图片 */}
             <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto flex items-center justify-center">
               {/* 渲染轮播图 */}
-              {(heroImages.length > 0 ? heroImages : heroSlides).map((item, idx) => {
-                const imgUrl = typeof item === 'string' ? item : item.url;
-                const total = heroImages.length > 0 ? heroImages.length : heroSlides.length;
+              {heroImages.map((item, idx) => {
+                const imgUrl = item;
+                const total = heroImages.length;
                 
                 // 计算位置：prev, current, next
                 let position = 'hidden';
