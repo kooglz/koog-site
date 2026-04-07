@@ -148,40 +148,28 @@
             myInput.click();
           });
 
-          // 当我们自己的 input 选好文件后
+          // 当我们自己的 input 选好文件后，放弃模拟点击 input，改用模拟文件拖拽释放 (Drag & Drop)
           myInput.addEventListener('change', () => {
             if (!myInput.files || myInput.files.length === 0) return;
 
-            // 1. 模拟点击原生隐藏的上传区域
-            targetBtn.click();
-            // 如果 targetBtn 内部有子元素，也试着点击一下
-            if (targetBtn.firstElementChild) {
-                targetBtn.firstElementChild.click();
-            }
+            // 寻找 Decap CMS 能够接收拖拽的容器（通常是整个弹窗或者外层包裹区域）
+            const dropzone = document.querySelector('.nc-assetLibrary-modal') || document.querySelector('[role="dialog"]') || document.body;
 
-            // 2. 拦截并接管文件
-            let attempts = 0;
-            const injectFiles = () => {
-              attempts++;
-              const nativeInputs = document.querySelectorAll('input[type="file"]');
-              // 找最后一个生成的 input（通常是最新弹出的）
-              const nativeInput = nativeInputs[nativeInputs.length - 1];
-              
-              if (nativeInput && nativeInput !== myInput) {
-                const transfer = new DataTransfer();
-                Array.from(myInput.files).forEach(file => transfer.items.add(file));
-                nativeInput.files = transfer.files;
-                
-                nativeInput.dispatchEvent(new Event('input', { bubbles: true }));
-                nativeInput.dispatchEvent(new Event('change', { bubbles: true }));
-                myInput.value = '';
-              } else if (attempts < 10) {
-                 // 还没生成的话，再等 50ms，最多试 10 次
-                 setTimeout(injectFiles, 50);
-              }
-            };
+            if (dropzone) {
+              const transfer = new DataTransfer();
+              Array.from(myInput.files).forEach(file => transfer.items.add(file));
+
+              const dropEvent = new DragEvent('drop', {
+                bubbles: true,
+                cancelable: true,
+                dataTransfer: transfer
+              });
+
+              dropzone.dispatchEvent(dropEvent);
+            }
             
-            setTimeout(injectFiles, 50);
+            // 清空，方便下次再选
+            myInput.value = '';
           });
         }
       });
