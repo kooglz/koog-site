@@ -300,9 +300,9 @@ const App: React.FC = () => {
               <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
             </div>
           </div>
-          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10 lg:overflow-hidden">
+          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
             {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto flex items-center justify-center">
+            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:ml-auto lg:mr-0 lg:translate-x-6 flex items-center justify-center">
               {/* 渲染轮播图 */}
               {heroImages.map((item, idx) => {
                 const imgUrl = item;
@@ -319,9 +319,9 @@ const App: React.FC = () => {
                 if (position === 'current') {
                   styles = 'opacity-100 scale-100 z-20 translate-x-0 shadow-2xl';
                 } else if (position === 'prev') {
-                  styles = 'opacity-40 scale-[0.85] z-10 -translate-x-[48%] blur-[1px] grayscale-[30%]';
+                  styles = 'opacity-35 scale-[0.82] z-10 -translate-x-[38%] blur-[3px] grayscale-[35%] saturate-[0.75] brightness-[0.95]';
                 } else if (position === 'next') {
-                  styles = 'opacity-40 scale-[0.85] z-10 translate-x-[48%] blur-[1px] grayscale-[30%]';
+                  styles = 'opacity-35 scale-[0.82] z-10 translate-x-[38%] blur-[3px] grayscale-[35%] saturate-[0.75] brightness-[0.95]';
                 } else {
                   styles = 'opacity-0 scale-75 z-0 hidden';
                 }
