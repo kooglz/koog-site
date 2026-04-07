@@ -58,11 +58,68 @@
         });
       };
 
-      const observer = new MutationObserver(enforceMultiUpload);
+      const findMediaUploadButton = () => {
+        const buttons = Array.from(document.querySelectorAll('button'));
+        return buttons.find(btn => (btn.textContent || '').trim().toLowerCase() === 'upload');
+      };
+
+      // 注入“批量上传”按钮：把多选文件写回 Decap 原生 input 并触发 change
+      const injectBatchUploadButton = () => {
+        const uploadBtn = findMediaUploadButton();
+        if (!uploadBtn || uploadBtn.dataset.batchUploadBound === '1') return;
+        uploadBtn.dataset.batchUploadBound = '1';
+
+        const batchBtn = document.createElement('button');
+        batchBtn.type = 'button';
+        batchBtn.textContent = '批量上传';
+        batchBtn.style.marginLeft = '8px';
+        batchBtn.style.padding = '6px 10px';
+        batchBtn.style.background = '#E61919';
+        batchBtn.style.color = '#fff';
+        batchBtn.style.border = 'none';
+        batchBtn.style.borderRadius = '4px';
+        batchBtn.style.cursor = 'pointer';
+        batchBtn.style.fontSize = '12px';
+        batchBtn.style.fontWeight = '700';
+
+        uploadBtn.insertAdjacentElement('afterend', batchBtn);
+
+        const picker = document.createElement('input');
+        picker.type = 'file';
+        picker.multiple = true;
+        picker.accept = 'image/*';
+        picker.style.display = 'none';
+        document.body.appendChild(picker);
+
+        batchBtn.addEventListener('click', () => picker.click());
+
+        picker.addEventListener('change', () => {
+          if (!picker.files || picker.files.length === 0) return;
+          const nativeInput = document.querySelector('input[type="file"]');
+          if (!(nativeInput instanceof HTMLInputElement)) return;
+
+          const transfer = new DataTransfer();
+          Array.from(picker.files).forEach(file => transfer.items.add(file));
+          nativeInput.files = transfer.files;
+          nativeInput.dispatchEvent(new Event('input', { bubbles: true }));
+          nativeInput.dispatchEvent(new Event('change', { bubbles: true }));
+
+          // 选完后清空，方便连续二次上传同一批文件
+          picker.value = '';
+        });
+      };
+
+      const observer = new MutationObserver(() => {
+        enforceMultiUpload();
+        injectBatchUploadButton();
+      });
       observer.observe(document.body, { childList: true, subtree: true });
 
       // 后台组件异步渲染时，定时补丁一次，避免被重置成单选
-      setInterval(enforceMultiUpload, 300);
+      setInterval(() => {
+        enforceMultiUpload();
+        injectBatchUploadButton();
+      }, 300);
 
       // 点击 Upload 前后都再执行一轮，确保文件选择框弹出时已经是多选
       document.addEventListener('click', (event) => {
