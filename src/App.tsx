@@ -441,7 +441,7 @@ const App: React.FC = () => {
                   <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none text-neutral-900">{selectedProject.title}</h2>
                 </div>
                 {/* 优先显示详情内容里的完整描述，如果没有则显示普通描述 */}
-                <div className="prose prose-neutral prose-lg max-w-none text-neutral-500 font-medium leading-relaxed">
+                <div className="prose prose-neutral prose-lg max-w-none text-neutral-500 font-medium leading-relaxed prose-img:w-full prose-img:h-auto prose-img:shadow-lg prose-img:rounded-sm prose-img:border prose-img:border-neutral-100 prose-img:my-8">
                   <ReactMarkdown>
                     {selectedProject.detail_content?.full_desc || selectedProject.description || selectedProject.fullDesc || ""}
                   </ReactMarkdown>
