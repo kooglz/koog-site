@@ -264,22 +264,31 @@ const App: React.FC = () => {
               <span className="w-1 h-1 rounded-full bg-[#E61919] animate-pulse"></span>
               {t.hero.tag}
             </div>
-            <div className="space-y-5 max-w-[34rem] xl:max-w-[38rem]">
+            <div className="inline-block space-y-5 max-w-[34rem] xl:max-w-[38rem]">
               <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
                 {t.hero.title[0]}
               </h1>
-              <h2 className="text-base md:text-lg xl:text-xl font-medium tracking-[0.24em] leading-snug text-neutral-800">
-                {heroSubtitleParts.length > 1
-                  ? heroSubtitleParts.map((part, i) => (
-                      <React.Fragment key={`${part}-${i}`}>
-                        <span>{part}</span>
-                        {i < heroSubtitleParts.length - 1 && (
-                          <span className="mx-2 text-[#E61919]/70">·</span>
-                        )}
-                      </React.Fragment>
-                    ))
-                  : t.hero.title[1]}
-              </h2>
+              <div className="hero-glass w-full">
+                {heroSubtitleParts.length === 3 ? (
+                  <div className="grid grid-cols-3 items-center gap-4 px-4 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em] text-neutral-900">
+                    <div className="text-left">
+                      <span>{heroSubtitleParts[0]}</span>
+                      <span className="ml-2 text-[#E61919]/70">·</span>
+                    </div>
+                    <div className="text-center">
+                      <span>{heroSubtitleParts[1]}</span>
+                      <span className="ml-2 text-[#E61919]/70">·</span>
+                    </div>
+                    <div className="text-right">
+                      <span>{heroSubtitleParts[2]}</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="px-4 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em] text-neutral-900">
+                    {t.hero.title[1]}
+                  </div>
+                )}
+              </div>
             </div>
             <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium border-l-2 border-[#E61919]/10 pl-6">
               {t.hero.desc}
