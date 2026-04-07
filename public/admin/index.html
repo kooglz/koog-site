@@ -7,12 +7,16 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <!-- Folder media library plugin: supports folder navigation and batch drag-drop upload -->
-    <script src="https://unpkg.com/decap-cms-media-library-folders/dist/index.js"></script>
-    
+    <!-- Force manual init so we can register plugin before CMS reads config.yml -->
     <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script type="module">
+      import folderMediaLibrary from "https://unpkg.com/decap-cms-media-library-folders/dist/index.esm.js";
+
+      CMS.registerMediaLibrary(folderMediaLibrary);
+
       // 注册预览样式，限制图片最大宽度，优化阅读体验
       CMS.registerPreviewStyle(`
         body {
@@ -30,9 +34,8 @@
           border-radius: 4px;
           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        /* 针对可能得大图进行额外限制，避免过高 */
         img[src*="hero"], img[src*="cover"] {
-          max-height: 500px; 
+          max-height: 500px;
           object-fit: contain;
           object-position: left;
         }
@@ -51,10 +54,7 @@
         li { margin-bottom: 0.5em; line-height: 1.6; }
       `, { raw: true });
 
-      // Replace default media library with folder plugin (more stable for batch workflow).
-      if (window.DecapCmsMediaLibraryFolders && window.CMS) {
-        CMS.registerMediaLibrary(window.DecapCmsMediaLibraryFolders);
-      }
+      CMS.init();
     </script>
   </body>
 </html>
