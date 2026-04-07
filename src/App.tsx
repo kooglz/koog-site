@@ -181,6 +181,10 @@ const App: React.FC = () => {
   };
 
   const t = content[language];
+  const heroSubtitleParts = (t.hero.title[1] || '')
+    .split('·')
+    .map(s => s.trim())
+    .filter(Boolean);
 
   // 获取基础路径，自动适配 GitHub Pages 或本地环境
   const getAssetUrl = (path: string) => {
@@ -264,8 +268,17 @@ const App: React.FC = () => {
               <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
                 {t.hero.title[0]}
               </h1>
-              <h2 className="text-lg md:text-xl xl:text-2xl font-semibold tracking-[0.22em] leading-snug text-[#E61919]">
-                {t.hero.title[1]}
+              <h2 className="text-base md:text-lg xl:text-xl font-medium tracking-[0.24em] leading-snug text-neutral-800">
+                {heroSubtitleParts.length > 1
+                  ? heroSubtitleParts.map((part, i) => (
+                      <React.Fragment key={`${part}-${i}`}>
+                        <span>{part}</span>
+                        {i < heroSubtitleParts.length - 1 && (
+                          <span className="mx-2 text-[#E61919]/70">·</span>
+                        )}
+                      </React.Fragment>
+                    ))
+                  : t.hero.title[1]}
               </h2>
             </div>
             <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium border-l-2 border-[#E61919]/10 pl-6">
