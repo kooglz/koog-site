@@ -259,16 +259,16 @@ const App: React.FC = () => {
       <header className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white w-full">
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
         <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
-          <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-6">
+          <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-6 relative z-30">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] font-bold tracking-widest text-neutral-400 uppercase">
               <span className="w-1 h-1 rounded-full bg-[#E61919] animate-pulse"></span>
               {t.hero.tag}
             </div>
-            <div className="inline-block space-y-5 max-w-[34rem] xl:max-w-[38rem]">
+            <div className="inline-block space-y-5 max-w-[34rem] xl:max-w-[38rem] relative z-30">
               <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
                 {t.hero.title[0]}
               </h1>
-              <div className="hero-glass w-full">
+              <div className="hero-glass w-full relative z-30">
                 {heroSubtitleParts.length === 3 ? (
                   <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center px-5 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em]">
                     <span className="justify-self-center whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm">
@@ -297,7 +297,7 @@ const App: React.FC = () => {
             <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium border-l-2 border-[#E61919]/10 pl-6">
               {t.hero.desc}
             </p>
-            <div className="flex items-center gap-4 md:gap-10 pt-4">
+            <div className="flex items-center gap-4 md:gap-10 pt-4 relative z-30">
               <button onClick={() => navigateTo('works')} className="group px-6 md:px-8 py-3 md:py-4 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all flex items-center gap-3 font-bold text-[10px] tracking-widest uppercase shadow-xl hover:shadow-[#E61919]/20">
                 {t.hero.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -306,7 +306,7 @@ const App: React.FC = () => {
           </div>
           <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
             {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:mx-0 lg:-translate-x-6 flex items-center justify-center">
+            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:mx-0 lg:translate-x-10 flex items-center justify-center">
               {/* 渲染轮播图 */}
               {heroImages.map((item, idx) => {
                 const imgUrl = item;
