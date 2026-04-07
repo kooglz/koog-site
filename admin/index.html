@@ -49,16 +49,34 @@
         li { margin-bottom: 0.5em; line-height: 1.6; }
       `, { raw: true });
 
-      // 监听 DOM 变化，强制开启上传按钮的多文件选择功能
-      const observer = new MutationObserver(() => {
+      // 强制开启 Upload 的多文件选择功能（Decap 会动态重建 input，需要持续注入）
+      const enforceMultiUpload = () => {
         const fileInputs = document.querySelectorAll('input[type="file"]');
         fileInputs.forEach(input => {
-          if (!input.hasAttribute('multiple')) {
-            input.setAttribute('multiple', 'multiple');
-          }
+          input.setAttribute('multiple', 'multiple');
+          input.multiple = true;
         });
-      });
+      };
+
+      const observer = new MutationObserver(enforceMultiUpload);
       observer.observe(document.body, { childList: true, subtree: true });
+
+      // 后台组件异步渲染时，定时补丁一次，避免被重置成单选
+      setInterval(enforceMultiUpload, 300);
+
+      // 点击 Upload 前后都再执行一轮，确保文件选择框弹出时已经是多选
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest('button');
+        if (!button) return;
+        const text = (button.textContent || '').trim().toLowerCase();
+        if (text === 'upload') {
+          enforceMultiUpload();
+          setTimeout(enforceMultiUpload, 0);
+          setTimeout(enforceMultiUpload, 80);
+        }
+      }, true);
     </script>
   </body>
 </html>
