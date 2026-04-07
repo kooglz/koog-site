@@ -7,186 +7,56 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
+    <!-- Force manual init so we can register plugin before CMS reads config.yml -->
     <script>
-      // 注册预览样式，限制图片最大宽度，优化阅读体验
-      CMS.registerPreviewStyle(`
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-          padding: 40px;
-          max-width: 800px;
-          margin: 0 auto;
-          color: #333;
-        }
-        img {
-          max-width: 100%;
-          height: auto;
-          display: block;
-          margin: 20px 0;
-          border-radius: 4px;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        /* 针对可能得大图进行额外限制，避免过高 */
-        img[src*="hero"], img[src*="cover"] {
-          max-height: 500px; 
-          object-fit: contain;
-          object-position: left;
-        }
-        h1 { font-size: 2.5em; font-weight: 800; margin-bottom: 0.5em; line-height: 1.2; }
-        h2 { font-size: 1.8em; font-weight: 700; margin-top: 1.5em; margin-bottom: 0.5em; }
-        h3 { font-size: 1.4em; font-weight: 600; margin-top: 1.2em; margin-bottom: 0.5em; }
-        p { line-height: 1.8; margin-bottom: 1.2em; font-size: 16px; }
-        blockquote {
-          border-left: 4px solid #E61919;
-          padding-left: 16px;
-          color: #666;
-          font-style: italic;
-          margin: 20px 0;
-        }
-        ul, ol { margin-bottom: 1.2em; padding-left: 20px; }
-        li { margin-bottom: 0.5em; line-height: 1.6; }
-      `, { raw: true });
-
-      // 强制开启 Upload 的多文件选择功能（Decap 会动态重建 input，需要持续注入）
-      const enforceMultiUpload = () => {
-        const fileInputs = document.querySelectorAll('input[type="file"]');
-        fileInputs.forEach(input => {
-          input.setAttribute('multiple', 'multiple');
-          input.multiple = true;
-        });
-      };
-
-      const isUploadText = (text) => {
-        const t = (text || '').trim().toLowerCase();
-        return t === 'upload' || t === '上传' || t.includes('upload') || t.includes('上传');
-      };
-
-      const findMediaUploadButton = () => {
-        const candidates = Array.from(document.querySelectorAll('button, [role="button"], a, div'));
-        return candidates.find((el) => {
-          if (el.dataset && el.dataset.batchUploadBtn === '1') return false;
-          const text = el.textContent || '';
-          return isUploadText(text);
-        });
-      };
-
-      const observer = new MutationObserver(() => {
-        // 兼容 Decap 各种深层 DOM 嵌套，寻找任何文字为 Upload 的 span, div, button 等可点击容器
-        const uploadElements = Array.from(document.querySelectorAll('*')).filter(el => {
-          if (el.children.length > 1) return false; // 排除大容器，只找叶子或近叶子节点
-          const t = el.textContent?.trim().toLowerCase() || '';
-          return (t === 'upload' || t === '上传') && !el.dataset.batchUploadBound;
-        });
-
-        // 找到最外层的实际可点击按钮容器（通常带有 class 或 role="button"）
-        let targetBtn = null;
-        for (let el of uploadElements) {
-          const btnParent = el.closest('button, [role="button"], .css-1a2b3c4'); // 尝试寻找常见按钮父级
-          if (btnParent && !btnParent.dataset.batchUploadBound) {
-            targetBtn = btnParent;
-            break;
-          }
-          if (el.tagName === 'BUTTON' || el.getAttribute('role') === 'button') {
-            targetBtn = el;
-            break;
-          }
-        }
-        
-        // Fallback: 如果没找到标准的 button，就直接用带有文本的那个元素
-        if (!targetBtn && uploadElements.length > 0) {
-          targetBtn = uploadElements[uploadElements.length - 1]; 
-        }
-
-        if (targetBtn) {
-          targetBtn.dataset.batchUploadBound = '1';
-          
-          // 隐藏原生按钮及其父级容器(避免布局塌陷)
-          const wrapper = targetBtn.parentElement;
-          if (wrapper && wrapper.style) {
-             // 仅隐藏自己，不影响旁边的 Delete selected 等
-             targetBtn.style.display = 'none';
-          }
-
-          // 创建自己的批量上传按钮
-          const myBtn = document.createElement('button');
-          myBtn.type = 'button';
-          myBtn.textContent = '批量上传 (多选)';
-          // 复制原生样式类
-          myBtn.className = targetBtn.className;
-          myBtn.style.cssText = targetBtn.style.cssText;
-          
-          // 强制一些关键样式，确保它可见且好看
-          myBtn.style.display = 'inline-flex';
-          myBtn.style.alignItems = 'center';
-          myBtn.style.justifyContent = 'center';
-          myBtn.style.background = '#E61919';
-          myBtn.style.color = '#fff';
-          myBtn.style.border = 'none';
-          myBtn.style.padding = '4px 12px';
-          myBtn.style.borderRadius = '4px';
-          myBtn.style.cursor = 'pointer';
-          myBtn.style.fontWeight = 'bold';
-          myBtn.style.marginLeft = '8px';
-
-          // 把我们的按钮插在原生按钮前面
-          targetBtn.parentNode.insertBefore(myBtn, targetBtn);
-
-          // 创建一个隐形的 input 用于多选
-          const myInput = document.createElement('input');
-          myInput.type = 'file';
-          myInput.multiple = true;
-          myInput.accept = 'image/*';
-          myInput.style.display = 'none';
-          document.body.appendChild(myInput);
-
-          // 点击我们自己的按钮时，触发我们自己的 input
-          myBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            myInput.click();
-          });
-
-          // 当我们自己的 input 选好文件后
-          myInput.addEventListener('change', () => {
-            if (!myInput.files || myInput.files.length === 0) return;
-
-            // 1. 模拟点击原生隐藏的上传区域
-            targetBtn.click();
-            // 如果 targetBtn 内部有子元素，也试着点击一下
-            if (targetBtn.firstElementChild) {
-                targetBtn.firstElementChild.click();
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Register preview styles and init CMS
+      (function() {
+        if (typeof CMS !== 'undefined') {
+          // Register preview styles
+          CMS.registerPreviewStyle(`
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+              padding: 40px;
+              max-width: 800px;
+              margin: 0 auto;
+              color: #333;
             }
+            img {
+              max-width: 100%;
+              height: auto;
+              display: block;
+              margin: 20px 0;
+              border-radius: 4px;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            img[src*="hero"], img[src*="cover"] {
+              max-height: 500px;
+              object-fit: contain;
+              object-position: left;
+            }
+            h1 { font-size: 2.5em; font-weight: 800; margin-bottom: 0.5em; line-height: 1.2; }
+            h2 { font-size: 1.8em; font-weight: 700; margin-top: 1.5em; margin-bottom: 0.5em; }
+            h3 { font-size: 1.4em; font-weight: 600; margin-top: 1.2em; margin-bottom: 0.5em; }
+            p { line-height: 1.8; margin-bottom: 1.2em; font-size: 16px; }
+            blockquote {
+              border-left: 4px solid #E61919;
+              padding-left: 16px;
+              color: #666;
+              font-style: italic;
+              margin: 20px 0;
+            }
+            ul, ol { margin-bottom: 1.2em; padding-left: 20px; }
+            li { margin-bottom: 0.5em; line-height: 1.6; }
+          `, { raw: true });
 
-            // 2. 拦截并接管文件
-            let attempts = 0;
-            const injectFiles = () => {
-              attempts++;
-              const nativeInputs = document.querySelectorAll('input[type="file"]');
-              // 找最后一个生成的 input（通常是最新弹出的）
-              const nativeInput = nativeInputs[nativeInputs.length - 1];
-              
-              if (nativeInput && nativeInput !== myInput) {
-                const transfer = new DataTransfer();
-                Array.from(myInput.files).forEach(file => transfer.items.add(file));
-                nativeInput.files = transfer.files;
-                
-                nativeInput.dispatchEvent(new Event('input', { bubbles: true }));
-                nativeInput.dispatchEvent(new Event('change', { bubbles: true }));
-                myInput.value = '';
-              } else if (attempts < 10) {
-                 // 还没生成的话，再等 50ms，最多试 10 次
-                 setTimeout(injectFiles, 50);
-              }
-            };
-            
-            setTimeout(injectFiles, 50);
-          });
+          // Init CMS
+          CMS.init();
         }
-      });
-      
-      observer.observe(document.body, { childList: true, subtree: true });
+      })();
     </script>
   </body>
 </html>
