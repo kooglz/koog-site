@@ -264,7 +264,7 @@ const App: React.FC = () => {
               <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
                 {t.hero.title[0]}
               </h1>
-              <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold tracking-tight leading-tight text-[#E61919]">
+              <h2 className="text-lg md:text-xl xl:text-2xl font-semibold tracking-[0.22em] leading-snug text-[#E61919]">
                 {t.hero.title[1]}
               </h2>
             </div>
