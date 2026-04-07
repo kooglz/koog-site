@@ -260,13 +260,13 @@ const App: React.FC = () => {
               <span className="w-1 h-1 rounded-full bg-[#E61919] animate-pulse"></span>
               {t.hero.tag}
             </div>
-            <div className="space-y-4 max-w-[34rem] xl:max-w-[38rem]">
-              <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.1] antialiased safari-font-fix">
-                <span className="block mb-2">{t.hero.title[0]}</span>
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm pb-1">
-                  {t.hero.title[1]}
-                </span>
+            <div className="space-y-5 max-w-[34rem] xl:max-w-[38rem]">
+              <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
+                {t.hero.title[0]}
               </h1>
+              <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold tracking-tight leading-tight text-[#E61919]">
+                {t.hero.title[1]}
+              </h2>
             </div>
             <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium border-l-2 border-[#E61919]/10 pl-6">
               {t.hero.desc}
