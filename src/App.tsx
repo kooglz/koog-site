@@ -258,7 +258,7 @@ const App: React.FC = () => {
       {/* Hero Section */}
       <header className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white w-full">
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
           <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] font-bold tracking-widest text-neutral-400 uppercase">
               <span className="w-1 h-1 rounded-full bg-[#E61919] animate-pulse"></span>
@@ -304,9 +304,9 @@ const App: React.FC = () => {
               <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
             </div>
           </div>
-          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
+          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10 lg:pl-2">
             {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:ml-auto lg:mr-0 lg:translate-x-6 flex items-center justify-center">
+            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:mx-0 flex items-center justify-center">
               {/* 渲染轮播图 */}
               {heroImages.map((item, idx) => {
                 const imgUrl = item;
