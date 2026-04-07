@@ -270,21 +270,25 @@ const App: React.FC = () => {
               </h1>
               <div className="hero-glass w-full">
                 {heroSubtitleParts.length === 3 ? (
-                  <div className="grid grid-cols-3 items-center gap-4 px-4 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em] text-neutral-900">
-                    <div className="text-left">
-                      <span>{heroSubtitleParts[0]}</span>
-                      <span className="ml-2 text-[#E61919]/70">·</span>
-                    </div>
-                    <div className="text-center">
-                      <span>{heroSubtitleParts[1]}</span>
-                      <span className="ml-2 text-[#E61919]/70">·</span>
-                    </div>
-                    <div className="text-right">
-                      <span>{heroSubtitleParts[2]}</span>
-                    </div>
+                  <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center px-5 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em]">
+                    <span className="justify-self-center whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm">
+                      {heroSubtitleParts[0]}
+                    </span>
+                    <span className="justify-self-center select-none text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] opacity-70">
+                      丨
+                    </span>
+                    <span className="justify-self-center whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm">
+                      {heroSubtitleParts[1]}
+                    </span>
+                    <span className="justify-self-center select-none text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] opacity-70">
+                      丨
+                    </span>
+                    <span className="justify-self-center whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm">
+                      {heroSubtitleParts[2]}
+                    </span>
                   </div>
                 ) : (
-                  <div className="px-4 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em] text-neutral-900">
+                  <div className="px-5 py-2 text-[11px] md:text-xs xl:text-sm font-semibold tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm">
                     {t.hero.title[1]}
                   </div>
                 )}
