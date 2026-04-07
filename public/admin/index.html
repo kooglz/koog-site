@@ -9,6 +9,8 @@
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Folder media library plugin: supports folder navigation and batch drag-drop upload -->
+    <script src="https://unpkg.com/decap-cms-media-library-folders/dist/index.js"></script>
     
     <script>
       // 注册预览样式，限制图片最大宽度，优化阅读体验
@@ -49,132 +51,10 @@
         li { margin-bottom: 0.5em; line-height: 1.6; }
       `, { raw: true });
 
-      // 强制开启 Upload 的多文件选择功能（Decap 会动态重建 input，需要持续注入）
-      const enforceMultiUpload = () => {
-        const fileInputs = document.querySelectorAll('input[type="file"]');
-        fileInputs.forEach(input => {
-          input.setAttribute('multiple', 'multiple');
-          input.multiple = true;
-        });
-      };
-
-      const isUploadText = (text) => {
-        const t = (text || '').trim().toLowerCase();
-        return t === 'upload' || t === '上传' || t.includes('upload') || t.includes('上传');
-      };
-
-      const findMediaUploadButton = () => {
-        const candidates = Array.from(document.querySelectorAll('button, [role="button"], a, div'));
-        return candidates.find((el) => {
-          if (el.dataset && el.dataset.batchUploadBtn === '1') return false;
-          const text = el.textContent || '';
-          return isUploadText(text);
-        });
-      };
-
-      const observer = new MutationObserver(() => {
-        // 兼容 Decap 各种深层 DOM 嵌套，寻找任何文字为 Upload 的 span, div, button 等可点击容器
-        const uploadElements = Array.from(document.querySelectorAll('*')).filter(el => {
-          if (el.children.length > 1) return false; // 排除大容器，只找叶子或近叶子节点
-          const t = el.textContent?.trim().toLowerCase() || '';
-          return (t === 'upload' || t === '上传') && !el.dataset.batchUploadBound;
-        });
-
-        // 找到最外层的实际可点击按钮容器（通常带有 class 或 role="button"）
-        let targetBtn = null;
-        for (let el of uploadElements) {
-          const btnParent = el.closest('button, [role="button"], .css-1a2b3c4'); // 尝试寻找常见按钮父级
-          if (btnParent && !btnParent.dataset.batchUploadBound) {
-            targetBtn = btnParent;
-            break;
-          }
-          if (el.tagName === 'BUTTON' || el.getAttribute('role') === 'button') {
-            targetBtn = el;
-            break;
-          }
-        }
-        
-        // Fallback: 如果没找到标准的 button，就直接用带有文本的那个元素
-        if (!targetBtn && uploadElements.length > 0) {
-          targetBtn = uploadElements[uploadElements.length - 1]; 
-        }
-
-        if (targetBtn) {
-          targetBtn.dataset.batchUploadBound = '1';
-          
-          // 隐藏原生按钮及其父级容器(避免布局塌陷)
-          const wrapper = targetBtn.parentElement;
-          if (wrapper && wrapper.style) {
-             // 仅隐藏自己，不影响旁边的 Delete selected 等
-             targetBtn.style.display = 'none';
-          }
-
-          // 创建自己的批量上传按钮
-          const myBtn = document.createElement('button');
-          myBtn.type = 'button';
-          myBtn.textContent = '批量上传 (多选)';
-          // 复制原生样式类
-          myBtn.className = targetBtn.className;
-          myBtn.style.cssText = targetBtn.style.cssText;
-          
-          // 强制一些关键样式，确保它可见且好看
-          myBtn.style.display = 'inline-flex';
-          myBtn.style.alignItems = 'center';
-          myBtn.style.justifyContent = 'center';
-          myBtn.style.background = '#E61919';
-          myBtn.style.color = '#fff';
-          myBtn.style.border = 'none';
-          myBtn.style.padding = '4px 12px';
-          myBtn.style.borderRadius = '4px';
-          myBtn.style.cursor = 'pointer';
-          myBtn.style.fontWeight = 'bold';
-          myBtn.style.marginLeft = '8px';
-
-          // 把我们的按钮插在原生按钮前面
-          targetBtn.parentNode.insertBefore(myBtn, targetBtn);
-
-          // 创建一个隐形的 input 用于多选
-          const myInput = document.createElement('input');
-          myInput.type = 'file';
-          myInput.multiple = true;
-          myInput.accept = 'image/*';
-          myInput.style.display = 'none';
-          document.body.appendChild(myInput);
-
-          // 点击我们自己的按钮时，触发我们自己的 input
-          myBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            myInput.click();
-          });
-
-          // 当我们自己的 input 选好文件后，放弃模拟点击 input，改用模拟文件拖拽释放 (Drag & Drop)
-          myInput.addEventListener('change', () => {
-            if (!myInput.files || myInput.files.length === 0) return;
-
-            // 寻找 Decap CMS 能够接收拖拽的容器（通常是整个弹窗或者外层包裹区域）
-            const dropzone = document.querySelector('.nc-assetLibrary-modal') || document.querySelector('[role="dialog"]') || document.body;
-
-            if (dropzone) {
-              const transfer = new DataTransfer();
-              Array.from(myInput.files).forEach(file => transfer.items.add(file));
-
-              const dropEvent = new DragEvent('drop', {
-                bubbles: true,
-                cancelable: true,
-                dataTransfer: transfer
-              });
-
-              dropzone.dispatchEvent(dropEvent);
-            }
-            
-            // 清空，方便下次再选
-            myInput.value = '';
-          });
-        }
-      });
-      
-      observer.observe(document.body, { childList: true, subtree: true });
+      // Replace default media library with folder plugin (more stable for batch workflow).
+      if (window.DecapCmsMediaLibraryFolders && window.CMS) {
+        CMS.registerMediaLibrary(window.DecapCmsMediaLibraryFolders);
+      }
     </script>
   </body>
 </html>

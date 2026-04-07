@@ -7,6 +7,8 @@ local_backend: true
 
 media_folder: "public/works"
 public_folder: "/works"
+media_library:
+  name: folder-media-library
 
 collections:
   - name: "content"
