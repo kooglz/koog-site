@@ -72,42 +72,76 @@
         });
       };
 
-      const observer = new MutationObserver((mutations) => {
-        // 当有新节点加入时，拦截 input[type=file] 的生成并注入 multiple
-        mutations.forEach(mutation => {
-          if (mutation.addedNodes.length) {
-            const inputs = document.querySelectorAll('input[type="file"]');
-            inputs.forEach(input => {
-              if (!input.multiple) {
-                input.setAttribute('multiple', 'multiple');
-                input.multiple = true;
-              }
-            });
-          }
+      const observer = new MutationObserver(() => {
+        const uploadBtn = Array.from(document.querySelectorAll('button')).find(btn => {
+          const t = btn.textContent?.trim().toLowerCase() || '';
+          return (t === 'upload' || t === '上传') && !btn.dataset.batchUploadBound;
         });
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
 
-      // 全局拦截所有点击事件，如果是点 Upload 按钮，在它触发文件选择框之前，强行把 input 设为多选
-      document.addEventListener('click', (e) => {
-        const target = e.target;
-        if (!target) return;
-        
-        const text = target.textContent ? target.textContent.trim().toLowerCase() : '';
-        if (text === 'upload' || text === '上传') {
-          // 疯狂补丁：点击瞬间、下一帧、稍后帧连续把页面上的所有 file input 设为多选
-          const enforce = () => {
-            document.querySelectorAll('input[type="file"]').forEach(input => {
-              input.setAttribute('multiple', 'multiple');
-              input.multiple = true;
-            });
-          };
-          enforce();
-          setTimeout(enforce, 0);
-          setTimeout(enforce, 10);
-          setTimeout(enforce, 50);
+        if (uploadBtn) {
+          uploadBtn.dataset.batchUploadBound = '1';
+          
+          // 隐藏原生按钮
+          uploadBtn.style.display = 'none';
+
+          // 创建自己的批量上传按钮
+          const myBtn = document.createElement('button');
+          myBtn.type = 'button';
+          myBtn.textContent = '批量上传 (多选)';
+          // 尽量复用原生按钮的样式类
+          myBtn.className = uploadBtn.className;
+          myBtn.style.cssText = uploadBtn.style.cssText;
+          myBtn.style.display = 'inline-block';
+          myBtn.style.background = '#E61919';
+          myBtn.style.color = '#fff';
+          myBtn.style.border = 'none';
+
+          // 把我们的按钮插在原生按钮前面
+          uploadBtn.parentNode.insertBefore(myBtn, uploadBtn);
+
+          // 创建一个隐形的 input 用于多选
+          const myInput = document.createElement('input');
+          myInput.type = 'file';
+          myInput.multiple = true;
+          myInput.accept = 'image/*';
+          myInput.style.display = 'none';
+          document.body.appendChild(myInput);
+
+          // 点击我们自己的按钮时，触发我们自己的 input
+          myBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            myInput.click();
+          });
+
+          // 当我们自己的 input 选好文件后
+          myInput.addEventListener('change', () => {
+            if (!myInput.files || myInput.files.length === 0) return;
+
+            // 1. 先触发一次原生按钮的点击，让 Decap 准备好它的环境和 input
+            uploadBtn.click();
+
+            // 2. 稍微等一下，等 Decap 的 input 生成出来
+            setTimeout(() => {
+              const nativeInput = document.querySelector('input[type="file"]:not([multiple])') || document.querySelector('input[type="file"]');
+              if (nativeInput && nativeInput !== myInput) {
+                // 3. 把我们选中的多个文件，强行塞给 Decap 的 input
+                const transfer = new DataTransfer();
+                Array.from(myInput.files).forEach(file => transfer.items.add(file));
+                nativeInput.files = transfer.files;
+                
+                // 4. 触发事件，骗过 Decap 让它以为是它自己选中的
+                nativeInput.dispatchEvent(new Event('input', { bubbles: true }));
+                nativeInput.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+              // 清空，方便下次再选
+              myInput.value = '';
+            }, 100);
+          });
         }
-      }, true); // 使用捕获阶段，确保比 Decap 的事件早执行
+      });
+      
+      observer.observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
 </html>
