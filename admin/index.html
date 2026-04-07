@@ -48,6 +48,17 @@
         ul, ol { margin-bottom: 1.2em; padding-left: 20px; }
         li { margin-bottom: 0.5em; line-height: 1.6; }
       `, { raw: true });
+
+      // 监听 DOM 变化，强制开启上传按钮的多文件选择功能
+      const observer = new MutationObserver(() => {
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+          if (!input.hasAttribute('multiple')) {
+            input.setAttribute('multiple', 'multiple');
+          }
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
 </html>
