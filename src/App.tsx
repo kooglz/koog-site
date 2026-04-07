@@ -259,12 +259,12 @@ const App: React.FC = () => {
       <header className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white w-full">
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
         <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
-          <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-6 relative z-30 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] font-bold tracking-widest text-neutral-400 uppercase mx-auto lg:mx-0">
+          <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-6 relative z-30 flex flex-col items-start text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] font-bold tracking-widest text-neutral-400 uppercase">
               <span className="w-1 h-1 rounded-full bg-[#E61919] animate-pulse"></span>
               {t.hero.tag}
             </div>
-            <div className="inline-block space-y-5 max-w-[34rem] xl:max-w-[38rem] relative z-30 mx-auto lg:mx-0">
+            <div className="inline-block space-y-5 max-w-[34rem] xl:max-w-[38rem] relative z-30">
               <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
                 {t.hero.title[0]}
               </h1>
@@ -294,10 +294,10 @@ const App: React.FC = () => {
                 )}
               </div>
             </div>
-            <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium mx-auto lg:mx-0 border-l-0 lg:border-l-2 border-[#E61919]/10 pl-0 lg:pl-6">
+            <p className="text-sm md:text-base text-neutral-500 max-w-sm leading-relaxed font-medium border-l-2 border-[#E61919]/10 pl-6">
               {t.hero.desc}
             </p>
-            <div className="flex items-center justify-center lg:justify-start gap-4 md:gap-10 pt-4 relative z-30 w-full">
+            <div className="flex items-center justify-start gap-4 md:gap-10 pt-4 relative z-30 w-full">
               <button onClick={() => navigateTo('works')} className="group px-6 md:px-8 py-3 md:py-4 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all flex items-center gap-3 font-bold text-[10px] tracking-widest uppercase shadow-xl hover:shadow-[#E61919]/20">
                 {t.hero.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
