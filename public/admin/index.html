@@ -58,82 +58,56 @@
         });
       };
 
-      const findMediaUploadButton = () => {
-        const buttons = Array.from(document.querySelectorAll('button'));
-        return buttons.find(btn => (btn.textContent || '').trim().toLowerCase() === 'upload');
+      const isUploadText = (text) => {
+        const t = (text || '').trim().toLowerCase();
+        return t === 'upload' || t === '上传' || t.includes('upload') || t.includes('上传');
       };
 
-      // 注入“批量上传”按钮：把多选文件写回 Decap 原生 input 并触发 change
-      const injectBatchUploadButton = () => {
-        const uploadBtn = findMediaUploadButton();
-        if (!uploadBtn || uploadBtn.dataset.batchUploadBound === '1') return;
-        uploadBtn.dataset.batchUploadBound = '1';
-
-        const batchBtn = document.createElement('button');
-        batchBtn.type = 'button';
-        batchBtn.textContent = '批量上传';
-        batchBtn.style.marginLeft = '8px';
-        batchBtn.style.padding = '6px 10px';
-        batchBtn.style.background = '#E61919';
-        batchBtn.style.color = '#fff';
-        batchBtn.style.border = 'none';
-        batchBtn.style.borderRadius = '4px';
-        batchBtn.style.cursor = 'pointer';
-        batchBtn.style.fontSize = '12px';
-        batchBtn.style.fontWeight = '700';
-
-        uploadBtn.insertAdjacentElement('afterend', batchBtn);
-
-        const picker = document.createElement('input');
-        picker.type = 'file';
-        picker.multiple = true;
-        picker.accept = 'image/*';
-        picker.style.display = 'none';
-        document.body.appendChild(picker);
-
-        batchBtn.addEventListener('click', () => picker.click());
-
-        picker.addEventListener('change', () => {
-          if (!picker.files || picker.files.length === 0) return;
-          const nativeInput = document.querySelector('input[type="file"]');
-          if (!(nativeInput instanceof HTMLInputElement)) return;
-
-          const transfer = new DataTransfer();
-          Array.from(picker.files).forEach(file => transfer.items.add(file));
-          nativeInput.files = transfer.files;
-          nativeInput.dispatchEvent(new Event('input', { bubbles: true }));
-          nativeInput.dispatchEvent(new Event('change', { bubbles: true }));
-
-          // 选完后清空，方便连续二次上传同一批文件
-          picker.value = '';
+      const findMediaUploadButton = () => {
+        const candidates = Array.from(document.querySelectorAll('button, [role="button"], a, div'));
+        return candidates.find((el) => {
+          if (el.dataset && el.dataset.batchUploadBtn === '1') return false;
+          const text = el.textContent || '';
+          return isUploadText(text);
         });
       };
 
-      const observer = new MutationObserver(() => {
-        enforceMultiUpload();
-        injectBatchUploadButton();
+      const observer = new MutationObserver((mutations) => {
+        // 当有新节点加入时，拦截 input[type=file] 的生成并注入 multiple
+        mutations.forEach(mutation => {
+          if (mutation.addedNodes.length) {
+            const inputs = document.querySelectorAll('input[type="file"]');
+            inputs.forEach(input => {
+              if (!input.multiple) {
+                input.setAttribute('multiple', 'multiple');
+                input.multiple = true;
+              }
+            });
+          }
+        });
       });
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // 后台组件异步渲染时，定时补丁一次，避免被重置成单选
-      setInterval(() => {
-        enforceMultiUpload();
-        injectBatchUploadButton();
-      }, 300);
-
-      // 点击 Upload 前后都再执行一轮，确保文件选择框弹出时已经是多选
-      document.addEventListener('click', (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        const button = target.closest('button');
-        if (!button) return;
-        const text = (button.textContent || '').trim().toLowerCase();
-        if (text === 'upload') {
-          enforceMultiUpload();
-          setTimeout(enforceMultiUpload, 0);
-          setTimeout(enforceMultiUpload, 80);
+      // 全局拦截所有点击事件，如果是点 Upload 按钮，在它触发文件选择框之前，强行把 input 设为多选
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (!target) return;
+        
+        const text = target.textContent ? target.textContent.trim().toLowerCase() : '';
+        if (text === 'upload' || text === '上传') {
+          // 疯狂补丁：点击瞬间、下一帧、稍后帧连续把页面上的所有 file input 设为多选
+          const enforce = () => {
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+              input.setAttribute('multiple', 'multiple');
+              input.multiple = true;
+            });
+          };
+          enforce();
+          setTimeout(enforce, 0);
+          setTimeout(enforce, 10);
+          setTimeout(enforce, 50);
         }
-      }, true);
+      }, true); // 使用捕获阶段，确保比 Decap 的事件早执行
     </script>
   </body>
 </html>
