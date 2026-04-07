@@ -255,12 +255,12 @@ const App: React.FC = () => {
       <header className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white w-full">
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
         <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          <div className="lg:col-span-6 space-y-10 order-2 lg:order-1">
+          <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] font-bold tracking-widest text-neutral-400 uppercase">
               <span className="w-1 h-1 rounded-full bg-[#E61919] animate-pulse"></span>
               {t.hero.tag}
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-[34rem] xl:max-w-[38rem]">
               <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.1] antialiased safari-font-fix">
                 <span className="block mb-2">{t.hero.title[0]}</span>
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#990000] via-[#E61919] to-[#FF3333] drop-shadow-sm pb-1">
@@ -278,7 +278,7 @@ const App: React.FC = () => {
               <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
             </div>
           </div>
-          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
+          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10 lg:overflow-hidden">
             {/* 3:4 比例容器，适配竖版图片 */}
             <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto flex items-center justify-center">
               {/* 渲染轮播图 */}
@@ -297,9 +297,9 @@ const App: React.FC = () => {
                 if (position === 'current') {
                   styles = 'opacity-100 scale-100 z-20 translate-x-0 shadow-2xl';
                 } else if (position === 'prev') {
-                  styles = 'opacity-40 scale-[0.85] z-10 -translate-x-[65%] blur-[1px] grayscale-[30%]';
+                  styles = 'opacity-40 scale-[0.85] z-10 -translate-x-[48%] blur-[1px] grayscale-[30%]';
                 } else if (position === 'next') {
-                  styles = 'opacity-40 scale-[0.85] z-10 translate-x-[65%] blur-[1px] grayscale-[30%]';
+                  styles = 'opacity-40 scale-[0.85] z-10 translate-x-[48%] blur-[1px] grayscale-[30%]';
                 } else {
                   styles = 'opacity-0 scale-75 z-0 hidden';
                 }
