@@ -306,7 +306,7 @@ const App: React.FC = () => {
           </div>
           <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
             {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:mx-0 lg:translate-x-[100px] flex items-center justify-center">
+            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:mx-0 lg:translate-x-[160px] flex items-center justify-center">
               {/* 渲染轮播图 */}
               {heroImages.map((item, idx) => {
                 const imgUrl = item;
