@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="32x32" href="/koog-site/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/koog-site/icons/favicon-16x16.png" />
-    <link rel="apple-touch-icon" href="/koog-site/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/koog-site/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/koog-site/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/koog-site/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/koog-site/icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/koog-site/icons/maskable-icon-512x512.png" color="#000000" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="KOOG DESIGN - 创意设计工作室" />
@@ -16,12 +20,78 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <title>KOOG DESIGN</title>
-    <script type="module" crossorigin src="/koog-site/assets/main-Clt5MPsX.js"></script>
-    <link rel="stylesheet" crossorigin href="/koog-site/assets/main-C3idNGgB.css">
+    <style>
+      #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        transition: opacity 0.5s ease-out;
+      }
+      #splash-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #splash-screen video {
+        max-width: 80vw;
+        max-height: 80vh;
+        -o-object-fit: contain;
+           object-fit: contain;
+      }
+      #splash-logo {
+        width: 120px;
+        height: 120px;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+    </style>
+    <script type="module" crossorigin src="/koog-site/assets/main-Bf59245n.js"></script>
+    <link rel="stylesheet" crossorigin href="/koog-site/assets/main-6JwQfEaA.css">
   <link rel="manifest" href="/koog-site/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/koog-site/registerSW.js"></script></head>
   <body>
+    <div id="splash-screen">
+      <video id="splash-video" autoplay muted playsinline>
+        <source src="/koog-site/logo-animation.mp4" type="video/mp4">
+      </video>
+      <svg id="splash-logo" style="display: none;" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#E61919" stroke-width="2"/>
+        <text x="50" y="58" text-anchor="middle" fill="white" font-size="24" font-weight="bold">K</text>
+      </svg>
+    </div>
     <div id="root"></div>
     <script>
+      const splash = document.getElementById('splash-screen');
+      const video = document.getElementById('splash-video');
+      const fallbackLogo = document.getElementById('splash-logo');
+      
+      video.addEventListener('canplaythrough', () => {
+        video.style.display = 'block';
+        fallbackLogo.style.display = 'none';
+      });
+      
+      video.addEventListener('ended', hideSplash);
+      video.addEventListener('error', () => {
+        video.style.display = 'none';
+        fallbackLogo.style.display = 'block';
+        setTimeout(hideSplash, 2000);
+      });
+      
+      function hideSplash() {
+        splash.classList.add('hidden');
+        setTimeout(() => splash.remove(), 500);
+      }
+      
+      setTimeout(hideSplash, 4000);
+      
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
