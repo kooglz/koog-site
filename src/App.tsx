@@ -101,8 +101,14 @@ const App: React.FC = () => {
 
     updateTag('og:title', `【KOOG DESIGN】${title}`);
     updateTag('og:description', description);
-    if (image && image.startsWith('http')) {
-      updateTag('og:image', image);
+    
+    // 处理图片路径：相对路径转为绝对URL
+    if (image) {
+      let imageUrl = image;
+      if (!image.startsWith('http')) {
+        imageUrl = `${window.location.origin}${image.startsWith('/') ? '' : '/'}${image}`;
+      }
+      updateTag('og:image', imageUrl);
     }
     
     // 更新Twitter Card标签
@@ -126,7 +132,11 @@ const App: React.FC = () => {
   // 恢复默认meta标签
   const restoreMetaTags = () => {
     document.title = 'KOOG DESIGN';
-    updateMetaTags('KOOG DESIGN - 创意设计工作室', '专业插画设计与品牌视觉解决方案。AI驱动的内容创作平台，实现热点追踪、智能写作与多平台分发的全链路自动化。', '/apple-touch-icon.png');
+    updateMetaTags(
+      'KOOG DESIGN - 创意设计工作室',
+      'KOOG DESIGN · 专业插画设计与品牌视觉解决方案。精选作品集展示。',
+      'https://www.koogdesign.top/apple-touch-icon.png'
+    );
   };
 
   const shareToWechat = () => {
@@ -134,30 +144,34 @@ const App: React.FC = () => {
     const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}\n\n点击查看完整作品详情`;
     
     // 动态更新meta标签以显示正确的图标和标题
-    updateMetaTags(
-      selectedProject?.title || '精选作品',
-      selectedProject?.description || '点击查看完整作品详情',
-      selectedProject?.image || ''
-    );
+    const workTitle = selectedProject?.title || '精选作品';
+    const workDesc = selectedProject?.fullDesc || selectedProject?.description || `查看${workTitle}完整作品详情`;
+    const workImage = selectedProject?.image || '';
     
-    if (navigator.share && navigator.canShare({ url: shareUrl, text: shareText })) {
-      navigator.share({
-        title: `【KOOG DESIGN】${selectedProject?.title || '精选作品'}`,
-        text: shareText,
-        url: shareUrl,
-      }).finally(() => {
-        // 分享完成后恢复默认meta标签
-        setTimeout(restoreMetaTags, 1000);
-      });
-    } else {
-      navigator.clipboard.writeText(shareText).then(() => {
-        setShareCopied(true);
-        setTimeout(() => {
-          setShareCopied(false);
-          restoreMetaTags();
-        }, 2000);
-      });
-    }
+    updateMetaTags(workTitle, workDesc, workImage);
+    
+    // 等待meta标签更新完成后执行分享（iOS Safari需要时间读取新meta）
+    setTimeout(() => {
+      if (navigator.share && navigator.canShare({ url: shareUrl, text: shareText })) {
+        navigator.share({
+          title: `【KOOG DESIGN】${workTitle}`,
+          text: shareText,
+          url: shareUrl,
+        }).finally(() => {
+          // 分享完成后恢复默认meta标签
+          setTimeout(restoreMetaTags, 1000);
+        });
+      } else {
+        navigator.clipboard.writeText(shareText).then(() => {
+          setShareCopied(true);
+          setTimeout(() => {
+            setShareCopied(false);
+            restoreMetaTags();
+          }, 2000);
+        });
+      }
+    }, 100); // 100ms延迟确保DOM更新
+    
     setShowShareMenu(false);
   };
 
@@ -166,11 +180,11 @@ const App: React.FC = () => {
     const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}`;
     
     // 动态更新meta标签
-    updateMetaTags(
-      selectedProject?.title || '精选作品',
-      selectedProject?.description || '',
-      selectedProject?.image || ''
-    );
+    const workTitle = selectedProject?.title || '精选作品';
+    const workDesc = selectedProject?.fullDesc || selectedProject?.description || `查看${workTitle}完整作品详情`;
+    const workImage = selectedProject?.image || '';
+    
+    updateMetaTags(workTitle, workDesc, workImage);
     
     navigator.clipboard.writeText(shareText).then(() => {
       setShareCopied(true);
