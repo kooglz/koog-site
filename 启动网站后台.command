@@ -20,7 +20,10 @@ lsof -ti:8081 | xargs kill -9 2>/dev/null
 
 echo "⏳ 正在启动服务..."
 nohup npm run dev > /tmp/koog-dev.log 2>&1 &
+DEV_PID=$!
+sleep 3
 nohup npm run cms > /tmp/koog-cms.log 2>&1 &
+CMS_PID=$!
 
 echo "⏳ 等待服务就绪..."
 sleep 6

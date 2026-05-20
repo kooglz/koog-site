@@ -4,6 +4,18 @@ import { resolve } from 'path'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+    fs: {
+      allow: ['..'],
+    },
+  },
   plugins: [
     react(),
     VitePWA({
