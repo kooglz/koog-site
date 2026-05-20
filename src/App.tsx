@@ -66,7 +66,17 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'home' | 'works' | 'detail'>('home'); 
   const [selectedProject, setSelectedProject] = useState<WorkItem | null>(null);
   const [language, setLanguage] = useState<LangMode>('cn'); 
+  const [copied, setCopied] = useState<boolean>(false);
   const [logoError, setLogoError] = useState<boolean>(false);
+
+  const copyXhsInfo = () => {
+    const text = '小红书号：2632739343（KOOG插画设计）';
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+    window.open('https://www.xiaohongshu.com', '_blank');
+  };
   const [heroSlide, setHeroSlide] = useState<number>(0);
   const [heroImages, setHeroImages] = useState<string[]>([]);
   const [allWorks, setAllWorks] = useState<WorkItem[]>([]);
@@ -552,7 +562,7 @@ const App: React.FC = () => {
       <footer className="w-full bg-[#1a1a1a] py-4 border-t border-neutral-800">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
           <button 
-            onClick={() => window.open('https://www.xiaohongshu.com/search_result?keyword=KOOG%E6%8F%92%E7%94%BB%E8%AE%BE%E8%AE%A1', '_blank')}
+            onClick={copyXhsInfo}
             className="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-[#E61919] transition-colors group cursor-pointer bg-transparent border-none"
           >
             <svg className="w-3.5 h-3.5 group-hover:scale-110 transition-transform flex-shrink-0" viewBox="0 0 24 24" fill="#FF2442">
@@ -560,8 +570,8 @@ const App: React.FC = () => {
               <path d="M12 7.5c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" fill="white"/>
               <circle cx="12" cy="12" r="1.5" fill="white"/>
             </svg>
-            <span>小红书：KOOG（插画设计）</span>
-            <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+            <span>{copied ? '✓ 已复制小红书号！' : '小红书：KOOG（插画设计）2632739343'}</span>
+            {!copied && <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />}
           </button>
           <p className="text-[11px] text-neutral-500 leading-relaxed">© 2026 koogdesign &nbsp; Nanjing Yuerantu Technology Co., Ltd.</p>
         </div>
