@@ -86,19 +86,76 @@ const App: React.FC = () => {
     return `${baseUrl}#work-${selectedProject.id}`;
   };
 
+  // 动态更新Open Graph meta标签（用于社交分享时的图标和标题）
+  const updateMetaTags = (title: string, description: string, image: string) => {
+    // 更新OG标签
+    const updateTag = (property: string, content: string) => {
+      let tag = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement;
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.content = content;
+    };
+
+    updateTag('og:title', `【KOOG DESIGN】${title}`);
+    updateTag('og:description', description);
+    if (image && image.startsWith('http')) {
+      updateTag('og:image', image);
+    }
+    
+    // 更新Twitter Card标签
+    const updateTwitterTag = (name: string, content: string) => {
+      let tag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
+      }
+      tag.content = content;
+    };
+
+    updateTwitterTag('twitter:title', `【KOOG DESIGN】${title}`);
+    updateTwitterTag('twitter:description', description);
+    
+    // 更新文档标题
+    document.title = `【KOOG DESIGN】${title}`;
+  };
+
+  // 恢复默认meta标签
+  const restoreMetaTags = () => {
+    document.title = 'KOOG DESIGN';
+    updateMetaTags('KOOG DESIGN - 创意设计工作室', '专业插画设计与品牌视觉解决方案。AI驱动的内容创作平台，实现热点追踪、智能写作与多平台分发的全链路自动化。', '/apple-touch-icon.png');
+  };
+
   const shareToWechat = () => {
     const shareUrl = getWorkShareUrl();
     const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}\n\n点击查看完整作品详情`;
+    
+    // 动态更新meta标签以显示正确的图标和标题
+    updateMetaTags(
+      selectedProject?.title || '精选作品',
+      selectedProject?.description || '点击查看完整作品详情',
+      selectedProject?.image || ''
+    );
+    
     if (navigator.share && navigator.canShare({ url: shareUrl, text: shareText })) {
       navigator.share({
-        title: selectedProject?.title || 'KOOG DESIGN 作品',
+        title: `【KOOG DESIGN】${selectedProject?.title || '精选作品'}`,
         text: shareText,
         url: shareUrl,
-      }).catch(() => console.log('Share cancelled'));
+      }).finally(() => {
+        // 分享完成后恢复默认meta标签
+        setTimeout(restoreMetaTags, 1000);
+      });
     } else {
       navigator.clipboard.writeText(shareText).then(() => {
         setShareCopied(true);
-        setTimeout(() => setShareCopied(false), 2000);
+        setTimeout(() => {
+          setShareCopied(false);
+          restoreMetaTags();
+        }, 2000);
       });
     }
     setShowShareMenu(false);
@@ -107,9 +164,20 @@ const App: React.FC = () => {
   const shareToXiaohongshu = () => {
     const shareUrl = getWorkShareUrl();
     const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}`;
+    
+    // 动态更新meta标签
+    updateMetaTags(
+      selectedProject?.title || '精选作品',
+      selectedProject?.description || '',
+      selectedProject?.image || ''
+    );
+    
     navigator.clipboard.writeText(shareText).then(() => {
       setShareCopied(true);
-      setTimeout(() => setShareCopied(false), 2000);
+      setTimeout(() => {
+        setShareCopied(false);
+        restoreMetaTags();
+      }, 2000);
     });
     setTimeout(() => {
       window.open('https://www.xiaohongshu.com', '_blank');
@@ -294,6 +362,29 @@ const App: React.FC = () => {
       });
     }
   }, [heroImages]);
+
+  // Hash路由支持 - 处理 #work-id 格式的深度链接
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#work-')) {
+        const workId = hash.replace('#work-', '');
+        const work = allWorks.find(w => w.id === workId);
+        if (work) {
+          navigateTo('detail', work);
+          // 清理URL中的hash（可选，保持URL干净）
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+    };
+
+    // 初始加载时检查hash
+    handleHashChange();
+
+    // 监听hash变化
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [allWorks]);
 
   const RotatingStamp: React.FC = () => (
     <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
