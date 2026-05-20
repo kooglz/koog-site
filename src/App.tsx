@@ -552,17 +552,17 @@ const App: React.FC = () => {
       <footer className="w-full bg-[#1a1a1a] py-3 border-t border-neutral-800">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a 
-            href="https://www.xiaohongshu.com/user/profile/60335997000000000101f74f?xsec_token=YB1HgA0OUfgn93gY0o6fFULIuOm1dUo3jUUifw2XewkjQ=&xsec_source=app_share&xhsshare=CopyLink&shareRedId=ODY1Mzg-PUA2NzUyOTgwNjY0OThKPDpP&apptime=1779245464&share_id=fea15802a25841549fbb65a89b97bb52" 
+            href="https://www.xiaohongshu.com/search_result?keyword=KOOG%E6%8F%92%E7%94%BB%E8%AE%BE%E8%AE%A1&source=web_search_result_notes" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-xs text-neutral-400 hover:text-[#E61919] transition-colors group"
           >
-            <svg className="w-4 h-4 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="#FF2442">
+            <svg className="w-4 h-4 group-hover:scale-110 transition-transform flex-shrink-0" viewBox="0 0 24 24" fill="#FF2442">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-.01 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.68 6-6 6z"/>
               <path d="M12 7.5c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" fill="white"/>
               <circle cx="12" cy="12" r="1.5" fill="white"/>
             </svg>
-            <span className="font-medium">KOOG(插画设计)</span>
+            <span>小红书账号：KOOG（插画设计）</span>
           </a>
           <p className="text-xs text-neutral-500">© 2026 koogdesign &nbsp; Nanjing Yuerantu Technology Co., Ltd.</p>
         </div>
