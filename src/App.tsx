@@ -375,7 +375,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-white text-neutral-900 font-sans selection:bg-[#E61919] selection:text-white antialiased overflow-x-hidden">
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled || currentPage !== 'home' ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || currentPage !== 'home' ? 'bg-white/98 backdrop-blur-md shadow-[0_2px_20px_rgba(0,0,0,0.08)] border-b border-neutral-100/80 py-3' : 'bg-white/90 backdrop-blur-sm shadow-[0_1px_10px_rgba(0,0,0,0.04)] border-b border-neutral-100/50 py-4'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
             <div className="h-8 md:h-10 w-auto">
@@ -488,9 +488,27 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer id="contact" className="relative bg-[#080808] text-white pt-24 pb-12 overflow-hidden border-t border-neutral-900 w-full">
+      <footer className="w-full bg-white border-t border-neutral-200 py-6">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3 text-neutral-500 text-sm">
+            <span className="text-lg">✱</span>
+            <span>© 2026</span>
+            <span>·</span>
+            <span>Nanjing Yuerantu Technology Co., Ltd.</span>
+          </div>
+          <div className="flex items-center gap-6 text-xs text-neutral-400">
+            <a href="#contact" className="hover:text-[#E61919] transition-colors">{t.nav.inquiry}</a>
+            <button onClick={toggleLanguage} className="hover:text-[#E61919] transition-colors">
+              {language === 'en' ? '中文' : 'EN'}
+            </button>
+          </div>
+        </div>
+      </footer>
+
+      {/* Contact Section (Hidden, for anchor link) */}
+      <div id="contact" className="relative bg-[#080808] text-white pt-24 pb-12 overflow-hidden w-full">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
+          <div className="grid lg:grid-cols-2 gap-16 items-start mb-16">
             <div className="space-y-10">
               <div className="inline-flex items-center gap-3 px-3 py-1 border border-[#E61919]/30 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E61919]"></span>
@@ -513,7 +531,6 @@ const App: React.FC = () => {
             </div>
             
             <div className="grid md:grid-cols-2 gap-4">
-              {/* WeChat */}
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden">
                   <img 
@@ -529,7 +546,6 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* Xiaohongshu (RED) */}
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden text-black flex items-center justify-center font-black text-lg">
                   <img 
@@ -546,12 +562,8 @@ const App: React.FC = () => {
               </div>
             </div>
           </div>
-
-          <div className="pt-8 border-t border-neutral-900/50 flex justify-between items-center opacity-40">
-            <p className="text-[9px] font-bold tracking-[0.3em] uppercase tracking-widest font-bold">KOOG STUDIO © 2026</p>
-          </div>
         </div>
-      </footer>
+      </div>
 
       <style>{`
         @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
