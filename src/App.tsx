@@ -69,6 +69,7 @@ const App: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
   const [logoError, setLogoError] = useState<boolean>(false);
   const [showShareMenu, setShowShareMenu] = useState<boolean>(false);
+  const [shareCopied, setShareCopied] = useState<boolean>(false);
 
   const copyXhsInfo = () => {
     const text = '小红书号：2632739343（KOOG插画设计）';
@@ -79,26 +80,48 @@ const App: React.FC = () => {
     window.open('https://www.xiaohongshu.com', '_blank');
   };
 
+  const getWorkShareUrl = () => {
+    if (!selectedProject) return window.location.href;
+    const baseUrl = window.location.origin + window.location.pathname;
+    return `${baseUrl}#work-${selectedProject.id}`;
+  };
+
   const shareToWechat = () => {
-    const shareText = `查看作品：${selectedProject?.title}\n${window.location.href}`;
-    navigator.clipboard.writeText(shareText).then(() => {
-      alert('链接已复制！请打开微信分享给好友');
-    });
+    const shareUrl = getWorkShareUrl();
+    const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}\n\n点击查看完整作品详情`;
+    if (navigator.share && navigator.canShare({ url: shareUrl, text: shareText })) {
+      navigator.share({
+        title: selectedProject?.title || 'KOOG DESIGN 作品',
+        text: shareText,
+        url: shareUrl,
+      }).catch(() => console.log('Share cancelled'));
+    } else {
+      navigator.clipboard.writeText(shareText).then(() => {
+        setShareCopied(true);
+        setTimeout(() => setShareCopied(false), 2000);
+      });
+    }
     setShowShareMenu(false);
   };
 
   const shareToXiaohongshu = () => {
-    const shareText = `查看作品：${selectedProject?.title}\n${window.location.href}`;
+    const shareUrl = getWorkShareUrl();
+    const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}`;
     navigator.clipboard.writeText(shareText).then(() => {
-      alert('链接已复制！请打开小红书分享');
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
     });
-    window.open('https://www.xiaohongshu.com', '_blank');
+    setTimeout(() => {
+      window.open('https://www.xiaohongshu.com', '_blank');
+    }, 500);
     setShowShareMenu(false);
   };
 
   const copyShareLink = () => {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      alert('链接已复制到剪贴板！');
+    const shareUrl = getWorkShareUrl();
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
     });
     setShowShareMenu(false);
   };
@@ -518,22 +541,74 @@ const App: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* 分享功能 */}
+                {/* 分享功能 - 移动端优化的 Bottom Sheet 设计 */}
                 <div className="pt-8 border-t border-neutral-100">
-                  <div className="flex items-center gap-4">
-                    <button 
-                      onClick={() => setShowShareMenu(!showShareMenu)}
-                      className="flex items-center gap-2 px-6 py-3 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all font-bold text-[11px] tracking-widest uppercase"
-                    >
-                      <Share2 className="w-4 h-4" />
-                      分享作品
-                    </button>
-                    
-                    {showShareMenu && (
-                      <div className="flex items-center gap-3 animate-in fade-in duration-300">
+                  <button 
+                    onClick={() => setShowShareMenu(!showShareMenu)}
+                    className="w-full md:w-auto flex items-center justify-center gap-2.5 px-8 py-4 bg-neutral-900 text-white rounded-xl hover:bg-[#E61919] transition-all font-bold text-[12px] tracking-widest uppercase active:scale-[0.98] touch-manipulation"
+                  >
+                    <Share2 className="w-5 h-5" />
+                    <span>分享作品</span>
+                  </button>
+                  
+                  {showShareMenu && (
+                    <div className="mt-6 animate-in slide-in-from-bottom-2 duration-300">
+                      {/* 移动端：垂直堆叠的大按钮 */}
+                      <div className="md:hidden space-y-3">
                         <button 
                           onClick={shareToWechat}
-                          className="flex items-center gap-2 px-4 py-2.5 border border-neutral-200 rounded-sm hover:border-[#07C160] hover:text-[#07C160] transition-all text-sm font-semibold"
+                          className="w-full flex items-center justify-center gap-4 px-6 py-5 bg-white border-2 border-neutral-200 rounded-2xl hover:border-[#07C160] hover:bg-[#07C160]/5 transition-all active:scale-[0.98] touch-manipulation group"
+                        >
+                          <div className="w-12 h-12 rounded-full bg-[#07C160]/10 flex items-center justify-center group-hover:bg-[#07C160]/20 transition-colors">
+                            <svg className="w-7 h-7 text-[#07C160]" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                            </svg>
+                          </div>
+                          <div className="text-left">
+                            <p className="font-bold text-base text-neutral-900">微信</p>
+                            <p className="text-xs text-neutral-500 mt-0.5">发送给好友</p>
+                          </div>
+                        </button>
+                        
+                        <button 
+                          onClick={shareToXiaohongshu}
+                          className="w-full flex items-center justify-center gap-4 px-6 py-5 bg-white border-2 border-neutral-200 rounded-2xl hover:border-[#FF2442] hover:bg-[#FF2442]/5 transition-all active:scale-[0.98] touch-manipulation group"
+                        >
+                          <div className="w-12 h-12 rounded-full bg-[#FF2442]/10 flex items-center justify-center group-hover:bg-[#FF2442]/20 transition-colors">
+                            <svg className="w-7 h-7 text-[#FF2442]" viewBox="0 0 24 24" fill="#FF2442">
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-.01 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.68 6-6 6z"/>
+                              <path d="M12 7.5c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" fill="white"/>
+                              <circle cx="12" cy="12" r="1.5" fill="white"/>
+                            </svg>
+                          </div>
+                          <div className="text-left">
+                            <p className="font-bold text-base text-neutral-900">小红书</p>
+                            <p className="text-xs text-neutral-500 mt-0.5">发布笔记</p>
+                          </div>
+                        </button>
+                        
+                        <button 
+                          onClick={copyShareLink}
+                          className="w-full flex items-center justify-center gap-4 px-6 py-5 bg-white border-2 border-neutral-200 rounded-2xl hover:border-neutral-900 hover:bg-neutral-50 transition-all active:scale-[0.98] touch-manipulation group"
+                        >
+                          <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-neutral-200 transition-colors">
+                            <svg className="w-7 h-7 text-neutral-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                          </div>
+                          <div className="text-left">
+                            <p className="font-bold text-base text-neutral-900">复制链接</p>
+                            <p className="text-xs text-neutral-500 mt-0.5">{shareCopied ? '✓ 已复制' : '复制作品链接'}</p>
+                          </div>
+                        </button>
+                      </div>
+
+                      {/* 桌面端：水平排列的紧凑按钮 */}
+                      <div className="hidden md:flex items-center gap-3">
+                        <button 
+                          onClick={shareToWechat}
+                          className="flex items-center gap-2 px-5 py-3 border border-neutral-200 rounded-lg hover:border-[#07C160] hover:text-[#07C160] hover:bg-[#07C160]/5 transition-all text-sm font-semibold active:scale-[0.98]"
                         >
                           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
@@ -543,7 +618,7 @@ const App: React.FC = () => {
                         
                         <button 
                           onClick={shareToXiaohongshu}
-                          className="flex items-center gap-2 px-4 py-2.5 border border-neutral-200 rounded-sm hover:border-[#FF2442] hover:text-[#FF2442] transition-all text-sm font-semibold"
+                          className="flex items-center gap-2 px-5 py-3 border border-neutral-200 rounded-lg hover:border-[#FF2442] hover:text-[#FF2442] hover:bg-[#FF2442]/5 transition-all text-sm font-semibold active:scale-[0.98]"
                         >
                           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#FF2442">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-.01 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.68 6-6 6z"/>
@@ -555,17 +630,17 @@ const App: React.FC = () => {
                         
                         <button 
                           onClick={copyShareLink}
-                          className="flex items-center gap-2 px-4 py-2.5 border border-neutral-200 rounded-sm hover:border-neutral-900 transition-all text-sm font-semibold"
+                          className="flex items-center gap-2 px-5 py-3 border border-neutral-200 rounded-lg hover:border-neutral-900 hover:bg-neutral-50 transition-all text-sm font-semibold active:scale-[0.98]"
                         >
                           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
                           </svg>
-                          复制链接
+                          {shareCopied ? '✓ 已复制' : '复制链接'}
                         </button>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
