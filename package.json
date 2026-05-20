@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "cms": "npx decap-server",
-    "deploy-site": "git add . && git commit -m \"Update content via CMS\" && git push"
+    "compress": "node scripts/compress-images.mjs",
+    "deploy-site": "npm run compress && git add . && git commit -m \"Update content via CMS\" && git push"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -40,6 +41,7 @@
     "postcss": "^8.5.6",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17",
+    "tinify": "^1.8.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^5.4.11",
