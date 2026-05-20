@@ -44,7 +44,7 @@ if lsof -i:5173 > /dev/null 2>&1; then
   echo "│  - 编辑完成后记得同步到线上                                 │"
   echo "└─────────────────────────────────────────────────────────────┘"
   echo ""
-  open "http://localhost:5173/admin/"
+  open "http://localhost:5173/admin/index.html"
 else
   echo ""
   echo "❌ 启动失败，请检查日志："
