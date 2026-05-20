@@ -385,7 +385,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-white text-neutral-900 font-sans selection:bg-[#E61919] selection:text-white antialiased overflow-x-hidden">
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || currentPage !== 'home' ? 'bg-white/98 backdrop-blur-md shadow-[0_2px_20px_rgba(0,0,0,0.08)] border-b border-neutral-100/80 py-3' : 'bg-white/90 backdrop-blur-sm shadow-[0_1px_10px_rgba(0,0,0,0.04)] border-b border-neutral-100/50 py-4'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || currentPage !== 'home' ? 'bg-white shadow-[0_2px_20px_rgba(0,0,0,0.1)] border-b border-neutral-200 py-3' : 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-neutral-100/60 py-4'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigateTo('home')}>
             <div className="h-8 md:h-10 w-auto">
