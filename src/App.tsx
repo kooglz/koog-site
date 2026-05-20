@@ -551,11 +551,9 @@ const App: React.FC = () => {
       {/* Copyright Footer */}
       <footer className="w-full bg-[#1a1a1a] py-4 border-t border-neutral-800">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
-          <a 
-            href="https://www.xiaohongshu.com/search_result?keyword=KOOG%E6%8F%92%E7%94%BB%E8%AE%BE%E8%AE%A1&source=web_search_result_notes" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-[#E61919] transition-colors group"
+          <button 
+            onClick={() => window.open('https://www.xiaohongshu.com/search_result?keyword=KOOG%E6%8F%92%E7%94%BB%E8%AE%BE%E8%AE%A1', '_blank')}
+            className="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-[#E61919] transition-colors group cursor-pointer bg-transparent border-none"
           >
             <svg className="w-3.5 h-3.5 group-hover:scale-110 transition-transform flex-shrink-0" viewBox="0 0 24 24" fill="#FF2442">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-.01 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.68 6-6 6z"/>
@@ -563,7 +561,8 @@ const App: React.FC = () => {
               <circle cx="12" cy="12" r="1.5" fill="white"/>
             </svg>
             <span>小红书：KOOG（插画设计）</span>
-          </a>
+            <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+          </button>
           <p className="text-[11px] text-neutral-500 leading-relaxed">© 2026 koogdesign &nbsp; Nanjing Yuerantu Technology Co., Ltd.</p>
         </div>
       </footer>
