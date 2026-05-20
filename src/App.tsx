@@ -364,11 +364,11 @@ const App: React.FC = () => {
               <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-neutral-900">{t.works.title}</h2>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {allWorks.map(work => (
-              <div key={work.id} className="group cursor-pointer space-y-6" onClick={() => navigateTo('detail', work)}>
-                <div className="aspect-[4/5] overflow-hidden bg-neutral-100 rounded-sm shadow-sm border border-neutral-100 relative">
-                  <img src={work.image} alt={work.title} className="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+              <div key={work.id} className="group cursor-pointer space-y-4 md:space-y-6" onClick={() => navigateTo('detail', work)}>
+                <div className="aspect-[3/4] overflow-hidden bg-neutral-100 rounded-sm shadow-sm border border-neutral-100 relative">
+                  <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                 </div>
                 <div className="space-y-2">
                   <p className="text-[10px] text-[#E61919] uppercase tracking-[0.2em] font-bold">{work.category}</p>
@@ -434,11 +434,11 @@ const App: React.FC = () => {
           <div className="pt-40 pb-24 container mx-auto px-6 animate-in fade-in duration-500 w-full">
             <div className="w-12 h-1 bg-[#E61919] mb-6"></div>
             <h2 className="text-5xl font-black tracking-tighter mb-16 uppercase">{t.works.subtitle}</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               {allWorks.map(work => (
                 <div key={work.id} className="group cursor-pointer" onClick={() => navigateTo('detail', work)}>
-                  <div className="aspect-[3/4] overflow-hidden bg-neutral-100 mb-6 rounded-sm shadow-sm border border-neutral-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-                    <img src={work.image} alt={work.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" />
+                  <div className="aspect-[3/4] overflow-hidden bg-neutral-100 mb-4 md:mb-6 rounded-sm shadow-sm border border-neutral-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+                    <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                   </div>
                   <h4 className="text-xl font-bold group-hover:text-[#E61919] transition-colors tracking-tight">{work.title}</h4>
                   <p className="text-[10px] text-neutral-400 mt-2 uppercase tracking-[0.2em] font-bold">{work.category}</p>
