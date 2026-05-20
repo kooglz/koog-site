@@ -488,27 +488,10 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full bg-white border-t border-neutral-200 py-6">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-3 text-neutral-500 text-sm">
-            <span className="text-lg">✱</span>
-            <span>© 2026</span>
-            <span>·</span>
-            <span>Nanjing Yuerantu Technology Co., Ltd.</span>
-          </div>
-          <div className="flex items-center gap-6 text-xs text-neutral-400">
-            <a href="#contact" className="hover:text-[#E61919] transition-colors">{t.nav.inquiry}</a>
-            <button onClick={toggleLanguage} className="hover:text-[#E61919] transition-colors">
-              {language === 'en' ? '中文' : 'EN'}
-            </button>
-          </div>
-        </div>
-      </footer>
-
-      {/* Contact Section (Hidden, for anchor link) */}
-      <div id="contact" className="relative bg-[#080808] text-white pt-24 pb-12 overflow-hidden w-full">
+      {/* Contact Section */}
+      <div id="contact" className="relative bg-[#080808] text-white pt-24 pb-16 overflow-hidden w-full">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start mb-16">
+          <div className="grid lg:grid-cols-2 gap-16 items-start mb-12">
             <div className="space-y-10">
               <div className="inline-flex items-center gap-3 px-3 py-1 border border-[#E61919]/30 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E61919]"></span>
@@ -564,6 +547,13 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Copyright Footer */}
+      <footer className="w-full bg-[#1a1a1a] py-3 border-t border-neutral-800">
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <p className="text-xs text-neutral-500">© 2026 koogdesign &nbsp; Nanjing Yuerantu Technology Co., Ltd.</p>
+        </div>
+      </footer>
 
       <style>{`
         @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
