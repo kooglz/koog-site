@@ -45,7 +45,7 @@
     {
       "id": "01",
       "title": "ContAI · 热点写手",
-      "category": "Web App Design / UI & UX",
+      "category": "Web Design / UI & UX",
       "client": "ContentAI Team",
       "year": "2026",
       "image": "/works/frame-55127.jpg",
@@ -95,7 +95,7 @@
     {
       "id": "1",
       "title": "鱼灯 AIGC 视觉研究",
-      "category": "AI插画 / AIGC / 视觉研究 / 国潮",
+      "category": "AI插画 / 视觉研究 / 国潮",
       "client": "KOOG STUDIO (Internal Research)",
       "year": "2025",
       "image": "/works/work1.jpg",
@@ -157,8 +157,8 @@
     {
       "id": "9",
       "image": "/works/vffd11.jpg",
-      "title": "大牙猫 · 非遗瓦猫系列",
-      "category": "IP设计 / 文创设计 / 非遗活化 / 插画",
+      "title": "大牙猫 · 非遗系列",
+      "category": "IP设计 / 文创设计 /  插画",
       "client": "文创公司",
       "year": "2025",
       "description": "以云南非遗\"瓦猫\"为灵感，用现代几何图形语言重塑传统守护神兽，打造兼具民俗底蕴与潮流气质的萌趣IP形象。",
