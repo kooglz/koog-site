@@ -523,9 +523,9 @@ const App: React.FC = () => {
                 <div className="aspect-[3/4] overflow-hidden bg-neutral-100 rounded-sm shadow-sm border border-neutral-100 relative">
                   <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                 </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] text-[#E61919] uppercase tracking-[0.2em] font-bold">{work.category}</p>
-                  <h4 className="text-xl font-bold tracking-tight">{work.title}</h4>
+                <div className="space-y-3 md:space-y-2">
+                  <p className="text-xs md:text-[10px] text-[#E61919] uppercase tracking-[0.12em] md:tracking-[0.2em] font-semibold leading-relaxed">{work.category}</p>
+                  <h4 className="text-[22px] md:text-xl font-bold tracking-tight leading-snug text-neutral-900">{work.title}</h4>
                 </div>
               </div>
             ))}
@@ -593,8 +593,8 @@ const App: React.FC = () => {
                   <div className="aspect-[3/4] overflow-hidden bg-neutral-100 mb-4 md:mb-6 rounded-sm shadow-sm border border-neutral-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                     <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                   </div>
-                  <h4 className="text-xl font-bold group-hover:text-[#E61919] transition-colors tracking-tight">{work.title}</h4>
-                  <p className="text-[10px] text-neutral-400 mt-2 uppercase tracking-[0.2em] font-bold">{work.category}</p>
+                  <h4 className="text-[22px] md:text-xl font-bold group-hover:text-[#E61919] transition-colors tracking-tight leading-snug text-neutral-900">{work.title}</h4>
+                  <p className="text-xs md:text-[10px] text-neutral-500 mt-3 md:mt-2 uppercase tracking-[0.12em] md:tracking-[0.2em] font-semibold leading-relaxed">{work.category}</p>
                 </div>
               ))}
             </div>
@@ -626,8 +626,8 @@ const App: React.FC = () => {
               </div>
               <div className="space-y-10">
                 <div className="border-b border-neutral-100 pb-8">
-                  <p className="text-[11px] uppercase tracking-[0.4em] text-[#E61919] font-bold mb-4">{selectedProject.category}</p>
-                  <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none text-neutral-900">{selectedProject.title}</h2>
+                  <p className="text-xs md:text-[11px] uppercase tracking-[0.15em] md:tracking-[0.4em] text-[#E61919] font-semibold mb-4 leading-relaxed">{selectedProject.category}</p>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none text-neutral-900">{selectedProject.title}</h2>
                 </div>
                 {/* 优先显示详情内容里的完整描述，如果没有则显示普通描述 */}
                 <div className="prose prose-neutral prose-lg max-w-none text-neutral-500 font-medium leading-relaxed prose-img:w-full prose-img:h-auto prose-img:shadow-lg prose-img:rounded-sm prose-img:border prose-img:border-neutral-100 prose-img:my-8">
