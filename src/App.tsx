@@ -564,7 +564,15 @@ const App: React.FC = () => {
             <a href="#contact" className="px-6 py-2.5 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all shadow-lg hover:shadow-xl">{t.nav.inquiry}</a>
           </div>
 
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <button 
+              onClick={toggleLanguage} 
+              className="flex items-center gap-1 px-2.5 py-2 border border-neutral-200 rounded-sm hover:border-neutral-900 transition-all"
+              aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
+            >
+              <Languages className="w-4 h-4 text-neutral-700" />
+              <span className="text-xs font-bold text-neutral-700">{language === 'en' ? '中' : 'EN'}</span>
+            </button>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
               {isMenuOpen ? <X /> : <Menu />}
             </button>
