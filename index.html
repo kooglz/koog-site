@@ -38,7 +38,10 @@
     <meta name="apple-mobile-web-app-title" content="KOOG" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- 中英文字体：中文用 Noto Sans SC，英文用 Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <title>KOOG DESIGN</title>
     <style>
@@ -75,8 +78,8 @@
         50% { opacity: 1; transform: scale(1.05); }
       }
     </style>
-    <script type="module" crossorigin src="/koog-site/assets/main-BKlmESUo.js"></script>
-    <link rel="stylesheet" crossorigin href="/koog-site/assets/main-C3xZeFq-.css">
+    <script type="module" crossorigin src="/koog-site/assets/main-DFBkKFGu.js"></script>
+    <link rel="stylesheet" crossorigin href="/koog-site/assets/main-_92mR-uN.css">
   <link rel="manifest" href="/koog-site/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/koog-site/registerSW.js"></script></head>
   <body>
     <div id="splash-screen">
@@ -90,58 +93,93 @@
     </div>
     <div id="root"></div>
     <script>
-      const splash = document.getElementById('splash-screen');
-      const video = document.getElementById('splash-video');
-      const fallbackLogo = document.getElementById('splash-logo');
-      
-      // WeChat / in-app browsers block autoplay — show fallback logo immediately
-      var isWeChat = /MicroMessenger/i.test(navigator.userAgent);
-      var isInApp = /WeChat|QQ|weibo|douyin|migu/i.test(navigator.userAgent);
-      
-      if (isWeChat || isInApp) {
-        // Skip video entirely in WeChat and other in-app browsers
-        video.style.display = 'none';
-        fallbackLogo.style.display = 'block';
-        setTimeout(hideSplash, 2000);
-      } else {
-        video.addEventListener('canplaythrough', () => {
-          video.style.display = 'block';
-          fallbackLogo.style.display = 'none';
-        });
+      (function() {
+        const splash = document.getElementById('splash-screen');
+        const video = document.getElementById('splash-video');
+        const fallbackLogo = document.getElementById('splash-logo');
+        const ua = navigator.userAgent;
         
-        video.addEventListener('ended', hideSplash);
-        video.addEventListener('error', () => {
+        // 精确检测浏览器类型
+        const isWeChat = /MicroMessenger/i.test(ua);
+        const isQQ = /QQ\//i.test(ua) || /Qzone/i.test(ua);
+        const isWeibo = /Weibo/i.test(ua);
+        const isDouyin = /aweme|douyin/i.test(ua);
+        const isInAppBrowser = isWeChat || isQQ || isWeibo || isDouyin;
+        
+        // Safari 和 Chrome 强制使用 MP4
+        const isSafari = /^((?!chrome|android).)*safari/i.test(ua) && !isInAppBrowser;
+        const isChrome = /Chrome/i.test(ua) && !/Edge|Edg|OPR|Opera/i.test(ua) && !isInAppBrowser;
+        const isModernBrowser = isSafari || isChrome || /Firefox/i.test(ua) || /Edge/i.test(ua);
+        
+        // 强制使用视频的现代浏览器列表
+        const forceVideo = isModernBrowser && !isInAppBrowser;
+        
+        console.log('[Splash] UA:', ua.substring(0, 100));
+        console.log('[Splash] isWeChat:', isWeChat, 'isInApp:', isInAppBrowser, 'forceVideo:', forceVideo);
+        
+        function hideSplash() {
+          splash.classList.add('hidden');
+          setTimeout(() => splash.remove(), 500);
+        }
+        
+        // 仅在真正的微信/内置浏览器中使用SVG回退
+        if (isInAppBrowser && !forceVideo) {
+          console.log('[Splash] Using SVG fallback for in-app browser');
           video.style.display = 'none';
           fallbackLogo.style.display = 'block';
           setTimeout(hideSplash, 2000);
-        });
-        
-        // Fallback: if video doesn't start within 2s, show logo
-        setTimeout(() => {
-          if (video.readyState < 3) {
-            video.style.display = 'none';
-            fallbackLogo.style.display = 'block';
-            setTimeout(hideSplash, 1500);
-          }
-        }, 2000);
-      }
-      
-      function hideSplash() {
-        splash.classList.add('hidden');
-        setTimeout(() => splash.remove(), 500);
-      }
-      
-      setTimeout(hideSplash, 4000);
-      
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
+        } else {
+          // Safari/Chrome/现代浏览器：强制使用MP4视频
+          console.log('[Splash] Using MP4 video for modern browser');
+          
+          // 确保视频元素可见并尝试播放
+          video.style.display = 'block';
+          fallbackLogo.style.display = 'none';
+          
+          // 尝试自动播放
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+              console.log('[Splash] Autoplay blocked:', error);
+              // 自动播放被阻止，显示回退
+              video.style.display = 'none';
+              fallbackLogo.style.display = 'block';
+              setTimeout(hideSplash, 2000);
             });
           }
-        });
-      }
+          
+          video.addEventListener('canplaythrough', () => {
+            console.log('[Splash] Video can play through');
+            video.style.display = 'block';
+            fallbackLogo.style.display = 'none';
+          });
+          
+          video.addEventListener('ended', () => {
+            console.log('[Splash] Video ended');
+            hideSplash();
+          });
+          
+          video.addEventListener('error', (e) => {
+            console.log('[Splash] Video error:', e);
+            video.style.display = 'none';
+            fallbackLogo.style.display = 'block';
+            setTimeout(hideSplash, 2000);
+          });
+          
+          //  Safeguard: 4秒后无论如何都隐藏启动屏
+          setTimeout(hideSplash, 4000);
+        }
+        
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", user => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+        }
+      })();
     </script>
   </body>
 </html>
