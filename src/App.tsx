@@ -45,6 +45,18 @@ interface FooterContent {
   wechatID: string;
   scan: string;
   location: string;
+  copied: string;
+  xhsLabel: string;
+}
+
+interface ShareContent {
+  title: string;
+  defaultTitle: string;
+  viewDetail: string;
+  shareToWechat: string;
+  shareToXhs: string;
+  copyLink: string;
+  linkCopied: string;
 }
 
 interface LanguageContent {
@@ -54,8 +66,17 @@ interface LanguageContent {
     title: string;
     subtitle: string;
     back: string;
+    viewProject: string;
+    client: string;
+    year: string;
+    category: string;
   };
   footer: FooterContent;
+  share: ShareContent;
+  meta: {
+    siteTitle: string;
+    siteDesc: string;
+  };
 }
 
 type LangMode = 'cn' | 'en';
@@ -72,7 +93,9 @@ const App: React.FC = () => {
   const [shareCopied, setShareCopied] = useState<boolean>(false);
 
   const copyXhsInfo = () => {
-    const text = '小红书号：2632739343（KOOG插画设计）';
+    const text = language === 'cn' 
+      ? '小红书号：2632739343（KOOG插画设计）' 
+      : 'Xiaohongshu ID: 2632739343 (KOOG Illustration)';
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -273,6 +296,10 @@ const App: React.FC = () => {
         title: "精选项目",
         subtitle: "PORTFOLIO",
         back: "返回列表",
+        viewProject: "查看项目",
+        client: "客户",
+        year: "年份",
+        category: "类别",
       },
       footer: {
         tagline: siteSettings?.footer?.tagline_cn || "设计并非装饰，而是对世界的理性翻译。",
@@ -282,7 +309,22 @@ const App: React.FC = () => {
         wechatTitle: siteSettings?.footer?.wechatTitle_cn || "微信 / WECHAT",
         wechatID: siteSettings?.footer?.wechatID || "kooglz",
         scan: "扫码开启合作",
-        location: siteSettings?.footer?.location_cn || "中国 / 上海 · 北京"
+        location: siteSettings?.footer?.location_cn || "中国 / 上海 · 北京",
+        copied: "✓ 已复制小红书号！",
+        xhsLabel: "小红书：KOOG（插画设计）2632739343",
+      },
+      share: {
+        title: "【KOOG DESIGN】",
+        defaultTitle: "精选作品",
+        viewDetail: "点击查看完整作品详情",
+        shareToWechat: "分享到微信",
+        shareToXhs: "分享到小红书",
+        copyLink: "复制链接",
+        linkCopied: "链接已复制",
+      },
+      meta: {
+        siteTitle: "KOOG DESIGN - 创意设计工作室",
+        siteDesc: "KOOG DESIGN · 专业插画设计与品牌视觉解决方案。精选作品集展示。",
       }
     },
     en: {
@@ -306,6 +348,10 @@ const App: React.FC = () => {
         title: "Selected Projects",
         subtitle: "PORTFOLIO",
         back: "Back",
+        viewProject: "View Project",
+        client: "Client",
+        year: "Year",
+        category: "Category",
       },
       footer: {
         tagline: siteSettings?.footer?.tagline_en || "Design is not decoration, but a rational translation of the world.",
@@ -315,7 +361,22 @@ const App: React.FC = () => {
         wechatTitle: siteSettings?.footer?.wechatTitle_en || "WeChat",
         wechatID: siteSettings?.footer?.wechatID || "kooglz",
         scan: "Scan QR to Start",
-        location: siteSettings?.footer?.location_en || "CHINA / SH · BJ"
+        location: siteSettings?.footer?.location_en || "CHINA / SH · BJ",
+        copied: "✓ Xiaohongshu ID copied!",
+        xhsLabel: "Xiaohongshu: KOOG (Illustration) 2632739343",
+      },
+      share: {
+        title: "【KOOG DESIGN】",
+        defaultTitle: "Selected Work",
+        viewDetail: "Click to view full project details",
+        shareToWechat: "Share to WeChat",
+        shareToXhs: "Share to Xiaohongshu",
+        copyLink: "Copy Link",
+        linkCopied: "Link copied",
+      },
+      meta: {
+        siteTitle: "KOOG DESIGN - Creative Design Studio",
+        siteDesc: "KOOG DESIGN · Professional illustration and brand visual solutions. Featured portfolio.",
       }
     }
   };
@@ -342,6 +403,12 @@ const App: React.FC = () => {
     
     return `${cleanBase}${cleanPath}`;
   };
+
+  // 切换语言时同步更新 document 的 data-lang 属性（用于字体切换）
+  useEffect(() => {
+    document.documentElement.setAttribute('data-lang', language);
+    document.body.setAttribute('data-lang', language);
+  }, [language]);
 
   const toggleLanguage = () => setLanguage(prev => prev === 'cn' ? 'en' : 'cn');
 
@@ -833,7 +900,7 @@ const App: React.FC = () => {
               <path d="M12 7.5c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" fill="white"/>
               <circle cx="12" cy="12" r="1.5" fill="white"/>
             </svg>
-            <span>{copied ? '✓ 已复制小红书号！' : '小红书：KOOG（插画设计）2632739343'}</span>
+            <span>{copied ? t.footer.copied : t.footer.xhsLabel}</span>
             {!copied && <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />}
           </button>
           <p className="text-[11px] text-neutral-500 leading-relaxed">© 2026 koogdesign &nbsp; Nanjing Yuerantu Technology Co., Ltd.</p>

@@ -66,28 +66,30 @@ export default defineConfig({
         ],
         maximumFileSizeToCacheInBytes: 50 * 1024 * 1024,
         runtimeCaching: [
+          // Google Fonts CSS (Inter + Noto Sans SC)
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'google-fonts-cache',
+              cacheName: 'google-fonts-css-cache',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
+                maxEntries: 5,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1年
               },
               cacheableResponse: {
                 statuses: [0, 200],
               },
             },
           },
+          // Google Fonts 字体文件 (woff2)
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'gstatic-fonts-cache',
+              cacheName: 'google-fonts-woff2-cache',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1年
               },
               cacheableResponse: {
                 statuses: [0, 200],
