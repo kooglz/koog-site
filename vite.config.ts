@@ -20,7 +20,15 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icons/*.png', 'logo-animation.mp4'],
+      includeAssets: [
+        'favicon.ico', 
+        'apple-touch-icon.png', 
+        'apple-touch-icon-precomposed.png',
+        'icons/*.png', 
+        'icons/*.ico',
+        'logo-animation.mp4',
+        'og-share.jpg'
+      ],
       manifest: {
         name: 'KOOG DESIGN',
         short_name: 'KOOG',
@@ -54,7 +62,7 @@ export default defineConfig({
         skipWaiting: true,
         clientsClaim: true,
         globPatterns: [
-          '**/*.{js,css,html,ico,png,svg,woff2}',
+          '**/*.{js,css,html,ico,png,svg,woff2,mp4,jpg,jpeg}',
         ],
         maximumFileSizeToCacheInBytes: 50 * 1024 * 1024,
         runtimeCaching: [
@@ -123,6 +131,36 @@ export default defineConfig({
               expiration: {
                 maxEntries: 100,
                 maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          // Cache logo animation video
+          {
+            urlPattern: /\/logo-animation\.mp4$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'splash-video-cache',
+              expiration: {
+                maxEntries: 1,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          // Cache PWA icons
+          {
+            urlPattern: /\/icons\//i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'icons-cache',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: {
                 statuses: [0, 200],
