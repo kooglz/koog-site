@@ -30,6 +30,7 @@ export default defineConfig({
         'og-share.jpg'
       ],
       manifest: {
+        id: 'koogdesign-v1', // PWA唯一ID，更新可强制刷新
         name: 'KOOG DESIGN',
         short_name: 'KOOG',
         description: 'KOOG DESIGN - 创意设计工作室',
@@ -38,7 +39,7 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait',
         scope: '/',
-        start_url: '/',
+        start_url: '/?v=1.1.0', // 版本号参数强制刷新
         icons: [
           {
             src: '/icons/pwa-192x192.png',
@@ -59,8 +60,10 @@ export default defineConfig({
         ],
       },
       workbox: {
+        cacheId: 'koogdesign-v1.1.0', // 更新版本号强制刷新SW缓存
         skipWaiting: true,
         clientsClaim: true,
+        cleanupOutdatedCaches: true, // 自动清理旧缓存
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,woff2,mp4,jpg,jpeg}',
         ],
