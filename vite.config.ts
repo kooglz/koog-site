@@ -39,7 +39,7 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait',
         scope: '/',
-        start_url: '/?v=1.1.0', // 版本号参数强制刷新
+        start_url: '/?v=1.1.1', // 版本号参数强制刷新
         icons: [
           {
             src: '/icons/pwa-192x192.png',
@@ -60,7 +60,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        cacheId: 'koogdesign-v1.1.0', // 更新版本号强制刷新SW缓存
+        cacheId: 'koogdesign-v1.1.1', // 更新版本号强制刷新SW缓存
         skipWaiting: true,
         clientsClaim: true,
         cleanupOutdatedCaches: true, // 自动清理旧缓存
