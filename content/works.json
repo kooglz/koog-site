@@ -3,52 +3,64 @@
     {
       "image": "/works/ip-20261031/tangtouya-cover.jpg",
       "alt": "烫头鸭 · IP形象设计",
-      "project_id": "tangtouya-ip"
+      "project_id": "tangtouya-ip",
+      "alt_en": "Tangtouya · Character Design"
     },
     {
       "image": "/works/ip-20261031/museum-cover.jpg",
       "alt": "博物馆的显眼包 · 馆藏IP系列",
-      "project_id": "museum-showstoppers"
+      "project_id": "museum-showstoppers",
+      "alt_en": "Museum Showstoppers · Collection-Inspired Characters"
     },
     {
       "image": "/works/十二生肖1.jpg",
-      "alt": "文创生肖插画"
+      "alt": "文创生肖插画",
+      "alt_en": "The Twelve Zodiac · Folk Illustrations"
     },
     {
       "image": "/works/f4vf4d4.jpg",
-      "alt": "KOOG DESIGN · 视觉探索 02"
+      "alt": "KOOG DESIGN · 视觉探索 02",
+      "alt_en": "KOOG DESIGN · Visual Study 02"
     },
     {
       "image": "/works/fvdf.jpg",
-      "alt": "KOOG DESIGN · 视觉探索 03"
+      "alt": "KOOG DESIGN · 视觉探索 03",
+      "alt_en": "KOOG DESIGN · Visual Study 03"
     },
     {
       "image": "/works/frame-152624.jpg",
-      "alt": "KOOG DESIGN · 视觉探索 04"
+      "alt": "KOOG DESIGN · 视觉探索 04",
+      "alt_en": "KOOG DESIGN · Visual Study 04"
     },
     {
       "image": "/works/frame-12522.jpg",
-      "alt": "KOOG DESIGN · 视觉探索 05"
+      "alt": "KOOG DESIGN · 视觉探索 05",
+      "alt_en": "KOOG DESIGN · Visual Study 05"
     },
     {
       "image": "/works/vffd11.jpg",
-      "alt": "大牙猫 · 非遗系列"
+      "alt": "大牙猫 · 非遗系列",
+      "alt_en": "Big-Tooth Cat · Heritage-Inspired Characters"
     },
     {
       "image": "/works/s2c2ds.jpg",
-      "alt": "KOOG DESIGN · 视觉探索 07"
+      "alt": "KOOG DESIGN · 视觉探索 07",
+      "alt_en": "KOOG DESIGN · Visual Study 07"
     },
     {
       "image": "/works/fr4degv.jpg",
-      "alt": "KOOG DESIGN · 视觉探索 08"
+      "alt": "KOOG DESIGN · 视觉探索 08",
+      "alt_en": "KOOG DESIGN · Visual Study 08"
     },
     {
       "image": "/works/未命名项目-图层-1-2025-09-30t144100.152.png",
-      "alt": "KOOG DESIGN · 视觉探索 09"
+      "alt": "KOOG DESIGN · 视觉探索 09",
+      "alt_en": "KOOG DESIGN · Visual Study 09"
     },
     {
       "alt": "KOOG DESIGN · 视觉探索 10",
-      "image": "/works/mawen.jpg"
+      "image": "/works/mawen.jpg",
+      "alt_en": "KOOG DESIGN · Visual Study 10"
     }
   ],
   "works": [
@@ -65,18 +77,26 @@
         "images": [
           {
             "url": "/works/ip-20261031/tangtouya-everyday.jpg",
-            "alt": "续命篇：咖啡续命、社交缓冲与自我关怀的六款角色插画"
+            "alt": "续命篇：咖啡续命、社交缓冲与自我关怀的六款角色插画",
+            "alt_en": "Recharge: six expressions about coffee, social downtime and self-care"
           },
           {
             "url": "/works/ip-20261031/tangtouya-hobbies.jpg",
-            "alt": "兴趣班：拼豆、编织、观鸟等六款爱好主题插画"
+            "alt": "兴趣班：拼豆、编织、观鸟等六款爱好主题插画",
+            "alt_en": "Hobby Club: six characters enjoying beading, knitting, birdwatching and other hobbies"
           },
           {
             "url": "/works/ip-20261031/tangtouya-life.jpg",
-            "alt": "生活记：问候、感谢、笑声与拥抱的六款情绪表达"
+            "alt": "生活记：问候、感谢、笑声与拥抱的六款情绪表达",
+            "alt_en": "Everyday Life: six expressions of greetings, thanks, laughter and affection"
           }
-        ]
-      }
+        ],
+        "full_desc_en": "### Everyday feelings, expressed by one little duck\n\nTangtouya is a duck with a little attitude and a sincere appetite for life. From coffee breaks and social downtime to hugging friends and getting absorbed in a hobby, its playful expressions and gestures capture feelings that are hard to put into words.\n\n### A character you recognize at a glance\n\nThree white tufts, two black nostrils, large orange cheeks and yellow webbed feet anchor its identity. A rounded body, clear black outlines and simple color shapes keep Tangtouya readable even in a small chat window.\n\nEvery expression follows the same facial structure, three-fingered hands and body proportions. Each gesture has its own emotion while remaining unmistakably the same duck.\n\n### From personality to collections\n\n- **Recharge**: Failed starts, coffee breaks and self-care become small emotional snapshots of work and rest.\n- **Hobby Club**: Beading, knitting, birdwatching and sport give the character a more tangible everyday life.\n- **Everyday Life**: From “I'm here” and “thank you” to hugs and affection, readable gestures express connection and companionship.\n\n### A character that can keep growing\n\nThis selection of original artwork presents the character's visual identity, expressions and collection palettes. A consistent visual language connects static stickers, animated stickers and themed illustrations, providing a foundation for future social content and creative products."
+      },
+      "title_en": "Tangtouya · Character Design",
+      "category_en": "Character Design / Original IP",
+      "client_en": "KOOG DESIGN · Original IP",
+      "description_en": "Everyday feelings, expressed by one little duck. A distinctive character and relatable gestures connect stickers, themed illustrations and social content."
     },
     {
       "id": "museum-showstoppers",
@@ -91,27 +111,37 @@
         "images": [
           {
             "url": "/works/ip-20261031/museum-china.jpg",
-            "alt": "中国馆藏第一辑：瓷母、陶鹰鼎、金兽等六款器物角色"
+            "alt": "中国馆藏第一辑：瓷母、陶鹰鼎、金兽等六款器物角色",
+            "alt_en": "Chinese Collections I: six characters inspired by ceramics, bronze vessels and sculptural objects"
           },
           {
             "url": "/works/ip-20261031/museum-china-ii.jpg",
-            "alt": "中国馆藏第二辑：多巴胺描边与手绘纹样的六款精选"
+            "alt": "中国馆藏第二辑：多巴胺描边与手绘纹样的六款精选",
+            "alt_en": "Chinese Collections II: six characters with vivid color and hand-drawn patterns"
           },
           {
             "url": "/works/ip-20261031/museum-expressions.jpg",
             "alt": "表情管理篇：击鼓说唱俑、孩儿枕、沉思罗汉等九款角色",
-            "height": 1800
+            "height": 1800,
+            "alt_en": "Expressive Objects: nine characters inspired by a storyteller figurine, a ceramic pillow, a contemplative arhat and other objects"
           },
           {
             "url": "/works/ip-20261031/museum-world-ii.jpg",
-            "alt": "海外馆藏第二辑：六款扁平多巴胺器物插画"
+            "alt": "海外馆藏第二辑：六款扁平多巴胺器物插画",
+            "alt_en": "World Collections II: six flat illustrations inspired by museum objects"
           },
           {
             "url": "/works/ip-20261031/museum-world-iii.jpg",
-            "alt": "海外馆藏第三辑：乌尔棋盘、双头蛇胸饰、书记员、金帽、银锅与孔雀钟"
+            "alt": "海外馆藏第三辑：乌尔棋盘、双头蛇胸饰、书记员、金帽、银锅与孔雀钟",
+            "alt_en": "World Collections III: the Royal Game of Ur, double-headed serpent, seated scribe, gold hat, silver cauldron and peacock clock"
           }
-        ]
-      }
+        ],
+        "full_desc_en": "### Giving collection objects a personality for today\n\nMuseum Showstoppers starts with the distinctive forms of artifacts and artworks in museum collections. Memorable silhouettes, poses and patterns become original characters with a contemporary emotional vocabulary.\n\n### Form is the clue; personality is the invitation\n\nThe upright stance of an eagle-shaped vessel, the volume of a golden beast, the eyes of an owl-shaped bronze vessel and the smile of a storyteller figurine all offer starting points. The designs retain recognizable features while reinterpreting expression, proportion and color, inviting viewers to connect with the character and then look again at the object.\n\n### A consistent hand-drawn language\n\nIrregular colored outlines, flat contrasting shapes and subtle crayon grain form the collection's visual foundation. Each character has its own palette, with details drawn from the object's patterns and construction. Together they create a lively but ordered rhythm.\n\n### From Chinese collections to objects around the world\n\n- **Chinese Collections**: Silhouettes drawn from pottery, bronze and porcelain are reimagined through vivid color.\n- **Expressive Objects**: Nine artifacts and artworks explore laughter, pride, tiredness and watchful contemplation.\n- **World Collections**: Objects including the Royal Game of Ur, a double-headed serpent ornament and the Berlin Gold Hat reveal the sculptural appeal of collections from different regions.\n\n### About the interpretation\n\nThis is an independent illustration project by KOOG DESIGN inspired by museum collections. Colors, expressions and gestures are creative interpretations. The works shown do not imply a museum commission, partnership or authorization, and are not reconstructions of original colors or historical structures."
+      },
+      "title_en": "Museum Showstoppers · Collection-Inspired Characters",
+      "category_en": "Cultural Illustration / Character Design",
+      "client_en": "KOOG DESIGN · Independent Project",
+      "description_en": "Giving collection objects a personality for today. Vivid contrasting colors, hand-drawn textures and expressive faces turn Chinese and international museum collections into lively characters."
     },
     {
       "id": "01",
@@ -122,8 +152,13 @@
       "image": "/works/frame-55127.jpg",
       "description": "AI驱动的内容创作平台，实现热点追踪、智能写作与多平台分发的全链路自动化。",
       "detail_content": {
-        "full_desc": "ContentAI是一款面向自媒体运营者和内容创作者的AI内容创作平台。系统通过多平台热点监控、AI智能写作引擎、定时推送机制，实现了从热点发现到内容产出的全流程自动化。\n\n\\*\\*核心功能\\*\\*：\n\n\\- \\*\\*热点追踪\\*\\*：实时监控微博、百度、知乎、抖音等平台热点趋势\n\n\\- \\*\\*AI写作\\*\\*：支持多种写作风格，智能生成经过AI质检的高质量原创内容\n\n\\- \\*\\*内容管理\\*\\*：文章库、标签系统、数据分析一站式管理\n\n\\*\\*技术亮点\\*\\*：\n\n\\- Vue 3 + Vite 构建的高性能前端应用\n\n\\- FastAPI + PostgreSQL 后端架构，支持高并发\n\n\\- LLM国内AI大模型集成，智能内容生成\n\n\\- PWA应用，支持离线访问与推送通知\n\n\\- 多语言支持（中/英/繁），国际化设计\n\n\\*\\*设计理念\\*\\*：\n\n以深青绿色（#00677d）为主色调，传递专业可信的品牌形象。采用移动端优先的响应式设计，确保在各种设备上都能获得流畅的使用体验。界面简洁高效，减少认知负担，让用户专注于内容创作本身。"
-      }
+        "full_desc": "ContentAI是一款面向自媒体运营者和内容创作者的AI内容创作平台。系统通过多平台热点监控、AI智能写作引擎、定时推送机制，实现了从热点发现到内容产出的全流程自动化。\n\n**核心功能**：\n\n- **热点追踪**：实时监控微博、百度、知乎、抖音等平台热点趋势\n\n- **AI写作**：支持多种写作风格，智能生成经过AI质检的高质量原创内容\n\n- **内容管理**：文章库、标签系统、数据分析一站式管理\n\n**技术亮点**：\n\n- Vue 3 + Vite 构建的高性能前端应用\n\n- FastAPI + PostgreSQL 后端架构，支持高并发\n\n- LLM国内AI大模型集成，智能内容生成\n\n- PWA应用，支持离线访问与推送通知\n\n- 多语言支持（中/英/繁），国际化设计\n\n**设计理念**：\n\n以深青绿色（#00677d）为主色调，传递专业可信的品牌形象。采用移动端优先的响应式设计，确保在各种设备上都能获得流畅的使用体验。界面简洁高效，减少认知负担，让用户专注于内容创作本身。",
+        "full_desc_en": "ContentAI is an AI content creation platform for independent publishers, social media managers and creators. Multi-platform trend monitoring, an AI writing engine and scheduled delivery connect the workflow from discovering a topic to producing content.\n\n### Core features\n\n- **Trend tracking**: Monitor trending topics on Weibo, Baidu, Zhihu and Douyin in real time.\n- **AI writing**: Generate original content in multiple writing styles, with AI quality checks.\n- **Content management**: Manage an article library, tags and analytics in one workspace.\n\n### Technical highlights\n\n- A high-performance frontend built with Vue 3 and Vite.\n- FastAPI and PostgreSQL backend architecture designed for concurrent workloads.\n- Integration with Chinese large language models for content generation.\n- A progressive web app with offline access and push notifications.\n- Multilingual design supporting English, Simplified Chinese and Traditional Chinese.\n\n### Design approach\n\nDeep teal (#00677d) establishes a professional, trustworthy identity. A mobile-first responsive layout supports a consistent experience across devices. A clear, efficient interface reduces cognitive load so creators can focus on making content."
+      },
+      "title_en": "ContAI · Trend-to-Content Workspace",
+      "category_en": "Web Design / UI & UX",
+      "client_en": "ContentAI Team",
+      "description_en": "An AI-powered content platform that connects trend discovery, writing and publishing across platforms."
     },
     {
       "id": "2",
@@ -135,8 +170,13 @@
       "description": "将汉代拓片十二生肖纹样重塑为高端时尚视觉符号。",
       "detail_content": {
         "full_desc": "本项目是一次跨越两千年的视觉对话——将汉代石刻拓片的苍茫气韵，转译为当代高端时尚的视觉语言。十二幅生肖作品，既是对古老纹样的数字化重生，也是东方美学在数字时代的当代表达。\n\n### 创作理念\n\n**从金石到像素**\n汉代石刻以其浑厚古朴、气韵生动著称，拓片则是连接原石与观者的桥梁。本项目以高清数字扫描的汉代生肖拓片为蓝本，通过AI辅助重构与手工精修相结合的方式，在保留原始纹样神韵的同时，赋予其全新的视觉质感。\n\n**留白与呼吸**\n借鉴中国传统水墨的留白智慧，在繁复的纹样与纯净的背景之间营造视觉张力。每一幅作品都如同一扇通往汉代的窗，让观者在凝视中与古人对话。\n\n### 视觉系统\n\n**纹样解构** - 从汉代画像石、碑刻拓片中提取十二生肖原始纹样，分析其线条走势、构图规律与象征符号。\n\n**质感重塑** - 通过数字技术模拟拓片的斑驳肌理与金石的厚重质感，同时融入现代设计的光影处理与细节刻画。\n\n**版式编排** - 采用现代极简主义的版式设计，将生肖主体置于画面黄金分割点，辅以克制的中英文。\n\n### 作品规格\n\n* 尺寸：A2 / 300dpi\n* 色彩：CMYK + 专金印刷版\n* 材质建议：艺术微喷 / 金属蚀刻 / 丝网印刷\n* 应用场景：高端文创、艺术展览、品牌联名、数字藏品\n\n### 设计亮点\n\n1. **学术严谨**\n\n    - 基于真实汉代拓片资料进行创作\n2. **工艺精湛**\n\n    - 融合AI生成与手工精修\n3. **延展性强**\n\n    - 支持全场景应用\n4. **文化深度**\n\n    - 兼具审美与教育价值",
-        "images": []
-      }
+        "images": [],
+        "full_desc_en": "A visual dialogue across two millennia: the weathered character of Han dynasty stone rubbings is translated into a contemporary visual language. Twelve zodiac works revive historical patterns digitally while expressing Chinese aesthetics for the present.\n\n### Creative approach\n\n**From stone to pixels**\n\nHan stone carvings are known for their bold, grounded presence. Rubbings connect the carved surface with its viewer. Using high-resolution scans of zodiac rubbings as a starting point, AI-assisted reconstruction and manual refinement introduce new textures while retaining the spirit of the motifs.\n\n**Space to breathe**\n\nInspired by negative space in Chinese ink painting, intricate patterns sit against quiet backgrounds. Each composition becomes a window into the Han dynasty and an invitation to look closely.\n\n### Visual system\n\n- **Pattern analysis**: Extract zodiac motifs from Han pictorial stones and rubbings, studying line direction, composition and symbolism.\n- **Texture reconstruction**: Digitally evoke weathered rubbings and the weight of stone, with contemporary lighting and detail.\n- **Layout**: Place zodiac figures within a minimalist composition, supported by restrained Chinese and English typography.\n\n### Artwork specifications\n\n- Size: A2 / 300 dpi.\n- Color: CMYK with a spot-gold print version.\n- Suggested production: Fine-art printing, metal etching or screen printing.\n- Applications: Cultural products, exhibitions, brand collaborations and digital collectibles.\n\n### Design highlights\n\n1. **Research-led**: Based on historical Han dynasty rubbing references.\n2. **Refined production**: Combines AI-assisted work with manual finishing.\n3. **Flexible applications**: Designed to extend across formats.\n4. **Cultural depth**: Connects aesthetic appeal with opportunities for learning."
+      },
+      "title_en": "Han Dynasty Rubbings Reimagined",
+      "category_en": "Digital Art",
+      "client_en": "Personal Project",
+      "description_en": "Recasting the twelve zodiac motifs of Han dynasty rubbings as contemporary visual symbols for fashion and culture."
     },
     {
       "title": "ORÉ3 品牌识别系统",
@@ -144,11 +184,16 @@
       "description": "为高端珠宝品牌 ORÉ3 打造一套融合浪漫主义与现代优雅的品牌识别系统（VIS）。通过柔和的马卡龙色调与精致的插画元素，建立品牌独特的“梦幻与艺术”视觉语言。",
       "client": "珠宝品牌 ORÉ3",
       "detail_content": {
-        "full_desc": "[](https://ore3jewelry.com/)\n\n### 视觉系统详情\n\n#### 1. 标志设计 (Brand Logo)\n\n核心 Logo 采用了高对比度的衬线体设计，展现品牌的专业感与经典美学。副标识则提取了品牌首字母，以更具装饰性的笔触呈现，便于在首饰包装或社交媒体头像等微小空间使用。\n\n#### 2. 色彩系统 (Color Palette)\n\n* 主色： 永恒黑 (#000000) - 用于 Logo 与正文，确保权威性。\n* 辅助色： 腮红粉 (#FFB6C1)、浅天蓝 (#87CEEB)、薰衣草紫 (#E6D8F0)、薄荷绿 (#B5EAD7) 与奶油白 (#F5F1E8)。\n* 色彩逻辑： 这种糖果色系的组合旨在唤起用户对浪漫、梦幻及“艺术珠宝”的联想，与黑色的文字形成有力对比，兼顾少女心与高级感。\n\n#### 3. 字体系统 (Typography)\n\n* 标题： ORÉ3 Serif - 稳重且具现代感。\n* 正文： Graceful Script - 用于引用语及强调装饰，增加品牌的亲和力和叙事感。\n\n#### 4. 图形元素与应用 (Graphic Elements)\n\n设计了一系列包含玫瑰、蝴蝶、城堡、独角兽及热气球的线描插画。这些元素被延伸至：\n\n* 底纹设计： 重复排列的独角兽与城堡花纹。\n* 应用场景： 精美的珠宝包装盒、品牌信纸、名片、以及具有叙事感的官方网站界面。"
+        "full_desc": "[](https://ore3jewelry.com/)\n\n### 视觉系统详情\n\n#### 1. 标志设计 (Brand Logo)\n\n核心 Logo 采用了高对比度的衬线体设计，展现品牌的专业感与经典美学。副标识则提取了品牌首字母，以更具装饰性的笔触呈现，便于在首饰包装或社交媒体头像等微小空间使用。\n\n#### 2. 色彩系统 (Color Palette)\n\n* 主色： 永恒黑 (#000000) - 用于 Logo 与正文，确保权威性。\n* 辅助色： 腮红粉 (#FFB6C1)、浅天蓝 (#87CEEB)、薰衣草紫 (#E6D8F0)、薄荷绿 (#B5EAD7) 与奶油白 (#F5F1E8)。\n* 色彩逻辑： 这种糖果色系的组合旨在唤起用户对浪漫、梦幻及“艺术珠宝”的联想，与黑色的文字形成有力对比，兼顾少女心与高级感。\n\n#### 3. 字体系统 (Typography)\n\n* 标题： ORÉ3 Serif - 稳重且具现代感。\n* 正文： Graceful Script - 用于引用语及强调装饰，增加品牌的亲和力和叙事感。\n\n#### 4. 图形元素与应用 (Graphic Elements)\n\n设计了一系列包含玫瑰、蝴蝶、城堡、独角兽及热气球的线描插画。这些元素被延伸至：\n\n* 底纹设计： 重复排列的独角兽与城堡花纹。\n* 应用场景： 精美的珠宝包装盒、品牌信纸、名片、以及具有叙事感的官方网站界面。",
+        "full_desc_en": "[Visit ORÉ3](https://ore3jewelry.com/)\n\n### Visual identity system\n\n#### 1. Brand marks\n\nThe primary logo uses a high-contrast serif to convey professionalism and a classic sensibility. A decorative secondary monogram draws on the brand's initials for small formats such as jewelry packaging and social avatars.\n\n#### 2. Color palette\n\n- **Primary**: Black (#000000) for the logo and body typography.\n- **Supporting colors**: Blush pink (#FFB6C1), light blue (#87CEEB), lavender (#E6D8F0), mint green (#B5EAD7) and cream (#F5F1E8).\n- **Color direction**: The candy-like palette evokes romance, imagination and art jewelry. Black typography provides a strong contrast and balances playfulness with refinement.\n\n#### 3. Typography\n\n- **Headlines**: ORÉ3 Serif, for a poised, contemporary presence.\n- **Supporting type**: Graceful Script for quotations and decorative emphasis, adding warmth and narrative character.\n\n#### 4. Graphic elements and applications\n\nLine illustrations of roses, butterflies, castles, unicorns and hot-air balloons form an expandable visual world.\n\n- **Patterns**: Repeating unicorn and castle motifs.\n- **Applications**: Jewelry packaging, stationery, business cards and a narrative-led brand website."
       },
       "image": "/works/ore3-branding-1.jpg",
       "id": "4",
-      "category": "品牌设计 / Branding"
+      "category": "品牌设计 / Branding",
+      "title_en": "ORÉ3 · Brand Identity",
+      "category_en": "Branding / Visual Identity",
+      "client_en": "ORÉ3 Jewelry",
+      "description_en": "A visual identity for ORÉ3 that combines romantic imagination with modern elegance through soft pastel colors and delicate illustration."
     },
     {
       "id": "3",
@@ -160,8 +205,13 @@
       "description": "以东方生肖马为灵感，融合传统纹样与现代渐变美学，打造兼具文化底蕴与年轻活力的文创品牌识别体系。",
       "detail_content": {
         "full_desc": "**项目背景**\n为文创初创企业打造一套能够承载东方美学、同时接轨国际视野的品牌视觉系统。项目以农历马年为切入点，探索传统文化在当代设计语境下的转译可能。\n\n**设计理念**\n「瑞马迎新」取意吉祥瑞兽与新年气象。设计团队从敦煌壁画、民间剪纸与宫廷纹样中提炼视觉基因，以现代渐变色彩重构传统马头造型，形成既有文化辨识度、又具传播力的符号系统。\n\n**视觉呈现**\n\n* **主视觉**\n\n  马头轮廓以对称构图呈现，融入如意云纹与火焰纹，象征奔腾向上的品牌精神\n* **色彩体系**\n\n  胭脂红为主调，搭配桃粉、明黄、湖蓝等渐变色，营造喜庆而不失雅致的氛围\n* **纹样系统**\n\n  开发专属辅助图形，包括回字纹、水波纹、祥云纹，用于延展应用\n* **应用矩阵**\n\n  红包、贺卡、礼盒、数字壁纸等全场景覆盖\n\n**设计亮点**\n传统符号 × 现代技法 —— 以矢量插画精确控制线条与色块，确保从手机屏幕到大幅印刷的一致呈现；渐变色的运用让古典题材焕发年轻质感，打破生肖设计固有的刻板印象。\n\n**项目信息**\n客户：Culture & Creative Startup\n年份：2025\n类别：品牌设计 / 文创开发",
-        "images": []
-      }
+        "images": [],
+        "full_desc_en": "### Project background\n\nA visual identity for a cultural and creative startup, designed to carry Chinese aesthetic traditions into an international context. The Year of the Horse provides a starting point for exploring how traditional culture can speak through contemporary design.\n\n### Design concept\n\nAuspicious Horse brings together the idea of a fortunate creature and the renewal of a new year. Visual references from Dunhuang murals, folk paper-cutting and court patterns are distilled into a horse-head symbol, with contemporary gradients giving it a fresh presence.\n\n### Visual expression\n\n- **Key visual**: A symmetrical horse head incorporates auspicious cloud and flame motifs to express forward momentum.\n- **Color system**: Rouge red leads a palette of pink, bright yellow and lake-blue gradients, creating a festive yet refined mood.\n- **Patterns**: Supporting graphics include geometric fretwork, water ripples and cloud motifs.\n- **Applications**: Red envelopes, greeting cards, gift boxes and digital wallpapers.\n\n### Design highlights\n\nTraditional symbols meet contemporary techniques. Vector illustration controls lines and shapes across screens and large print formats. Gradients introduce a youthful quality to a classical subject.\n\n### Project information\n\nClient: Culture & Creative Startup  \nYear: 2025  \nCategory: Branding / Cultural Product Development"
+      },
+      "title_en": "Auspicious Horse · Zodiac Brand Identity",
+      "category_en": "Branding / Cultural Products",
+      "client_en": "Culture & Creative Startup",
+      "description_en": "A cultural brand identity inspired by the Chinese zodiac horse, bringing traditional motifs and contemporary gradients together."
     },
     {
       "id": "1",
@@ -173,8 +223,13 @@
       "description": "以中国传统鱼灯为灵感，通过定制化稳定扩散模型，探索东方灯会美学与数字生成艺术的融合边界，重新定义东方光影。",
       "detail_content": {
         "full_desc": "**项目概述**\n《鱼灯 AIGC 视觉研究》是 一项内部研究项目，聚焦中国传统灯会文化在 AI 时代的视觉转译。项目以徽州鱼灯、潮汕鲤鱼灯等非遗灯彩为原型，通过定制化 Stable Diffusion 模型训练，探索东方美学与生成式 AI 的技术融合。\n\n**文化溯源**\n鱼灯是中国传统民俗灯彩的重要品类，流行于安徽、福建、广东等地。每逢元宵、中秋，百姓以竹篾扎架、彩纸糊身，制成鱼形灯具，巡游街巷，寓意\"年年有余\"\"鱼跃龙门\"。徽州汪满田鱼灯更是安徽省非物质文化遗产，以其巨制规模和精湛工艺闻名。\n\n**技术路径**\n\n* **模型训练**\n\n  基于 Stable Diffusion XL，以数百张传统鱼灯实物照片、古画鱼纹、年画素材进行 LoRA 微调\n* **风格定位**\n\n  锁定\"工笔重彩+民间年画+光影通透\"三重风格融合\n* **提示工程**\n\n  构建结构化提示词体系，精确控制鱼身结构、鳞片纹理、灯光明暗\n* **后期精修**\n\n  AI 生成后人工筛选，对细节进行数字手绘修正\n\n**视觉特征**\n\n* **造型**\n\n  保留传统鱼灯的饱满身形与翘尾特征，融入国潮插画的夸张比例\n* **色彩**\n\n  以橙红、金黄为主调，辅以青绿、湖蓝点缀，模拟灯光透射效果\n* **纹理**\n\n  鱼鳞以工笔细描，鱼鳍以渐变晕染，形成虚实对比\n* **光影**\n\n  内置光源感，鱼身通透如琉璃，营造\"游于光中\"的意境\n\n**创作流程**\n\n1. **素材采集**\n\n   拍摄徽州、潮汕实地鱼灯，收集清代年画、民国灯谱\n2. **模型训练**\n\n   训练专属 LoRA 模型，固化\"鱼灯\"概念与风格特征\n3. **批量生成**\n\n   通过提示词矩阵探索不同构图、配色、动态\n4. **人工筛选**\n\n   从千张生成图中精选符合东方美学的作品\n5. **精修输出**\n\n   数字手绘修正细节，输出高分辨率成品\n\n**研究价值**\n\n* **非遗数字化**\n\n  为传统灯彩建立 AI 可识别的视觉基因库\n* **风格可控性**\n\n  验证定制化模型对特定东方美学的还原能力\n* **创作效率**\n\n  探索 AI 辅助民俗题材创作的可行路径\n* **商业应用**\n\n  为灯会活动、文创设计、数字藏品提供视觉素材\n\n**应用场景**\n\n* 元宵/中秋灯会主视觉设计\n* 国潮品牌联名插画\n* 数字藏品/ NFT 发行\n* 文旅项目宣传物料\n* 传统节日包装礼盒",
-        "images": []
-      }
+        "images": [],
+        "full_desc_en": "### Project overview\n\nFish Lanterns is an internal AIGC research project exploring how traditional Chinese lantern culture can be translated visually in the age of AI. Huizhou and Chaoshan fish lanterns provide references for combining Chinese aesthetics with customized Stable Diffusion models.\n\n### Cultural references\n\nFish lanterns are a form of folk lighting found in Anhui, Fujian, Guangdong and other regions. Bamboo frames covered with colored paper take the shape of fish and are carried through streets during festivals, expressing wishes for abundance and success. Wangmantian fish lanterns in Huizhou are known for their scale and craftsmanship.\n\n### Technical approach\n\n- **Model training**: LoRA fine-tuning on Stable Diffusion XL using photographs of fish lanterns, historical fish imagery and New Year prints.\n- **Style direction**: Combine detailed Chinese painting, folk prints and translucent lighting.\n- **Prompt design**: Structured prompts control body construction, scales, fins and illumination.\n- **Finishing**: Human selection and digital painting refine generated details.\n\n### Visual characteristics\n\n- **Form**: Full-bodied fish with raised tails and expressive proportions.\n- **Color**: Orange-red and gold with turquoise and blue accents, evoking light shining through paper.\n- **Texture**: Detailed scales contrast with softly graded fins.\n- **Lighting**: An internal glow gives the fish a glass-like translucency and a sense of swimming through light.\n\n### Creative process\n\n1. **Reference collection**: Photograph lanterns in Huizhou and Chaoshan and gather historical prints and lantern references.\n2. **Model training**: Train a dedicated LoRA to establish a consistent fish-lantern concept and style.\n3. **Generation**: Explore compositions, palettes and poses through prompt variations.\n4. **Selection**: Curate outputs that support the intended visual direction.\n5. **Finishing**: Correct details with digital painting and export high-resolution artwork.\n\n### Research value\n\n- **Digital heritage**: Explore a visual reference system for AI-assisted work with traditional lanterns.\n- **Style control**: Test how customized models interpret a specific aesthetic tradition.\n- **Creative efficiency**: Investigate AI-assisted workflows for folk-art subjects.\n- **Applications**: Develop visual material for lantern events, cultural products and digital collectibles.\n\n### Potential applications\n\nFestival key visuals, illustration collaborations, digital collectibles, cultural tourism materials and seasonal gift packaging."
+      },
+      "title_en": "Fish Lanterns · Heritage Visual Study",
+      "category_en": "AI Illustration / Visual Research / Chinese Culture",
+      "client_en": "KOOG STUDIO · Internal Research",
+      "description_en": "A study of traditional Chinese fish lanterns through customized Stable Diffusion models, exploring the relationship between lantern aesthetics and generative art."
     },
     {
       "title": "文创生肖插画",
@@ -186,8 +241,13 @@
       "description": "以现代设计语言重新诠释中国传统生肖文化，将千年民俗符号转化为当代视觉叙事。十二幅作品既独立成章又气韵相连，在传承与创新之间找到精妙平衡。",
       "detail_content": {
         "full_desc": "十二生肖民俗插画系列 | Twelve Zodiac Folk Illustrations\n\n**项目背景**\n生肖文化承载着中国人对时间的独特理解和对生命的诗意想象。本项目受文创公司委托，以插画形式重新演绎十二生肖，目标是将传统民俗符号转化为符合当代审美的视觉作品，适用于文创产品、包装设计、数字媒体等多场景应用。\n\n**设计思路**\n传统基因的当代转译\n\n我们从民间剪纸、年画、刺绣等传统工艺中汲取灵感，提炼出每个生肖最具辨识度的文化符号——鼠的机敏、牛的勤恳、虎的威严、兔的温婉……再以现代扁平化插画语言重构，保留神韵的同时赋予全新视觉表达。\n\n色彩体系的民俗叙事\n\n每幅作品采用独特的配色方案：或取自传统年画的喜庆红金，或借鉴青花瓷的雅致蓝白，或融入敦煌壁画的瑰丽重彩。色彩既是装饰，更是文化密码的延续。\n\n构图的平衡美学\n\n遵循「留白有度、虚实相生」的东方美学原则，主体形象醒目突出，背景纹样含蓄点缀，整体构图既适合独立展示，也能灵活应用于各类文创衍生品。\n\n **作品规格**\n\n\n* 尺寸：A3 / 300dpi\n* 格式：矢量插画（可无限缩放）\n* 色彩模式：CMYK + RGB 双版本\n* 应用场景：文创产品、包装印刷、数字媒体、展览展示\n\n1. 文化深度：每个生肖都融入对应的民俗典故和吉祥寓意\n2. 现代审美：扁平化风格符合当代视觉趋势\n3. 延展性强：统一风格体系，支持单品或系列开发\n4. 商业适配：预留安全边距，可直接用于印刷生产\n\n**设计亮点**",
-        "images": []
-      }
+        "images": [],
+        "full_desc_en": "### Project background\n\nThe Chinese zodiac carries a distinctive understanding of time and a rich imaginative relationship with living creatures. Commissioned by a cultural product company, this series turns traditional zodiac symbols into contemporary illustrations for products, packaging, digital media and exhibitions.\n\n### Design approach\n\n**Traditional character, contemporary expression**\n\nFolk paper-cutting, New Year prints and embroidery provide the starting points. The alertness of the rat, diligence of the ox, strength of the tiger and gentleness of the rabbit become expressive flat illustrations that retain the spirit of each animal.\n\n**Color as cultural storytelling**\n\nEach illustration has an individual palette: festive red and gold drawn from New Year prints, blue and white inspired by porcelain, or rich colors referencing Dunhuang murals. Color carries cultural associations as well as decoration.\n\n**Balanced composition**\n\nClear silhouettes sit within compositions that balance detail and negative space. Supporting patterns remain subtle, allowing each work to stand alone or extend across creative products.\n\n### Artwork specifications\n\n- Size: A3 / 300 dpi.\n- Format: Vector illustration for scalable applications.\n- Color: CMYK and RGB versions.\n- Applications: Cultural products, packaging, digital media and exhibition displays.\n\n### Design highlights\n\n1. **Cultural context**: Each animal draws on associated folk stories and auspicious meanings.\n2. **Contemporary appeal**: Flat illustration brings traditional subjects into a current visual language.\n3. **A coherent collection**: A shared style supports individual products and larger series.\n4. **Production readiness**: Safety margins support print applications."
+      },
+      "title_en": "The Twelve Zodiac · Folk Illustrations",
+      "category_en": "AI Illustration",
+      "client_en": "Cultural Product Company",
+      "description_en": "Twelve illustrations reinterpret Chinese zodiac traditions through contemporary design, balancing a shared visual language with individual character."
     },
     {
       "id": "6",
@@ -195,11 +255,16 @@
       "image": "/works/fjvdkjfdk.jpg",
       "description": "以中国传统民间艺术为灵感，将布老虎、剪纸、年画中的图腾元素解构重组，创造出一群憨态可掬又神秘莫测的小怪物。高墙撞色搭配几何纹样，让古老的民俗在当代插画中焕发新生。",
       "detail_content": {
-        "full_desc": "**创作理念】**\n\n“国风小怪物”系列源于对中国民间艺术的长期观察与热爱。布老虎的拙劣、剪纸的廉价、年画的艳丽——这些深植于乡土记忆的视觉符号，被提炼为几何化的图形语言，赋予了每一只小怪物独特的性格与灵魂。\n\n**【园林特征】**\n\n* **高门户撞色**\n\n  红与绿、黄与紫的强烈对比，黑人民间艺术“喜庆热闹”的审美基因\n* **几何样纹**\n\n  锯齿现代齿纹、云纹、回纹等传统图腾以平面构成重新排列\n* **原始构造图**\n\n  仪式剪纸艺术的原始美学，营造仪式感与神秘构造图\n* **拟人表情**\n\n  每只小怪兽都拥有夸张而夸张的面部表情，或憨笑、或威严、或俏皮\n\n**【工艺致敬】**\n\n本系列向以下民间艺术形式致敬：\n\n* 陕西布老虎玩具的造型语言\n* 河北蔚县剪纸的色彩体系\n* 天津杨柳青年画的装饰纹样\n* 苗族年龄的几何抽象\n\n**【应用场景】**\n\n插画、文创产品、品牌视觉、包装设计、数字藏品"
+        "full_desc": "### 创作理念\n\n“国风小怪物”系列源于对中国民间艺术的长期观察与热爱。布老虎的质朴、剪纸的精巧、年画的艳丽——这些深植于乡土记忆的视觉符号，被提炼为几何化的图形语言，赋予了每一只小怪物独特的性格与灵魂。\n\n### 视觉特征\n\n* **高饱和撞色**\n\n  红与绿、黄与紫的强烈对比，延续民间艺术“喜庆热闹”的审美基因\n* **几何纹样**\n\n  锯齿纹、云纹、回纹等传统图腾以平面构成重新排列\n* **原始造型**\n\n  仪式剪纸艺术的原始美学，营造仪式感与神秘构造图\n* **拟人表情**\n\n  每只小怪兽都拥有鲜明而夸张的面部表情，或憨笑、或威严、或俏皮\n\n**【工艺致敬】**\n\n本系列向以下民间艺术形式致敬：\n\n* 陕西布老虎玩具的造型语言\n* 河北蔚县剪纸的色彩体系\n* 天津杨柳青年画的装饰纹样\n* 苗族传统图案的几何抽象\n\n**【应用场景】**\n\n插画、文创产品、品牌视觉、包装设计、数字藏品",
+        "full_desc_en": "### Creative concept\n\nLittle Folk Monsters grows from an interest in Chinese folk art. The handmade character of cloth tigers, the intricate forms of paper-cutting and the vibrant colors of New Year prints are distilled into geometric shapes, giving each creature its own personality.\n\n### Visual characteristics\n\n- **Bold contrasting colors**: Red against green and yellow against purple evoke the lively, festive quality of folk art.\n- **Geometric patterns**: Zigzags, cloud motifs and fretwork are rearranged into flat compositions.\n- **Primal silhouettes**: The direct visual energy of ceremonial paper-cutting gives the creatures a sense of mystery.\n- **Expressive faces**: Exaggerated expressions range from cheerful and mischievous to stern and imposing.\n\n### Craft references\n\nThe collection draws on the forms of Shaanxi cloth tigers, the colors of Yuxian paper-cutting, the decorative motifs of Tianjin Yangliuqing New Year prints and geometric elements of Miao traditional art.\n\n### Applications\n\nIllustration, cultural products, brand visuals, packaging and digital collectibles."
       },
       "category": "AI 插画 / AI Illustration",
       "client": "文创街区",
-      "title": "民俗国风小怪兽"
+      "title": "民俗国风小怪兽",
+      "title_en": "Little Folk Monsters",
+      "category_en": "AI Illustration / Folk-Inspired Characters",
+      "client_en": "Cultural & Creative District",
+      "description_en": "Folk tigers, paper-cutting and New Year prints inspire a cast of playful little monsters, combining bold color contrasts with geometric patterns."
     },
     {
       "id": "7",
@@ -209,9 +274,14 @@
       "year": "2025",
       "description": "《镇魂街》十五周年破界之焰纪念展活动KV",
       "detail_content": {
-        "full_desc": "**展览主题**\n镇魂街 · 十五周年 · 破界之焰纪念展\n\n**展览时间**\n2025年4月29日 — 5月9日\n\n**展览地点**\n上海 · 百联ZX造趣场（B1造趣领域）\n上海市黄浦区南京东路340号\n\n**关于《镇魂街》**\n《镇魂街》是有妖气原创漫画梦工厂出品的国产热血漫画，由许辰创作。故事围绕人灵共存的世界展开，讲述寄灵人与守护灵并肩战斗、守护家园的传奇。自2010年连载以来，凭借独特的东方玄幻设定、燃向剧情和鲜明的人物塑造，成为国漫崛起的代表作之一，动画、真人剧等衍生作品广受好评。\n\n**展览亮点**\n\n* **十五周年限定**\n\n  首次集结十五年经典角色与名场面，回顾曹焱兵、夏铃、北落师门等人气角色的成长轨迹\n* **破界之焰视觉**\n\n  以火焰与光影为设计核心，打造沉浸式热血空间，重现镇魂街的战斗美学\n* **限定周边首发**\n\n  展会专属纪念品、限量手办、原画集等周边现场发售\n* **互动打卡体验**\n\n  还原经典场景，设置多处拍照点位，参与互动赢取限定礼品\n\n**视觉设计**\n主视觉以火焰红与玄金为主色调，集结曹焱兵、夏铃、北落师门、项昆仑等核心角色，背景融入镇魂街标志性建筑与灯笼元素，营造出燃情热血的庆典氛围。\n\n**主办方**"
+        "full_desc": "**展览主题**\n镇魂街 · 十五周年 · 破界之焰纪念展\n\n**展览时间**\n2025年4月29日 — 5月9日\n\n**展览地点**\n上海 · 百联ZX造趣场（B1造趣领域）\n上海市黄浦区南京东路340号\n\n**关于《镇魂街》**\n《镇魂街》是有妖气原创漫画梦工厂出品的国产热血漫画，由许辰创作。故事围绕人灵共存的世界展开，讲述寄灵人与守护灵并肩战斗、守护家园的传奇。自2010年连载以来，凭借独特的东方玄幻设定、燃向剧情和鲜明的人物塑造，成为国漫崛起的代表作之一，动画、真人剧等衍生作品广受好评。\n\n**展览亮点**\n\n* **十五周年限定**\n\n  首次集结十五年经典角色与名场面，回顾曹焱兵、夏铃、北落师门等人气角色的成长轨迹\n* **破界之焰视觉**\n\n  以火焰与光影为设计核心，打造沉浸式热血空间，重现镇魂街的战斗美学\n* **限定周边首发**\n\n  展会专属纪念品、限量手办、原画集等周边现场发售\n* **互动打卡体验**\n\n  还原经典场景，设置多处拍照点位，参与互动赢取限定礼品\n\n**视觉设计**\n主视觉以火焰红与玄金为主色调，集结曹焱兵、夏铃、北落师门、项昆仑等核心角色，背景融入镇魂街标志性建筑与灯笼元素，营造出燃情热血的庆典氛围。\n\n**主办方**",
+        "full_desc_en": "### Exhibition theme\n\nRakshasa Street · 15th Anniversary · Flames Beyond the Boundary\n\n### Dates\n\nApril 29 – May 9, 2025\n\n### Venue\n\nBailian ZX, B1 Creative Zone, Shanghai  \n340 East Nanjing Road, Huangpu District\n\n### About Rakshasa Street\n\nCreated by Xu Chen and published through U17, Rakshasa Street is a Chinese action comic set in a world where humans and spirits coexist. Spirit guardians and their partners fight together to protect their home. Since its serialization began in 2010, its fantasy world, action-driven narrative and distinctive characters have expanded into animation and live-action adaptations.\n\n### Exhibition highlights\n\n- **Anniversary collection**: Familiar characters and scenes revisit fifteen years of the story, including the journeys of Cao Yanbing, Xia Ling and Beiluo Shimen.\n- **Flame-inspired visuals**: Fire and light shape an immersive environment informed by the series' action scenes.\n- **Exclusive merchandise**: Commemorative goods, figures and art books accompany the exhibition.\n- **Interactive displays**: Recreated scenes, photo opportunities and interactive activities invite visitors into the story.\n\n### Visual design\n\nFlame red and dark gold define the key visual. Cao Yanbing, Xia Ling, Beiluo Shimen and Xiang Kunlun appear alongside architecture and lanterns associated with the series, creating a celebratory atmosphere."
       },
-      "title": "镇魂街 · 十五周年 · 破界之焰纪念展"
+      "title": "镇魂街 · 十五周年 · 破界之焰纪念展",
+      "title_en": "Rakshasa Street · 15th Anniversary Exhibition",
+      "category_en": "Key Visual / Animation / IP / Exhibition",
+      "client_en": "bilibili",
+      "description_en": "Key visual for the Rakshasa Street 15th Anniversary: Flames Beyond the Boundary exhibition."
     },
     {
       "id": "8",
@@ -221,9 +291,14 @@
       "year": "2025",
       "description": "以中国传统生肖马为题材，融合民间剪纸与敦煌壁画色彩语言，创作12枚风格统一的纪念邮票，展现奔腾向上的民族精神与东方美学韵味。",
       "detail_content": {
-        "full_desc": "**项目概述**\n《十二生肖 · 马年纪念邮票》是一套以农历甲午马年为主题的纪念邮票设计作品。项目以\"万马奔腾\"为创意核心，从中国传统艺术宝库中汲取养分，将民间剪纸的平面构成、敦煌壁画的绚烂色彩与现代邮票设计语言相融合，打造兼具收藏价值与审美意趣的生肖邮票系列。\n\n**设计灵感**\n\n* **民间剪纸**\n\n  借鉴陕北剪纸的对称构图与夸张造型，以简练线条勾勒马的昂扬姿态\n* **敦煌壁画**\n\n  提取飞天飘带与藻井图案的色彩搭配，胭脂红、石青、藤黄、石绿交织成华丽色谱\n* **唐三彩**\n\n  参考釉色流淌的渐变效果，赋予马身丰富的色彩层次\n\n**视觉系统**\n整套邮票采用统一的版式规范：\n\n* **面值标识**\n\n  左上角\"80分\"字样，辅以年份标注\n* **主体形象**\n\n  12匹姿态各异的骏马，或昂首嘶鸣，或扬蹄奔腾，或回首顾盼\n* **装饰纹样**\n\n  马身饰以卷云纹、如意纹、火焰纹等传统吉祥图案\n\n**色彩体系**\n以黑、红、黄、蓝、绿五色为基调，通过不同的主色搭配形成12个变体：\n\n* 玄墨马：庄重典雅\n* 赤焰马：热情奔放\n* 金鬃马：富贵吉祥\n* 青云马：清雅脱俗\n\n**工艺考量**\n设计充分考虑邮票印刷特性：\n\n* 线条粗细适中，确保凹版印刷的清晰度\n* 色块边界明确，便于套色工艺\n* 预留齿孔位置，保持画面完整性\n\n**文化寓意**\n马在中国文化中象征奋进、成功与忠诚。12匹骏马12种姿态，寓意十二生肖轮回不息，也寄托着对新年\"马到成功\"的美好祝愿。"
+        "full_desc": "**项目概述**\n《十二生肖 · 马年纪念邮票》是一套以农历甲午马年为主题的纪念邮票设计作品。项目以\"万马奔腾\"为创意核心，从中国传统艺术宝库中汲取养分，将民间剪纸的平面构成、敦煌壁画的绚烂色彩与现代邮票设计语言相融合，打造兼具收藏价值与审美意趣的生肖邮票系列。\n\n**设计灵感**\n\n* **民间剪纸**\n\n  借鉴陕北剪纸的对称构图与夸张造型，以简练线条勾勒马的昂扬姿态\n* **敦煌壁画**\n\n  提取飞天飘带与藻井图案的色彩搭配，胭脂红、石青、藤黄、石绿交织成华丽色谱\n* **唐三彩**\n\n  参考釉色流淌的渐变效果，赋予马身丰富的色彩层次\n\n**视觉系统**\n整套邮票采用统一的版式规范：\n\n* **面值标识**\n\n  左上角\"80分\"字样，辅以年份标注\n* **主体形象**\n\n  12匹姿态各异的骏马，或昂首嘶鸣，或扬蹄奔腾，或回首顾盼\n* **装饰纹样**\n\n  马身饰以卷云纹、如意纹、火焰纹等传统吉祥图案\n\n**色彩体系**\n以黑、红、黄、蓝、绿五色为基调，通过不同的主色搭配形成12个变体：\n\n* 玄墨马：庄重典雅\n* 赤焰马：热情奔放\n* 金鬃马：富贵吉祥\n* 青云马：清雅脱俗\n\n**工艺考量**\n设计充分考虑邮票印刷特性：\n\n* 线条粗细适中，确保凹版印刷的清晰度\n* 色块边界明确，便于套色工艺\n* 预留齿孔位置，保持画面完整性\n\n**文化寓意**\n马在中国文化中象征奋进、成功与忠诚。12匹骏马12种姿态，寓意十二生肖轮回不息，也寄托着对新年\"马到成功\"的美好祝愿。",
+        "full_desc_en": "### Project overview\n\nA set of twelve commemorative stamp designs themed around the Jiawu Year of the Horse. The idea of galloping horses connects the flat compositions of folk paper-cutting, the rich colors of Dunhuang murals and contemporary stamp design.\n\n### Sources of inspiration\n\n- **Folk paper-cutting**: Symmetrical compositions and expressive shapes inspired by northern Shaanxi paper-cutting capture the horse's energetic stance.\n- **Dunhuang murals**: Flowing ribbons and ceiling patterns inform a palette of rouge, mineral blue, yellow and green.\n- **Tang sancai ceramics**: Flowing glaze effects suggest layered gradients across the horses' bodies.\n\n### Visual system\n\nA consistent layout organizes the collection:\n\n- **Denomination**: An “80 fen” value in the upper left, accompanied by a year mark.\n- **Main figures**: Twelve horses in different poses, from raised heads to galloping strides and backward glances.\n- **Decoration**: Cloud, ruyi and flame motifs add auspicious associations.\n\n### Color system\n\nBlack, red, yellow, blue and green form the foundation for twelve variations. Ink-black suggests elegance, flame-red expresses energy, golden manes evoke good fortune and blue tones introduce a quieter mood.\n\n### Production considerations\n\nLine weights are chosen for clarity in intaglio printing. Defined color boundaries support registration, while reserved perforation areas protect the composition.\n\n### Cultural meaning\n\nThe horse represents progress, success and loyalty in Chinese culture. Twelve distinct poses evoke the cycle of the zodiac and carry wishes for success in the new year."
       },
-      "client": "文创公司"
+      "client": "文创公司",
+      "title_en": "Year of the Horse · Commemorative Stamp Design",
+      "category_en": "Graphic Design / Zodiac / Illustration",
+      "client_en": "Cultural Product Company",
+      "description_en": "Twelve coordinated stamp designs combine the Chinese zodiac horse with folk paper-cutting and the colors of Dunhuang murals."
     },
     {
       "id": "9",
@@ -234,8 +309,13 @@
       "year": "2025",
       "description": "以云南非遗\"瓦猫\"为灵感，用现代几何图形语言重塑传统守护神兽，打造兼具民俗底蕴与潮流气质的萌趣IP形象。",
       "detail_content": {
-        "full_desc": "**项目背景**\n瓦猫，云南白族、彝族传统民居屋顶上的镇宅神兽，以陶土烧制，造型夸张威猛，口阔牙尖，有\"吞金屙银\"的吉祥寓意。项目以非遗活化为目标，将这一古老民俗符号转化为年轻人喜爱的文创IP。\n\n**设计理念**\n「大牙猫」取瓦猫最显著的视觉特征——一口大牙，以现代扁平插画手法进行解构重组。保留瓦猫守护、威慑的精神内核，注入萌趣、潮酷的表现形式，让传统神兽走进当代生活。\n\n**视觉系统**\n\n* **造型语言**\n\n  几何块面构成，圆形大眼+锯齿大牙形成高辨识度面部特征\n* **色彩体系**\n\n  黑红为主调，辅以蓝、粉点缀，对比强烈，视觉冲击力强\n* **表情矩阵**\n\n  四只大牙猫各有性格——呆萌、凶狠、搞怪、憨态，覆盖多元场景\n* **纹样细节**\n\n  融入云南扎染、甲马版画等非遗元素作为装饰纹理\n\n**IP形象设定**\n\n**应用延展**\n\n* **文创产品**\n\n  盲盒手办、冰箱贴、帆布袋、手机壳\n* **数字内容**\n\n  表情包、壁纸、头像、NFT藏品\n* **空间装置**\n\n  商场美陈、展览互动、打卡点位\n* **跨界联名**\n\n  咖啡品牌、潮牌服饰、文具品牌\n\n**非遗活化价值**\n瓦猫作为国家级非物质文化遗产，传统上面临传承断层与受众老化问题。「大牙猫」IP通过年轻化设计，让古老民俗符号焕发新生，实现\"以用促保\"的非遗可持续传承模式。\n\n**设计亮点**\n\n* **符号提炼**\n\n  抓住\"大眼+大牙\"核心记忆点，一图可识\n* **色彩策略**\n\n  高饱和撞色，符合Z世代审美偏好\n* **系统延展**\n\n  统一设计语言支持多场景、多品类应用\n* **文化转译**\n\n  保留瓦猫\"守护\"寓意，转化为\"陪伴\"情感价值\n\n形象性格特征蓝领结猫优雅绅士蓝色领结、粉腮、条纹尾红身猫热血少年全红身体、尖刺毛发、战斗姿态方脸猫搞怪担当方正轮廓、爆炸头、锯齿背圆眼猫呆萌甜心圆环眼、整齐白牙、卷尾"
-      }
+        "full_desc": "**项目背景**\n瓦猫，云南白族、彝族传统民居屋顶上的镇宅神兽，以陶土烧制，造型夸张威猛，口阔牙尖，有\"吞金屙银\"的吉祥寓意。项目以非遗活化为目标，将这一古老民俗符号转化为年轻人喜爱的文创IP。\n\n**设计理念**\n「大牙猫」取瓦猫最显著的视觉特征——一口大牙，以现代扁平插画手法进行解构重组。保留瓦猫守护、威慑的精神内核，注入萌趣、潮酷的表现形式，让传统神兽走进当代生活。\n\n**视觉系统**\n\n* **造型语言**\n\n  几何块面构成，圆形大眼+锯齿大牙形成高辨识度面部特征\n* **色彩体系**\n\n  黑红为主调，辅以蓝、粉点缀，对比强烈，视觉冲击力强\n* **表情矩阵**\n\n  四只大牙猫各有性格——呆萌、凶狠、搞怪、憨态，覆盖多元场景\n* **纹样细节**\n\n  融入云南扎染、甲马版画等非遗元素作为装饰纹理\n\n**IP形象设定**\n\n**应用延展**\n\n* **文创产品**\n\n  盲盒手办、冰箱贴、帆布袋、手机壳\n* **数字内容**\n\n  表情包、壁纸、头像、NFT藏品\n* **空间装置**\n\n  商场美陈、展览互动、打卡点位\n* **跨界联名**\n\n  咖啡品牌、潮牌服饰、文具品牌\n\n**非遗活化价值**\n瓦猫作为国家级非物质文化遗产，传统上面临传承断层与受众老化问题。「大牙猫」IP通过年轻化设计，让古老民俗符号焕发新生，实现\"以用促保\"的非遗可持续传承模式。\n\n**设计亮点**\n\n* **符号提炼**\n\n  抓住\"大眼+大牙\"核心记忆点，一图可识\n* **色彩策略**\n\n  高饱和撞色，符合Z世代审美偏好\n* **系统延展**\n\n  统一设计语言支持多场景、多品类应用\n* **文化转译**\n\n  保留瓦猫\"守护\"寓意，转化为\"陪伴\"情感价值\n\n形象性格特征蓝领结猫优雅绅士蓝色领结、粉腮、条纹尾红身猫热血少年全红身体、尖刺毛发、战斗姿态方脸猫搞怪担当方正轮廓、爆炸头、锯齿背圆眼猫呆萌甜心圆环眼、整齐白牙、卷尾",
+        "full_desc_en": "### Project background\n\nWamao, or roof-tile cats, are ceramic guardians traditionally placed on the roofs of Bai and Yi homes in Yunnan. Their wide mouths, pointed teeth and exaggerated forms are associated with protection and prosperity. This project reinterprets that folk symbol as a character for contemporary cultural products.\n\n### Design concept\n\nBig-Tooth Cat starts with the guardian's most memorable feature: its large teeth. Flat illustration and geometric shapes preserve its protective character while adding warmth, playfulness and a contemporary edge.\n\n### Visual system\n\n- **Shape**: Large round eyes and zigzag teeth create an instantly recognizable face.\n- **Color**: Black and red dominate, with blue and pink accents providing contrast.\n- **Expressions**: Four personalities range from sweet and dreamy to fierce and mischievous.\n- **Patterns**: Decorative textures reference Yunnan tie-dye and jiama folk prints.\n\n### Character personalities\n\n- **Blue Bow-Tie Cat**: A refined character with a blue bow tie, pink cheeks and a striped tail.\n- **Red Cat**: An energetic character with a red body, spiky fur and a fighting stance.\n- **Square-Faced Cat**: A playful character with a square silhouette, wild hair and a zigzag back.\n- **Round-Eyed Cat**: A sweet character with ring-shaped eyes, neat white teeth and a curled tail.\n\n### Applications\n\n- **Creative products**: Collectible figures, fridge magnets, canvas bags and phone cases.\n- **Digital content**: Stickers, wallpapers, avatars and digital collectibles.\n- **Spatial displays**: Retail installations, interactive exhibitions and photo spots.\n- **Collaborations**: Coffee, fashion and stationery brands.\n\n### Bringing heritage into daily life\n\nA younger visual language introduces a traditional guardian to new audiences. The character's protective meaning becomes an emotional sense of companionship, suggesting ways to keep folk imagery present through everyday use.\n\n### Design highlights\n\nA clear combination of big eyes and big teeth provides instant recognition. Saturated contrasting colors give the characters energy, while a consistent design system supports different formats and product categories."
+      },
+      "title_en": "Big-Tooth Cat · Heritage-Inspired Characters",
+      "category_en": "Character Design / Cultural Products / Illustration",
+      "client_en": "Cultural Product Company",
+      "description_en": "Inspired by Yunnan roof-tile cats, bold geometric characters reinterpret a traditional guardian through contemporary illustration."
     }
   ]
 }

@@ -2,6 +2,19 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Apply saved preferences before first paint, including installed PWA launches.
+      (() => {
+        let theme, language;
+        try { theme = localStorage.getItem('koog-theme'); language = localStorage.getItem('koog-language'); } catch {}
+        if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const root = document.documentElement;
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        root.dataset.lang = language === 'en' ? 'en' : 'cn';
+        root.lang = language === 'en' ? 'en' : 'zh-CN';
+      })();
+    </script>
     <link rel="icon" type="image/png" sizes="32x32" href="/koog-site/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/koog-site/icons/favicon-16x16.png" />
     <link rel="icon" type="image/x-icon" href="/koog-site/icons/favicon.ico" />
@@ -78,9 +91,9 @@
         50% { opacity: 1; transform: scale(1.05); }
       }
     </style>
-    <script type="module" crossorigin src="/koog-site/assets/main-4kdGGXJt.js"></script>
-    <link rel="stylesheet" crossorigin href="/koog-site/assets/main-DJZztWev.css">
-  <link rel="manifest" href="/koog-site/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/koog-site/registerSW.js"></script></head>
+    <script type="module" crossorigin src="/koog-site/assets/main-DW8qUV0_.js"></script>
+    <link rel="stylesheet" crossorigin href="/koog-site/assets/main-BqHWIPRc.css">
+  <link rel="manifest" href="/koog-site/manifest.webmanifest"></head>
   <body>
     <div id="splash-screen">
       <video id="splash-video" autoplay muted playsinline>

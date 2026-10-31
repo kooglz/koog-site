@@ -3,7 +3,23 @@ backend:
   branch: main
 
 # Local backend for development (when running locally)
-local_backend: true
+local_backend:
+  url: http://127.0.0.1:8081/api/v1
+  allowed_hosts: [localhost, 127.0.0.1]
+locale: zh_Hans
+site_url: https://www.koogdesign.top
+display_url: http://localhost:5173
+logo:
+  src: /new-logo.png
+  show_in_header: true
+media_processing:
+  enabled: true
+  quality: 88
+  strip_metadata: true
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
 
 media_folder: "public/works"
 public_folder: "/works"
@@ -17,7 +33,7 @@ collections:
         file: "public/content/site.json"
         description: "建议：图片上传前请使用 TinyPNG 等工具压缩以保证加载速度。"
         fields:
-          - {label: "网站 Logo", name: "logo", widget: "image", hint: "建议：高度 80-120px，宽度自适应 (完整显示)"}
+          - {label: "网站 Logo", name: "logo", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：高度 80-120px，宽度自适应 (完整显示)"}
           - label: "导航栏 (Navigation)"
             name: "nav"
             widget: "object"
@@ -49,48 +65,61 @@ collections:
             widget: "object"
             fields:
               - {label: "Slogan (中)", name: "tagline_cn", widget: "text"}
+              - {label: "Slogan (英)", name: "tagline_en", widget: "text"}
               - {label: "CTA标题 (中)", name: "cta_cn", widget: "string"}
+              - {label: "CTA标题 (英)", name: "cta_en", widget: "string"}
               - {label: "邮箱", name: "email", widget: "string"}
               - {label: "微信 ID", name: "wechatID", widget: "string"}
-              - {label: "微信二维码", name: "wechatQR", widget: "image", hint: "建议：400x400px (完整显示)"}
+              - {label: "微信二维码", name: "wechatQR", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：400x400px (完整显示)"}
               - {label: "小红书 ID", name: "xhsID", widget: "string"}
-              - {label: "小红书二维码", name: "xhsQR", widget: "image", hint: "建议：400x400px (完整显示)"}
+              - {label: "小红书二维码", name: "xhsQR", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：400x400px (完整显示)"}
               - {label: "地点 (中)", name: "location_cn", widget: "string"}
+              - {label: "地点 (英)", name: "location_en", widget: "string"}
 
       - name: "works"
         label: "作品集与首页数据"
         file: "public/content/works.json"
-        description: "建议：项目卡片为 3:4 封面，详情图按原比例完整显示。"
+        description: "先填中文与英文，再上传图片。拖动项目改变展示顺序；右侧可检查语言、主题和手机效果。保存后仍需本地同步上线。"
         fields:
           - label: "首页轮播图 (Hero Images)"
             name: "hero_images"
             widget: "list"
+            collapsed: true
             summary: "{{fields.alt}}"
             fields:
-              - {label: "图片", name: "image", widget: "image", hint: "建议：宽度 1600px+，高度自适应 (完整显示)"}
+              - {label: "图片", name: "image", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：建议 3:4 竖版、宽 1200px 以上；主体留足边距。"}
               - {label: "描述 (Alt Text)", name: "alt", widget: "string", required: false}
+              - {label: "描述 (英文)", name: "alt_en", widget: "string", required: false}
               - {label: "关联作品 ID", name: "project_id", widget: "string", required: false}
           
           - label: "作品列表 (Works)"
             name: "works"
             widget: "list"
+            collapsed: true
             summary: "{{fields.title}}"
             fields:
-              - {label: "ID (唯一编号)", name: "id", widget: "string"}
+              - {label: "ID (唯一编号)", name: "id", widget: "string", hint: "使用稳定的英文短名，如 museum-series。项目分享链接依赖此编号，上线后请勿随意更改。", pattern: ["^[a-zA-Z0-9_-]+$", "请只用英文字母、数字、短横线或下划线"]}
               - {label: "标题", name: "title", widget: "string"}
+              - {label: "标题 (英文)", name: "title_en", widget: "string", required: false}
               - {label: "分类", name: "category", widget: "string"}
+              - {label: "分类 (英文)", name: "category_en", widget: "string", required: false}
               - {label: "委托方 (Client)", name: "client", widget: "string", required: false}
+              - {label: "委托方 (Client) (英文)", name: "client_en", widget: "string", required: false}
               - {label: "年份", name: "year", widget: "string"}
-              - {label: "封面图", name: "image", widget: "image", hint: "建议：宽度 800px+，高度自适应 (完整显示)"}
+              - {label: "封面图", name: "image", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：1200 × 1600px，3:4。卡片会裁切为 3:4；详情封面保留原比例。"}
               - {label: "简短描述", name: "description", widget: "text"}
+              - {label: "简短描述 (英文)", name: "description_en", widget: "text", required: false}
               - label: "详情页内容"
                 name: "detail_content"
                 widget: "object"
                 fields:
                   - {label: "详细介绍", name: "full_desc", widget: "markdown"}
+                  - {label: "详细介绍 (英文)", name: "full_desc_en", widget: "markdown", required: false}
                   - label: "作品详情图集"
                     name: "images"
                     widget: "list"
                     fields:
-                      - {label: "图片", name: "url", widget: "image", hint: "建议：宽度 1200px+，高度自适应 (完整显示)"}
+                      - {label: "图片", name: "url", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：建议宽 1600px；高度不限，不裁切。每张小于 12MB；透明插画用 PNG，动画用 GIF。"}
                       - {label: "图片描述 (无障碍文本)", name: "alt", widget: "string", required: false}
+                      - {label: "图片描述 (英文)", name: "alt_en", widget: "string", required: false}
+                      - {label: "展示高度 (像素，可选)", name: "height", widget: "number", required: false, value_type: "int", min: 1, hint: "用于预留加载空间，如 1400 或 1800；与图片真实高度一致。"}

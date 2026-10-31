@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/koog-site/sw.js', { scope: '/koog-site/' })})}
