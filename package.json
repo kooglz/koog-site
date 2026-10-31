@@ -15,7 +15,7 @@
     "preview": "vite preview",
     "cms": "npx decap-server",
     "compress": "node scripts/compress-images.mjs",
-    "deploy-site": "npm run compress && git add . && git commit -m \"Update content via CMS\" && git push",
+    "deploy-site": "node scripts/publish-studio.mjs",
     "check-content": "node scripts/check-content.mjs",
     "predev": "node scripts/generate-media-revisions.mjs"
   },

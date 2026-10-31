@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow"/>
   <title>KOOG · 内容工作台</title>
   <link rel="icon" href="../icons/favicon-32x32.png"/>
-  <link rel="stylesheet" href="studio.css?v=20261031-2"/>
+  <link rel="stylesheet" href="studio.css?v=20261101-1"/>
   <script>window.CMS_MANUAL_INIT = true;</script>
 </head>
 <body>
@@ -16,16 +16,16 @@
       <div class="studio-intro"><div><p class="eyebrow">MAKE ROOM FOR YOUR NEXT PROJECT</p><h1>把新作品，<br/>放到世界面前。</h1><p class="muted">在同一个地方整理图片、打磨双语文案、检查展示效果。</p></div><span id="studio-status" class="status-pill">正在检查本地服务…</span></div>
       <div class="studio-stats"><div><span id="project-count">—</span><small>精选项目</small></div><div><span id="translation-count">—</span><small>双语完成</small></div><div><span id="slide-count">—</span><small>首页轮播</small></div></div>
       <div class="studio-grid">
-        <section class="studio-panel studio-primary"><span class="eyebrow">01 / PROJECTS</span><h2>项目与图片</h2><p>编辑中英文标题、分类与正文。上传 3:4 封面、调整项目排序，并整理完整图集。</p><div id="recent-projects" class="studio-thumbs"></div><button class="studio-button" data-entry="works">进入项目编辑 <span>↗</span></button></section>
+        <section class="studio-panel studio-primary"><span class="eyebrow">01 / PROJECTS</span><h2>项目与图片</h2><p>编辑中英文标题、分类与正文。上传 3:4 封面、调整项目排序，并整理完整图集。图片先自动压缩，再保存本地。</p><div id="recent-projects" class="studio-thumbs"></div><button class="studio-button" data-entry="works">进入项目编辑 <span>↗</span></button></section>
         <section class="studio-panel"><span class="eyebrow">02 / SITE SETTINGS</span><h2>首页与品牌信息</h2><p>更新首页文案、Logo、联系方式及二维码，中英文设置保持一致。</p><div class="studio-sample"><strong>KOOG DESIGN</strong><span>品牌 · IP · AIGC</span><div></div></div><button class="studio-button secondary" data-entry="site_general">编辑全局设置 <span>↗</span></button></section>
-        <section class="studio-panel studio-guide"><span class="eyebrow">A SIMPLE PUBLISHING FLOW</span><h2>从草稿到上线</h2><ol><li><b>编辑并预览</b><span>中文 / English、浅色 / 深色、手机 / 桌面均可检查。</span></li><li><b>保存到本地</b><span>编辑器内的“发布”保存本地文件，尚未同步线上。</span></li><li><b>同步网站更新</b><span>回到项目目录，双击“同步网站更新.command”。GitHub 保存版本并部署到腾讯云。</span></li></ol><p class="studio-note">封面建议 1200 × 1600；详情图建议宽 1600px。上传不强制裁切，透明 PNG 保留透明通道，GIF 保留动画。</p></section>
+        <section class="studio-panel studio-guide"><span class="eyebrow">A SIMPLE PUBLISHING FLOW</span><h2>从草稿到上线</h2><ol><li><b>编辑并预览</b><span>中文 / English、浅色 / 深色、手机 / 桌面均可检查。</span></li><li><b>保存到本地</b><span>编辑器内的“发布”保存本地文件，尚未同步线上。</span></li><li><b>同步网站更新</b><span>回到项目目录，双击“同步网站更新.command”。GitHub 保存版本并部署到腾讯云。</span></li></ol><p class="studio-note">封面建议 1200 × 1600；详情图建议宽 1600px。JPG / PNG 上传时先转为高质量 WebP，保留原尺寸与透明通道；GIF 保留动画。</p></section>
       </div>
     </main>
   </div>
   <button id="studio-help-toggle" class="studio-help-toggle" hidden>上传与发布指南</button>
-  <aside id="studio-help" class="studio-help" hidden><button id="studio-help-close" aria-label="关闭指南">×</button><span class="eyebrow">KOOG CONTENT STUDIO</span><h2>每次上传，检查这三件事</h2><p><b>图片：</b>封面 3:4；详情不裁切。优先 JPG / WebP，透明插画用 PNG；单张不超过 12MB。</p><p><b>文案：</b>中文与英文一起填写。右侧可切换语言、主题、手机预览。</p><p><b>上线：</b>“发布”先保存本地，再双击“同步网站更新.command”，等待自动部署。</p><a href="../" target="_blank" rel="noopener">打开本地网站 ↗</a><button id="studio-home">返回工作台</button></aside>
+  <aside id="studio-help" class="studio-help" hidden><button id="studio-help-close" aria-label="关闭指南">×</button><span class="eyebrow">KOOG CONTENT STUDIO</span><h2>每次上传，检查这三件事</h2><p><b>图片：</b>封面 3:4；详情不裁切。JPG / PNG / WebP 先自动压缩为 WebP，再保存；不裁切、不放大，透明通道保留，GIF 原样保存。单张不超过 12MB。</p><p><b>文案：</b>中文与英文一起填写。右侧可切换语言、主题、手机预览。</p><p><b>上线：</b>图片压缩后保存到本地。“发布”保存文案，再双击“同步网站更新.command”，将压缩后的文件上传腾讯云。</p><a href="../" target="_blank" rel="noopener">打开本地网站 ↗</a><button id="studio-home">返回工作台</button></aside>
   <p id="studio-toast" class="studio-toast" role="status" hidden></p>
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.17.3/dist/decap-cms.js" onerror="document.getElementById('studio-status').textContent='编辑器未加载，请检查网络后刷新'"></script>
-  <script src="studio.js?v=20261031-2"></script>
+  <script src="studio.js?v=20261101-1"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@ async function call(action,params) {
   });
 }
 (async()=>{
-  const paths=['/','/index.html','/sw.js','/sw-upgrade.js','/manifest.webmanifest','/registerSW.js','/content/works.json','/content/site.json','/admin/','/admin/index.html','/admin/config.yml','/admin/studio.js?v=20261031-2','/admin/studio.css?v=20261031-2','/admin/preview.css?v=20261031-2'];
+  const paths=['/','/index.html','/sw.js','/sw-upgrade.js','/manifest.webmanifest','/registerSW.js','/content/works.json','/content/site.json','/admin/','/admin/index.html','/admin/config.yml','/admin/studio.js?v=20261101-1','/admin/studio.css?v=20261101-1','/admin/preview.css?v=20261101-1'];
   const result=await call('PurgeUrlsCache',{Urls:paths.map(path=>'https://www.koogdesign.top'+path)});
   console.log(`Tencent CDN purge submitted: ${paths.length} entrypoints. Task ${result.TaskId}`);
   for(let attempt=0;attempt<18;attempt++) {

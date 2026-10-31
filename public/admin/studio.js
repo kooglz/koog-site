@@ -57,7 +57,7 @@
       return h('div',{className:'preview-studio'+(this.state.dark?' is-dark':'')},toolbar,selector,canvas);
     }
   });
-  CMS.registerPreviewStyle('preview.css?v=20261031-2');
+  CMS.registerPreviewStyle('preview.css?v=20261101-1');
   CMS.registerPreviewTemplate('works',Preview);
   CMS.registerPreviewTemplate('site_general',Preview);
   CMS.registerEventListener({name:'preSave',handler:({entry})=>{

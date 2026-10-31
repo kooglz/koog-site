@@ -14,7 +14,10 @@ logo:
   show_in_header: true
 media_processing:
   enabled: true
-  quality: 88
+  format:
+    enabled: true
+    default: webp
+  quality: 86
   strip_metadata: true
 slug:
   encoding: ascii
@@ -31,9 +34,9 @@ collections:
       - name: "site_general"
         label: "全局设置 (导航/首页/页脚)"
         file: "public/content/site.json"
-        description: "建议：图片上传前请使用 TinyPNG 等工具压缩以保证加载速度。"
+        description: "图片会在浏览器内先压缩，再保存到本地；同步上线时上传压缩后的文件。Logo 与二维码保留原格式。"
         fields:
-          - {label: "网站 Logo", name: "logo", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：高度 80-120px，宽度自适应 (完整显示)"}
+          - {label: "网站 Logo", name: "logo", widget: "image", media_processing: {enabled: true, strip_metadata: true}, media_library: {config: {max_file_size: 12582912}}, hint: "建议：高度 80-120px，保留原格式与透明通道。"}
           - label: "导航栏 (Navigation)"
             name: "nav"
             widget: "object"
@@ -70,16 +73,16 @@ collections:
               - {label: "CTA标题 (英)", name: "cta_en", widget: "string"}
               - {label: "邮箱", name: "email", widget: "string"}
               - {label: "微信 ID", name: "wechatID", widget: "string"}
-              - {label: "微信二维码", name: "wechatQR", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：400x400px (完整显示)"}
+              - {label: "微信二维码", name: "wechatQR", widget: "image", media_processing: {enabled: true, strip_metadata: true}, media_library: {config: {max_file_size: 12582912}}, hint: "建议：400x400px，优先 PNG，保留原格式。"}
               - {label: "小红书 ID", name: "xhsID", widget: "string"}
-              - {label: "小红书二维码", name: "xhsQR", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：400x400px (完整显示)"}
+              - {label: "小红书二维码", name: "xhsQR", widget: "image", media_processing: {enabled: true, strip_metadata: true}, media_library: {config: {max_file_size: 12582912}}, hint: "建议：400x400px，优先 PNG，保留原格式。"}
               - {label: "地点 (中)", name: "location_cn", widget: "string"}
               - {label: "地点 (英)", name: "location_en", widget: "string"}
 
       - name: "works"
         label: "作品集与首页数据"
         file: "public/content/works.json"
-        description: "先填中文与英文，再上传图片。拖动项目改变展示顺序；右侧可检查语言、主题和手机效果。保存后仍需本地同步上线。"
+        description: "上传 JPG、PNG、WebP 时先自动压缩为 WebP，再保存本地，透明通道与原图尺寸保留。GIF 保留动画。预览确认后同步上线。"
         fields:
           - label: "首页轮播图 (Hero Images)"
             name: "hero_images"
@@ -87,7 +90,7 @@ collections:
             collapsed: true
             summary: "{{fields.alt}}"
             fields:
-              - {label: "图片", name: "image", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：建议 3:4 竖版、宽 1200px 以上；主体留足边距。"}
+              - {label: "图片", name: "image", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "3:4 竖版、宽 1200px 以上。自动压缩为 WebP 后保存，不裁切或放大。"}
               - {label: "描述 (Alt Text)", name: "alt", widget: "string", required: false}
               - {label: "描述 (英文)", name: "alt_en", widget: "string", required: false}
               - {label: "关联作品 ID", name: "project_id", widget: "string", required: false}
@@ -106,7 +109,7 @@ collections:
               - {label: "委托方 (Client)", name: "client", widget: "string", required: false}
               - {label: "委托方 (Client) (英文)", name: "client_en", widget: "string", required: false}
               - {label: "年份", name: "year", widget: "string"}
-              - {label: "封面图", name: "image", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：1200 × 1600px，3:4。卡片会裁切为 3:4；详情封面保留原比例。"}
+              - {label: "封面图", name: "image", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议 1200 × 1600px。先压缩为 WebP 再保存；卡片以 3:4 展示，详情保留原比例。"}
               - {label: "简短描述", name: "description", widget: "text"}
               - {label: "简短描述 (英文)", name: "description_en", widget: "text", required: false}
               - label: "详情页内容"
@@ -119,7 +122,7 @@ collections:
                     name: "images"
                     widget: "list"
                     fields:
-                      - {label: "图片", name: "url", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议：建议宽 1600px；高度不限，不裁切。每张小于 12MB；透明插画用 PNG，动画用 GIF。"}
+                      - {label: "图片", name: "url", widget: "image", media_library: {config: {max_file_size: 12582912}}, hint: "建议宽 1600px，原尺寸不裁切。JPG / PNG 先压缩为 WebP，保留透明；动画用 GIF，单张小于 12MB。"}
                       - {label: "图片描述 (无障碍文本)", name: "alt", widget: "string", required: false}
                       - {label: "图片描述 (英文)", name: "alt_en", widget: "string", required: false}
                       - {label: "展示高度 (像素，可选)", name: "height", widget: "number", required: false, value_type: "int", min: 1, hint: "用于预留加载空间，如 1400 或 1800；与图片真实高度一致。"}

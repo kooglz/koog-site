@@ -80,8 +80,11 @@ export default defineConfig({
         skipWaiting: true,
         clientsClaim: true,
         cleanupOutdatedCaches: true, // 自动清理旧缓存
+        // Artwork URLs use stable ?v=content-hash values. Reuse the same revisioned
+        // precache as the original URLs instead of downloading every image twice.
+        ignoreURLParametersMatching: [/^utm_/, /^fbclid$/, /^v$/],
         globPatterns: [
-          '**/*.{js,css,html,ico,png,svg,woff2,mp4,jpg,jpeg}',
+          '**/*.{js,css,html,ico,png,svg,woff2,mp4,jpg,jpeg,webp,gif}',
         ],
         maximumFileSizeToCacheInBytes: 50 * 1024 * 1024,
         runtimeCaching: [
@@ -121,7 +124,8 @@ export default defineConfig({
             handler: 'NetworkOnly',
           },
           {
-            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|ico)$/i,
+            // Match pathname: testing the complete URL misses ?v=... uploads.
+            urlPattern: ({ url }) => /\.(?:png|jpg|jpeg|svg|gif|webp|ico)$/i.test(url.pathname),
             handler: 'CacheFirst',
             options: {
               cacheName: 'images-cache',
@@ -135,7 +139,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\.(?:js|css)$/,
+            urlPattern: ({ url }) => /\.(?:js|css)$/i.test(url.pathname),
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'static-resources',
