@@ -40,14 +40,14 @@ Logo 使用 24% 圆角遮罩，PWA 的身份、启动 URL、standalone 和图标
 ## 本次版本与回退
 
 更新前：`backup/before-i18n-dark-20261031`（6cc8510）。
-发布标签：`release/studio-i18n-theme-20261031-final`。
+发布标签：`release/studio-20261031-v2`（包含手机字号与腾讯 CDN 刷新修复）。
 
 撤销本次版本时，在 main 干净工作区运行：
 
 ```sh
 git fetch origin --tags
 git pull --ff-only origin main
-git revert --no-commit backup/before-i18n-dark-20261031..release/studio-i18n-theme-20261031-final
+git revert --no-commit backup/before-i18n-dark-20261031..release/studio-20261031-v2
 git commit -m "revert: restore portfolio before studio update"
 git push origin main
 ```
