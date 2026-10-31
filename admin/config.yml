@@ -60,7 +60,7 @@ collections:
       - name: "works"
         label: "作品集与首页数据"
         file: "public/content/works.json"
-        description: "建议：图片将按原比例完整显示，不再强制裁切。"
+        description: "建议：项目卡片为 3:4 封面，详情图按原比例完整显示。"
         fields:
           - label: "首页轮播图 (Hero Images)"
             name: "hero_images"
@@ -69,6 +69,7 @@ collections:
             fields:
               - {label: "图片", name: "image", widget: "image", hint: "建议：宽度 1600px+，高度自适应 (完整显示)"}
               - {label: "描述 (Alt Text)", name: "alt", widget: "string", required: false}
+              - {label: "关联作品 ID", name: "project_id", widget: "string", required: false}
           
           - label: "作品列表 (Works)"
             name: "works"
@@ -92,3 +93,4 @@ collections:
                     widget: "list"
                     fields:
                       - {label: "图片", name: "url", widget: "image", hint: "建议：宽度 1200px+，高度自适应 (完整显示)"}
+                      - {label: "图片描述 (无障碍文本)", name: "alt", widget: "string", required: false}

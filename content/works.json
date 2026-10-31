@@ -1,47 +1,118 @@
 {
   "hero_images": [
     {
+      "image": "/works/ip-20261031/tangtouya-cover.jpg",
+      "alt": "烫头鸭 · IP形象设计",
+      "project_id": "tangtouya-ip"
+    },
+    {
+      "image": "/works/ip-20261031/museum-cover.jpg",
+      "alt": "博物馆的显眼包 · 馆藏IP系列",
+      "project_id": "museum-showstoppers"
+    },
+    {
       "image": "/works/十二生肖1.jpg",
-      "alt": "Hero Image 1"
+      "alt": "文创生肖插画"
     },
     {
       "image": "/works/f4vf4d4.jpg",
-      "alt": "Hero Image 2"
+      "alt": "KOOG DESIGN · 视觉探索 02"
     },
     {
       "image": "/works/fvdf.jpg",
-      "alt": "Hero Image 3"
+      "alt": "KOOG DESIGN · 视觉探索 03"
     },
     {
       "image": "/works/frame-152624.jpg",
-      "alt": "Hero Image 4"
+      "alt": "KOOG DESIGN · 视觉探索 04"
     },
     {
       "image": "/works/frame-12522.jpg",
-      "alt": "Hero Image 5"
+      "alt": "KOOG DESIGN · 视觉探索 05"
     },
     {
       "image": "/works/vffd11.jpg",
-      "alt": "Hero Image 6"
+      "alt": "大牙猫 · 非遗系列"
     },
     {
       "image": "/works/s2c2ds.jpg",
-      "alt": "Hero Image 7"
+      "alt": "KOOG DESIGN · 视觉探索 07"
     },
     {
       "image": "/works/fr4degv.jpg",
-      "alt": "Hero Image 8"
+      "alt": "KOOG DESIGN · 视觉探索 08"
     },
     {
       "image": "/works/未命名项目-图层-1-2025-09-30t144100.152.png",
-      "alt": "Hero Image 9"
+      "alt": "KOOG DESIGN · 视觉探索 09"
     },
     {
-      "alt": "Hero Image 10",
+      "alt": "KOOG DESIGN · 视觉探索 10",
       "image": "/works/mawen.jpg"
     }
   ],
   "works": [
+    {
+      "id": "tangtouya-ip",
+      "title": "烫头鸭 · IP形象设计",
+      "category": "IP形象 / Character Design",
+      "client": "KOOG DESIGN · 原创IP",
+      "year": "2026",
+      "image": "/works/ip-20261031/tangtouya-cover.jpg",
+      "description": "把日常的小情绪，变成一只鸭的表情。以鲜明的角色识别与贴近生活的动作，连接表情包、主题插画和社交传播。",
+      "detail_content": {
+        "full_desc": "### 把日常的小情绪，变成一只鸭的表情\n\n烫头鸭是一只带着一点小脾气、又愿意认真生活的鸭。从咖啡续命、社交缓冲，到拥抱朋友、投入爱好，用轻松的表情和具体的动作，接住那些不太好用语言表达的时刻。\n\n### 一眼认出的角色语言\n\n三撮白色头毛、两枚黑色鼻孔、大块橙色腮红与黄色鸭蹼，构成角色的识别锚点。圆润的身体、清晰的黑色轮廓和简洁的色块，让烫头鸭在聊天窗口的小尺寸里依然醒目。\n\n角色延展围绕同一套五官、三指手型与身体比例展开，让每一款表情既有自己的情绪，也属于同一只鸭。\n\n### 从性格到系列\n\n- **续命篇**：把开机失败、咖啡续命和爱你老己，转化为打工与休息之间的情绪切片。\n- **兴趣班**：拼豆、编织、观鸟与运动，让角色通过爱好拥有更具体的生活。\n- **生活记**：从“在呢”“谢谢”到抱抱与贴贴，用可读的动作传递回应与陪伴。\n\n### 设计延展\n\n本页精选角色原稿，展示形象识别、动作表情与系列配色。以同一视觉语言连接静态表情、动态表情和主题插画，为后续社交内容与文创应用提供持续延展的基础。",
+        "images": [
+          {
+            "url": "/works/ip-20261031/tangtouya-everyday.jpg",
+            "alt": "续命篇：咖啡续命、社交缓冲与自我关怀的六款角色插画"
+          },
+          {
+            "url": "/works/ip-20261031/tangtouya-hobbies.jpg",
+            "alt": "兴趣班：拼豆、编织、观鸟等六款爱好主题插画"
+          },
+          {
+            "url": "/works/ip-20261031/tangtouya-life.jpg",
+            "alt": "生活记：问候、感谢、笑声与拥抱的六款情绪表达"
+          }
+        ]
+      }
+    },
+    {
+      "id": "museum-showstoppers",
+      "title": "博物馆的显眼包 · 馆藏IP系列",
+      "category": "文创插画 / Cultural IP",
+      "client": "KOOG DESIGN · 自主创作",
+      "year": "2026",
+      "image": "/works/ip-20261031/museum-cover.jpg",
+      "description": "让馆藏的轮廓，拥有今天的性格。以多巴胺撞色、手绘纹理和拟人表情，把中国与世界馆藏转译为鲜活的角色插画。",
+      "detail_content": {
+        "full_desc": "### 让馆藏的轮廓，拥有今天的性格\n\n“博物馆的显眼包”从文物与馆藏艺术品的独特器形出发，把那些让人忍不住多看一眼的轮廓、姿态和纹样，转化成带有当代情绪的原创角色。\n\n### 器形是线索，性格是入口\n\n陶鹰鼎的立姿、金兽的体量、鸮尊的双眼，以及说唱俑的笑意，都是角色塑造的起点。设计保留原型的关键识别点，再以表情、比例和配色进行创意演绎，让观众先被性格吸引，再回到器物本身。\n\n### 统一的手绘语言\n\n不规则彩色描边、扁平撞色色块与轻微蜡笔颗粒，构成系列的视觉基础。每件角色有独立配色，细节围绕原型的纹样与结构展开，在一组作品中形成热闹而有秩序的节奏。\n\n### 从中国馆藏走向世界器物\n\n- **中国馆藏篇**：从陶器、青铜器与瓷器中提炼轮廓，以多巴胺色彩重新组织视觉记忆。\n- **表情管理篇**：九件文物与馆藏艺术品，围绕笑意、得意、困倦和凝视等情绪形成角色群像。\n- **世界馆藏篇**：从乌尔棋盘、双头蛇胸饰到柏林金帽，探索不同地域器物的造型趣味。\n\n### 创作说明\n\n本系列为 KOOG DESIGN 自主创作的馆藏题材 IP 插画。配色、表情与动作属于设计演绎，所展示作品不代表馆方委托、合作或授权，也不作为文物原色与历史结构的复原。",
+        "images": [
+          {
+            "url": "/works/ip-20261031/museum-china.jpg",
+            "alt": "中国馆藏第一辑：瓷母、陶鹰鼎、金兽等六款器物角色"
+          },
+          {
+            "url": "/works/ip-20261031/museum-china-ii.jpg",
+            "alt": "中国馆藏第二辑：多巴胺描边与手绘纹样的六款精选"
+          },
+          {
+            "url": "/works/ip-20261031/museum-expressions.jpg",
+            "alt": "表情管理篇：击鼓说唱俑、孩儿枕、沉思罗汉等九款角色",
+            "height": 1800
+          },
+          {
+            "url": "/works/ip-20261031/museum-world-ii.jpg",
+            "alt": "海外馆藏第二辑：六款扁平多巴胺器物插画"
+          },
+          {
+            "url": "/works/ip-20261031/museum-world-iii.jpg",
+            "alt": "海外馆藏第三辑：乌尔棋盘、双头蛇胸饰、书记员、金帽、银锅与孔雀钟"
+          }
+        ]
+      }
+    },
     {
       "id": "01",
       "title": "ContAI · 热点写手",
