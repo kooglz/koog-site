@@ -1,13 +1,25 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { VitePWA } from 'vite-plugin-pwa'
+
+// Vite's SPA fallback otherwise serves the portfolio at /admin/ during local editing.
+const adminEntry = (): Plugin => {
+  const install = (server: { middlewares: { use: (handler: (req: { url?: string }, res: { writeHead: (status: number, headers: Record<string, string>) => void; end: () => void }, next: () => void) => void) => void } }) => {
+    server.middlewares.use((req, res, next) => {
+      if (req.url === '/admin') { res.writeHead(302, { Location: '/admin/' }); res.end(); return; }
+      if (req.url?.split('?')[0] === '/admin/') req.url = req.url.replace('/admin/', '/admin/index.html');
+      next();
+    });
+  };
+  return { name: 'local-admin-entry', configureServer: install, configurePreviewServer: install };
+};
 
 export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8081',
+        target: 'http://127.0.0.1:8081',
         changeOrigin: true,
         secure: false,
       },
@@ -18,6 +30,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    adminEntry(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: [
@@ -60,6 +73,9 @@ export default defineConfig({
         ],
       },
       workbox: {
+        importScripts: process.env.NODE_ENV === 'production' ? ['sw-upgrade.js'] : [],
+        navigateFallbackDenylist: [/\/admin(?:\/|$)/],
+        globIgnores: ['**/admin/**'],
         cacheId: 'koogdesign-v1.1.1', // 更新版本号强制刷新SW缓存
         skipWaiting: true,
         clientsClaim: true,
@@ -69,6 +85,7 @@ export default defineConfig({
         ],
         maximumFileSizeToCacheInBytes: 50 * 1024 * 1024,
         runtimeCaching: [
+          { urlPattern: /\/admin\//, handler: 'NetworkOnly' },
           // Google Fonts CSS (Inter + Noto Sans SC)
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

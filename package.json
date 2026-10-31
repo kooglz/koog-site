@@ -8,14 +8,16 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/generate-media-revisions.mjs && npm run check-content && tsc -b && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview",
     "cms": "npx decap-server",
     "compress": "node scripts/compress-images.mjs",
-    "deploy-site": "npm run compress && git add . && git commit -m \"Update content via CMS\" && git push"
+    "deploy-site": "npm run compress && git add . && git commit -m \"Update content via CMS\" && git push",
+    "check-content": "node scripts/check-content.mjs",
+    "predev": "node scripts/generate-media-revisions.mjs"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",

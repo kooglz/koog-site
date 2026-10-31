@@ -39,6 +39,9 @@ function getMimeType(filePath) {
     '.css': 'text/css',
     '.js': 'application/javascript',
     '.json': 'application/json',
+    '.webmanifest': 'application/manifest+json',
+    '.webp': 'image/webp',
+    '.mp4': 'video/mp4',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
     '.jpeg': 'image/jpeg',
@@ -52,6 +55,7 @@ function getMimeType(filePath) {
     '.otf': 'font/otf',
     '.txt': 'text/plain',
     '.xml': 'text/xml',
+    '.yml': 'text/yaml',
     '.pdf': 'application/pdf',
     '.zip': 'application/zip'
   };
@@ -66,7 +70,15 @@ async function uploadFiles() {
     process.exit(1);
   }
 
-  const files = getAllFiles(distPath);
+  // Publish dependent assets first, then content and HTML, and activate the new worker last.
+  const rank = file => {
+    const key = path.relative(distPath, file).replace(/\\/g, '/');
+    if (key === 'sw.js') return 4;
+    if (key.endsWith('.html')) return 3;
+    if (key.startsWith('content/') || key.endsWith('.webmanifest')) return 2;
+    return 1;
+  };
+  const files = getAllFiles(distPath).sort((a,b) => rank(a)-rank(b));
   console.log(`Found ${files.length} files to upload...`);
 
   let successCount = 0;
@@ -84,13 +96,20 @@ async function uploadFiles() {
         Key: key,
         Body: fs.createReadStream(filePath),
         ContentType: mimeType,
+        CacheControl: key.startsWith('assets/') ? 'public, max-age=31536000, immutable' : 'public, max-age=2592000',
       };
 
       // 强制让浏览器/微信在线显示 HTML，而不是下载
       if (mimeType === 'text/html') {
         putObjectParams.ContentDisposition = 'inline';
-        putObjectParams.CacheControl = 'no-cache'; // 避免缓存导致测试不准
+        putObjectParams.CacheControl = 'no-cache, no-store, must-revalidate'; // 避免缓存导致测试不准
       }
+
+      if (key === 'sw.js' || key === 'sw-upgrade.js' || key === 'registerSW.js' || key.startsWith('admin/') || key.startsWith('content/') || key.endsWith('.webmanifest')) {
+        putObjectParams.CacheControl = 'no-cache, no-store, must-revalidate';
+      }
+      // Never activate an entrypoint after any dependency failed to upload.
+      if (failCount > 0 && rank(filePath) > 1) throw new Error('Skipping entrypoint because an earlier upload failed');
 
       await new Promise((resolve, reject) => {
         cos.putObject(putObjectParams, function(err, data) {

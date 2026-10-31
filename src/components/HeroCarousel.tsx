@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Pause, Play } from 'lucide-react';
 
-export interface HeroSlide { image: string; alt?: string; project_id?: string }
+export interface HeroSlide { image: string; alt?: string; alt_en?: string; project_id?: string }
 interface Props { slides: HeroSlide[]; language: 'cn' | 'en'; onOpen: (id: string) => void }
 
 export default function HeroCarousel({ slides, language, onOpen }: Props) {
@@ -50,7 +50,7 @@ export default function HeroCarousel({ slides, language, onOpen }: Props) {
         })}
       </div>
       <div className="hero-carousel-caption">
-        <div className="min-w-0"><p className="text-[9px] tracking-[0.25em] text-neutral-400 mb-1 font-bold">SELECTED WORK / {String(active+1).padStart(2,'0')}</p><p className="text-sm font-semibold truncate" aria-live={running ? 'off' : 'polite'}>{current.alt || 'KOOG DESIGN'}</p></div>
+        <div className="min-w-0"><p className="text-[9px] tracking-[0.25em] text-subtle mb-1 font-bold">{cn ? '精选作品' : 'SELECTED WORK'} / {String(active+1).padStart(2,'0')}</p><p className="text-sm font-semibold truncate" aria-live={running ? 'off' : 'polite'}>{current.alt || 'KOOG DESIGN'}</p></div>
         <div className="flex shrink-0 gap-1">
           <button className="carousel-control" type="button" onClick={() => move(-1)} aria-label={cn ? '上一张' : 'Previous slide'}><ArrowLeft size={16}/></button>
           <button className="carousel-control" type="button" onClick={() => setPaused(p=>!p)} aria-label={paused ? (cn ? '播放轮播' : 'Play slideshow') : (cn ? '暂停轮播' : 'Pause slideshow')}>{paused ? <Play size={14}/> : <Pause size={14}/>}</button>
