@@ -234,3 +234,11 @@ nav button:active, nav a:active { transform: scale(.96); }
 .theme-options button > span { flex: 1; text-align: left; }
 .theme-options button:hover, .theme-options button:focus-visible, .theme-options button[aria-checked="true"] { background: rgb(var(--surface-alt)); color: rgb(var(--accent)); }
 @media (max-width: 767px) { .theme-options { right: -70px; } }
+
+/* Mobile copy supports the gallery rather than competing with it. */
+@media (max-width: 767px) {
+  .hero-title { font-size: clamp(30px, 8vw, 40px); line-height: 1.16; letter-spacing: -.035em; }
+  [data-lang="en"] .hero-title { max-width: 18rem; line-height: 1.16; letter-spacing: -.035em; }
+  .hero-copy > :not([hidden]) ~ :not([hidden]) { margin-top: 24px; }
+  .hero-copy > p { font-size: 13px; line-height: 1.85; }
+}

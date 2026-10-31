@@ -55,3 +55,5 @@ git push origin main
 远端历史保留。Cloudflare 的“遵循现有标头”属于控制台设置，不受 git revert 控制，通常可保留；如需完全恢复旧策略，可在域名缓存配置将浏览器 TTL 改回 4 小时。
 
 同步脚本会按当前 macOS 系统代理运行 Git，不修改全局 Git 或系统设置。
+
+追加验收：实际 DNS 回源为腾讯云 CDN，Cloudflare 前方还有腾讯缓存层。部署流程在 COS 上传成功后刷新腾讯 CDN 的少量页面、清单与 SW URL，并等待完成；不清空作品图片。手机 Hero 标题按 30–40px 自适应，390px 宽时约 31px。
