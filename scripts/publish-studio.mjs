@@ -2,8 +2,20 @@ import { execFileSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 process.chdir(resolve(dirname(fileURLToPath(import.meta.url)), '..'));
-const read = args => execFileSync('git', args, {encoding:'utf8'}).trim();
-const run = (command,args) => execFileSync(command,args,{stdio:'inherit'});
+// Git does not automatically read macOS's active system proxy; mirror it per command.
+// No global Git or operating-system setting is changed.
+const gitOptions=[];
+if (process.platform==='darwin' && !process.env.HTTPS_PROXY && !process.env.https_proxy) {
+  try {
+    const settings=execFileSync('scutil',['--proxy'],{encoding:'utf8'});
+    const enabled=/HTTPSEnable\s*:\s*1/.test(settings);
+    const host=settings.match(/HTTPSProxy\s*:\s*(\S+)/)?.[1];
+    const port=settings.match(/HTTPSPort\s*:\s*(\d+)/)?.[1];
+    if(enabled && host && port) gitOptions.push('-c',`http.proxy=http://${host}:${port}`);
+  } catch { /* Use Git's own configuration when no system proxy is available. */ }
+}
+const read = args => execFileSync('git', [...gitOptions,...args], {encoding:'utf8'}).trim();
+const run = (command,args) => execFileSync(command,command==='git' ? [...gitOptions,...args] : args,{stdio:'inherit'});
 try {
   if(read(['branch','--show-current'])!=='main') throw Error('请先切换到 main 分支，再同步网站。');
   run('npm',['run','lint']);

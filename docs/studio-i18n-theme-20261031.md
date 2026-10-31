@@ -40,15 +40,18 @@ Logo 使用 24% 圆角遮罩，PWA 的身份、启动 URL、standalone 和图标
 ## 本次版本与回退
 
 更新前：`backup/before-i18n-dark-20261031`（6cc8510）。
-发布标签：`release/studio-i18n-theme-20261031`。
+发布标签：`release/studio-i18n-theme-20261031-final`。
 
 撤销本次版本时，在 main 干净工作区运行：
 
 ```sh
 git fetch origin --tags
 git pull --ff-only origin main
-git revert --no-edit release/studio-i18n-theme-20261031
+git revert --no-commit backup/before-i18n-dark-20261031..release/studio-i18n-theme-20261031-final
+git commit -m "revert: restore portfolio before studio update"
 git push origin main
 ```
 
 远端历史保留。Cloudflare 的“遵循现有标头”属于控制台设置，不受 git revert 控制，通常可保留；如需完全恢复旧策略，可在域名缓存配置将浏览器 TTL 改回 4 小时。
+
+同步脚本会按当前 macOS 系统代理运行 Git，不修改全局 Git 或系统设置。
