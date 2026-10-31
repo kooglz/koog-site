@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { 
+import React, { useState, useEffect } from 'react';
+import {
   ArrowRight, Menu, X, Languages, ChevronLeft, ArrowUpRight, Share2
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import HeroCarousel, { type HeroSlide } from './components/HeroCarousel';
 
 // --- 类型定义 ---
 interface NavContent {
@@ -32,7 +33,7 @@ interface WorkItem {
   year?: string;
   detail_content?: {
     full_desc?: string;
-    images?: { url: string }[];
+    images?: { url: string; alt?: string; height?: number }[];
   };
 }
 
@@ -81,20 +82,37 @@ interface LanguageContent {
 
 type LangMode = 'cn' | 'en';
 
+// 获取基础路径，自动适配 GitHub Pages 或本地环境
+const getAssetUrl = (path: string) => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+
+  // 移除 path 开头的 /
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+
+  // 获取 Vite 注入的 base url (在 vite.config.ts 中配置)
+  const baseUrl = import.meta.env.BASE_URL;
+
+  // 确保 baseUrl 以 / 结尾，cleanPath 不以 / 开头
+  const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+  return `${cleanBase}${cleanPath}`;
+};
+
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<'home' | 'works' | 'detail'>('home'); 
+  const [currentPage, setCurrentPage] = useState<'home' | 'works' | 'detail'>('home');
   const [selectedProject, setSelectedProject] = useState<WorkItem | null>(null);
-  const [language, setLanguage] = useState<LangMode>('cn'); 
+  const [language, setLanguage] = useState<LangMode>('cn');
   const [copied, setCopied] = useState<boolean>(false);
   const [logoError, setLogoError] = useState<boolean>(false);
   const [showShareMenu, setShowShareMenu] = useState<boolean>(false);
   const [shareCopied, setShareCopied] = useState<boolean>(false);
 
   const copyXhsInfo = () => {
-    const text = language === 'cn' 
-      ? '小红书号：2632739343（KOOG插画设计）' 
+    const text = language === 'cn'
+      ? '小红书号：2632739343（KOOG插画设计）'
       : 'Xiaohongshu ID: 2632739343 (KOOG Illustration)';
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
@@ -124,7 +142,7 @@ const App: React.FC = () => {
 
     updateTag('og:title', `【KOOG DESIGN】${title}`);
     updateTag('og:description', description);
-    
+
     // 处理图片路径：相对路径转为绝对URL
     if (image) {
       let imageUrl = image;
@@ -133,7 +151,7 @@ const App: React.FC = () => {
       }
       updateTag('og:image', imageUrl);
     }
-    
+
     // 更新Twitter Card标签
     const updateTwitterTag = (name: string, content: string) => {
       let tag = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
@@ -147,7 +165,7 @@ const App: React.FC = () => {
 
     updateTwitterTag('twitter:title', `【KOOG DESIGN】${title}`);
     updateTwitterTag('twitter:description', description);
-    
+
     // 更新文档标题
     document.title = `【KOOG DESIGN】${title}`;
   };
@@ -165,14 +183,14 @@ const App: React.FC = () => {
   const shareToWechat = () => {
     const shareUrl = getWorkShareUrl();
     const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}\n\n点击查看完整作品详情`;
-    
+
     // 动态更新meta标签以显示正确的图标和标题
     const workTitle = selectedProject?.title || '精选作品';
     const workDesc = selectedProject?.fullDesc || selectedProject?.description || `查看${workTitle}完整作品详情`;
     const workImage = selectedProject?.image || '';
-    
+
     updateMetaTags(workTitle, workDesc, workImage);
-    
+
     // 等待meta标签更新完成后执行分享（iOS Safari需要时间读取新meta）
     setTimeout(() => {
       if (navigator.share && navigator.canShare({ url: shareUrl, text: shareText })) {
@@ -194,21 +212,21 @@ const App: React.FC = () => {
         });
       }
     }, 100); // 100ms延迟确保DOM更新
-    
+
     setShowShareMenu(false);
   };
 
   const shareToXiaohongshu = () => {
     const shareUrl = getWorkShareUrl();
     const shareText = `【KOOG DESIGN】${selectedProject?.title || '精选作品'}\n${shareUrl}`;
-    
+
     // 动态更新meta标签
     const workTitle = selectedProject?.title || '精选作品';
     const workDesc = selectedProject?.fullDesc || selectedProject?.description || `查看${workTitle}完整作品详情`;
     const workImage = selectedProject?.image || '';
-    
+
     updateMetaTags(workTitle, workDesc, workImage);
-    
+
     navigator.clipboard.writeText(shareText).then(() => {
       setShareCopied(true);
       setTimeout(() => {
@@ -230,10 +248,9 @@ const App: React.FC = () => {
     });
     setShowShareMenu(false);
   };
-  const [heroSlide, setHeroSlide] = useState<number>(0);
-  const [heroImages, setHeroImages] = useState<string[]>([]);
+  const [heroImages, setHeroImages] = useState<HeroSlide[]>([]);
   const [allWorks, setAllWorks] = useState<WorkItem[]>([]);
-  const [siteSettings, setSiteSettings] = useState<any>(null);
+  const [siteSettings, setSiteSettings] = useState<{ logo?: string; nav?: Record<string, string>; hero?: Record<string, string>; footer?: Record<string, string> } | null>(null);
 
   // 加载作品数据
   useEffect(() => {
@@ -257,10 +274,9 @@ const App: React.FC = () => {
         }
         if (data.hero_images) {
           // 处理轮播图路径
-          setHeroImages(data.hero_images.map((item: any) => {
-            const imgPath = item.image;
-            return imgPath.startsWith('http') ? imgPath : getAssetUrl(imgPath);
-          }));
+          setHeroImages(data.hero_images.map((item: HeroSlide) => ({
+            ...item, image: getAssetUrl(item.image)
+          })));
         }
       })
       .catch(err => console.error('Failed to load works:', err));
@@ -276,16 +292,16 @@ const App: React.FC = () => {
   // 多语言配置
   const content: Record<LangMode, LanguageContent> = {
     cn: {
-      nav: { 
-        home: siteSettings?.nav?.home_cn || "首页", 
-        works: siteSettings?.nav?.works_cn || "作品", 
-        services: siteSettings?.nav?.services_cn || "服务", 
-        inquiry: siteSettings?.nav?.inquiry_cn || "咨询合作" 
+      nav: {
+        home: siteSettings?.nav?.home_cn || "首页",
+        works: siteSettings?.nav?.works_cn || "作品",
+        services: siteSettings?.nav?.services_cn || "服务",
+        inquiry: siteSettings?.nav?.inquiry_cn || "咨询合作"
       },
       hero: {
         tag: siteSettings?.hero?.tag_cn || "全球业务开放中",
         title: [
-          siteSettings?.hero?.title1_cn || "理性的", 
+          siteSettings?.hero?.title1_cn || "理性的",
           siteSettings?.hero?.title2_cn || "视觉构建者"
         ],
         desc: siteSettings?.hero?.desc_cn || "15年设计积淀。定义 AI 与 东方美学 的新边界。",
@@ -328,16 +344,16 @@ const App: React.FC = () => {
       }
     },
     en: {
-      nav: { 
-        home: siteSettings?.nav?.home_en || "Home", 
-        works: siteSettings?.nav?.works_en || "Works", 
-        services: siteSettings?.nav?.services_en || "Services", 
-        inquiry: siteSettings?.nav?.inquiry_en || "Inquiry" 
+      nav: {
+        home: siteSettings?.nav?.home_en || "Home",
+        works: siteSettings?.nav?.works_en || "Works",
+        services: siteSettings?.nav?.services_en || "Services",
+        inquiry: siteSettings?.nav?.inquiry_en || "Inquiry"
       },
       hero: {
         tag: siteSettings?.hero?.tag_en || "Global Inquiries Welcome",
         title: [
-          siteSettings?.hero?.title1_en || "Rational", 
+          siteSettings?.hero?.title1_en || "Rational",
           siteSettings?.hero?.title2_en || "Visualist"
         ],
         desc: siteSettings?.hero?.desc_en || "15 years of design excellence. Defining AIGC & Oriental Aesthetics.",
@@ -387,23 +403,6 @@ const App: React.FC = () => {
     .map(s => s.trim())
     .filter(Boolean);
 
-  // 获取基础路径，自动适配 GitHub Pages 或本地环境
-  const getAssetUrl = (path: string) => {
-    if (!path) return '';
-    if (path.startsWith('http')) return path;
-    
-    // 移除 path 开头的 /
-    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-    
-    // 获取 Vite 注入的 base url (在 vite.config.ts 中配置)
-    const baseUrl = import.meta.env.BASE_URL;
-    
-    // 确保 baseUrl 以 / 结尾，cleanPath 不以 / 开头
-    const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-    
-    return `${cleanBase}${cleanPath}`;
-  };
-
   // 切换语言时同步更新 document 的 data-lang 属性（用于字体切换）
   useEffect(() => {
     document.documentElement.setAttribute('data-lang', language);
@@ -416,33 +415,13 @@ const App: React.FC = () => {
     setCurrentPage(page);
     setSelectedProject(project);
     setIsMenuOpen(false);
-    
+
     // 使用 setTimeout 确保在 React 渲染更新后执行滚动到顶部
     // 解决手机端点击后可能跳转到页面底部的问题
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 0);
   };
-
-  const nextHeroSlide = useCallback(() => {
-    if (heroImages.length === 0) return;
-    setHeroSlide((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
-  }, [heroImages.length]);
-
-  useEffect(() => {
-    const timer = setInterval(nextHeroSlide, 3500);
-    return () => clearInterval(timer);
-  }, [nextHeroSlide]);
-
-  // 图片预加载优化
-  useEffect(() => {
-    if (heroImages.length > 0) {
-      heroImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-      });
-    }
-  }, [heroImages]);
 
   // Hash路由支持 - 处理 #work-id 格式的深度链接
   useEffect(() => {
@@ -467,7 +446,7 @@ const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [allWorks]);
 
-  const RotatingStamp: React.FC = () => (
+  const rotatingStamp = (
     <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
       <svg viewBox="0 0 100 100" className="w-full h-full absolute inset-0 animate-spin-slow">
         <defs>
@@ -483,10 +462,10 @@ const App: React.FC = () => {
     </div>
   );
 
-  const HomePageContent: React.FC = () => (
+  const homePageContent = (
     <div className="animate-in fade-in duration-700 w-full">
       {/* Hero Section */}
-      <header className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white w-full">
+      <header className="relative min-h-[90vh] lg:min-h-[760px] flex items-center pt-24 pb-16 overflow-hidden bg-white w-full">
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
         <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
           <div className="lg:col-span-6 space-y-10 order-2 lg:order-1 lg:pr-6 relative z-30 flex flex-col items-start text-left">
@@ -495,7 +474,7 @@ const App: React.FC = () => {
               {t.hero.tag}
             </div>
             <div className="inline-block space-y-5 max-w-[34rem] xl:max-w-[38rem] relative z-30">
-              <h1 className="text-[3.5rem] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
+              <h1 className="text-[clamp(2.25rem,12vw,3.5rem)] md:text-7xl xl:text-8xl font-black tracking-tight text-neutral-900 leading-[0.9] md:leading-[1.05] antialiased safari-font-fix">
                 {t.hero.title[0]}
               </h1>
               <div className="hero-glass w-full relative z-30">
@@ -531,70 +510,39 @@ const App: React.FC = () => {
               <button onClick={() => navigateTo('works')} className="group px-6 md:px-8 py-3 md:py-4 bg-neutral-900 text-white rounded-sm hover:bg-[#E61919] transition-all flex items-center gap-3 font-bold text-[10px] tracking-widest uppercase shadow-xl hover:shadow-[#E61919]/20">
                 {t.hero.cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <div className="scale-75 md:scale-90 origin-left"><RotatingStamp /></div>
+              <div className="scale-75 md:scale-90 origin-left">{rotatingStamp}</div>
             </div>
           </div>
-          <div className="lg:col-span-6 w-full order-1 lg:order-2 group relative z-10">
-            {/* 3:4 比例容器，适配竖版图片 */}
-            <div className="relative aspect-[3/4] w-full max-w-[400px] md:max-w-[460px] mx-auto lg:mx-0 lg:translate-x-[160px] flex items-center justify-center">
-              {/* 渲染轮播图 */}
-              {heroImages.map((item, idx) => {
-                const imgUrl = item;
-                const total = heroImages.length;
-                
-                // 计算位置：prev, current, next
-                let position = 'hidden';
-                if (idx === heroSlide) position = 'current';
-                else if (idx === (heroSlide - 1 + total) % total) position = 'prev';
-                else if (idx === (heroSlide + 1) % total) position = 'next';
-
-                // 样式逻辑
-                let styles = '';
-                if (position === 'current') {
-                  styles = 'opacity-100 scale-100 z-20 translate-x-0 shadow-2xl';
-                } else if (position === 'prev') {
-                  styles = 'opacity-35 scale-[0.82] z-10 -translate-x-[38%] blur-[3px] grayscale-[35%] saturate-[0.75] brightness-[0.95]';
-                } else if (position === 'next') {
-                  styles = 'opacity-35 scale-[0.82] z-10 translate-x-[38%] blur-[3px] grayscale-[35%] saturate-[0.75] brightness-[0.95]';
-                } else {
-                  styles = 'opacity-0 scale-75 z-0 hidden';
-                }
-
-                return (
-                  <div 
-                    key={idx} 
-                    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] bg-neutral-100 rounded-sm overflow-hidden border-[4px] border-white ring-1 ring-neutral-100/50 ${styles}`}
-                  >
-                    <img src={imgUrl} alt="Hero" className="w-full h-full object-contain" />
-                  </div>
-                );
-              })}
-            </div>
+          <div className="lg:col-span-6 w-full order-1 lg:order-2 relative z-10 min-w-0">
+            <HeroCarousel slides={heroImages} language={language} onOpen={id => {
+              const project = allWorks.find(work => String(work.id) === id);
+              if (project) navigateTo('detail', project);
+            }} />
           </div>
         </div>
       </header>
 
       {/* Featured Works Section */}
-      <section className="py-32 bg-neutral-50 border-y border-neutral-100 w-full">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
+      <section className="py-16 md:py-24 bg-neutral-50 border-y border-neutral-100 w-full">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-10 md:mb-12 gap-8">
             <div className="space-y-4">
               <div className="w-12 h-1 bg-[#E61919]"></div>
               <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-neutral-400">{t.works.subtitle}</p>
               <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-neutral-900">{t.works.title}</h2>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+          <div className="portfolio-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-9 md:gap-x-7 md:gap-y-12">
             {allWorks.map(work => (
-              <div key={work.id} className="group cursor-pointer space-y-4 md:space-y-6" onClick={() => navigateTo('detail', work)}>
+              <button type="button" key={work.id} className="project-card group cursor-pointer space-y-3 md:space-y-4 text-left w-full" onClick={() => navigateTo('detail', work)}>
                 <div className="aspect-[3/4] overflow-hidden bg-neutral-100 rounded-sm shadow-sm border border-neutral-100 relative">
-                  <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                  <img src={work.image} alt={work.title} loading="lazy" decoding="async" width={1200} height={1600} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                 </div>
                 <div className="space-y-3 md:space-y-2">
-                  <p className="text-xs md:text-[10px] text-[#E61919] uppercase tracking-[0.12em] md:tracking-[0.2em] font-semibold leading-relaxed">{work.category}</p>
-                  <h4 className="text-[22px] md:text-xl font-bold tracking-tight leading-snug text-neutral-900">{work.title}</h4>
+                  <p className="text-[10px] text-[#E61919] uppercase tracking-[0.08em] md:tracking-[0.15em] font-semibold leading-relaxed">{work.category}</p>
+                  <h4 className="text-base md:text-lg font-bold tracking-tight leading-snug text-neutral-900">{work.title}</h4>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -620,7 +568,7 @@ const App: React.FC = () => {
               <span className="text-[10px] md:text-[11px] font-bold text-[#E61919] leading-none tracking-[0.2em] mt-0.5">DESIGN</span>
             </div>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-10 text-[11px] font-semibold tracking-[0.2em] uppercase">
             <button onClick={() => navigateTo('home')} className={`hover:text-[#E61919] transition-colors ${currentPage === 'home' ? 'text-[#E61919]' : ''}`}>{t.nav.home}</button>
             <button onClick={() => navigateTo('works')} className={`hover:text-[#E61919] transition-colors ${currentPage === 'works' || currentPage === 'detail' ? 'text-[#E61919]' : ''}`}>{t.nav.works}</button>
@@ -632,8 +580,8 @@ const App: React.FC = () => {
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <button 
-              onClick={toggleLanguage} 
+            <button
+              onClick={toggleLanguage}
               className="flex items-center gap-1 px-2.5 py-2 border border-neutral-200 rounded-sm hover:border-neutral-900 transition-all"
               aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
             >
@@ -657,43 +605,44 @@ const App: React.FC = () => {
       </nav>
 
       <main className="w-full">
-        {currentPage === 'home' && <HomePageContent />}
+        {currentPage === 'home' && homePageContent}
         {currentPage === 'works' && (
-          <div className="pt-40 pb-24 container mx-auto px-6 animate-in fade-in duration-500 w-full">
+          <div className="pt-32 pb-24 max-w-[1280px] mx-auto px-6 animate-in fade-in duration-500 w-full">
             <div className="w-12 h-1 bg-[#E61919] mb-6"></div>
             <h2 className="text-5xl font-black tracking-tighter mb-16 uppercase">{t.works.subtitle}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            <div className="portfolio-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-9 md:gap-x-7 md:gap-y-12">
               {allWorks.map(work => (
-                <div key={work.id} className="group cursor-pointer" onClick={() => navigateTo('detail', work)}>
+                <button type="button" key={work.id} className="project-card group cursor-pointer text-left w-full" onClick={() => navigateTo('detail', work)}>
                   <div className="aspect-[3/4] overflow-hidden bg-neutral-100 mb-4 md:mb-6 rounded-sm shadow-sm border border-neutral-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-                    <img src={work.image} alt={work.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                    <img src={work.image} alt={work.title} loading="lazy" decoding="async" width={1200} height={1600} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                   </div>
-                  <h4 className="text-[22px] md:text-xl font-bold group-hover:text-[#E61919] transition-colors tracking-tight leading-snug text-neutral-900">{work.title}</h4>
+                  <h4 className="text-base md:text-lg font-bold group-hover:text-[#E61919] transition-colors tracking-tight leading-snug text-neutral-900">{work.title}</h4>
                   <p className="text-xs md:text-[10px] text-neutral-500 mt-3 md:mt-2 uppercase tracking-[0.12em] md:tracking-[0.2em] font-semibold leading-relaxed">{work.category}</p>
-                </div>
+                </button>
               ))}
             </div>
           </div>
         )}
 
         {currentPage === 'detail' && selectedProject && (
-          <div className="pt-40 pb-32 container mx-auto px-6 animate-in slide-in-from-bottom-4 duration-700 w-full">
+          <div key={selectedProject.id} className="project-detail pt-40 pb-32 container mx-auto px-6 w-full">
             <button onClick={() => navigateTo('works')} className="flex items-center gap-2 text-neutral-400 hover:text-neutral-900 mb-12 uppercase text-[10px] font-bold tracking-[0.3em]">
               <ChevronLeft className="w-4 h-4" /> {t.works.back}
             </button>
             <div className="grid lg:grid-cols-2 gap-20">
               <div className="space-y-8">
                 <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-auto object-contain shadow-2xl rounded-sm border border-neutral-100" />
-                
+
                 {/* 渲染详情图集 */}
                 {selectedProject.detail_content?.images && selectedProject.detail_content.images.length > 0 && (
                   <div className="space-y-8 pt-8">
                     {selectedProject.detail_content.images.map((img, idx) => (
-                      <img 
-                        key={idx} 
-                        src={img.url.startsWith('http') ? img.url : getAssetUrl(img.url)} 
-                        alt={`${selectedProject.title} detail ${idx + 1}`} 
-                        className="w-full h-auto shadow-lg rounded-sm border border-neutral-100" 
+                      <img
+                        key={idx}
+                        src={img.url.startsWith('http') ? img.url : getAssetUrl(img.url)}
+                        alt={img.alt || `${selectedProject.title} detail ${idx + 1}`}
+                        loading="lazy" decoding="async" width={1600} height={img.height || 1400}
+                        className="w-full h-auto shadow-lg rounded-sm border border-neutral-100"
                       />
                     ))}
                   </div>
@@ -720,22 +669,22 @@ const App: React.FC = () => {
                     <p className="font-bold text-lg">{selectedProject.year}</p>
                   </div>
                 </div>
-                
+
                 {/* 分享功能 - 移动端优化的 Bottom Sheet 设计 */}
                 <div className="pt-8 border-t border-neutral-100">
-                  <button 
+                  <button
                     onClick={() => setShowShareMenu(!showShareMenu)}
                     className="w-full md:w-auto flex items-center justify-center gap-2.5 px-8 py-4 bg-neutral-900 text-white rounded-xl hover:bg-[#E61919] transition-all font-bold text-[12px] tracking-widest uppercase active:scale-[0.98] touch-manipulation"
                   >
                     <Share2 className="w-5 h-5" />
                     <span>分享作品</span>
                   </button>
-                  
+
                   {showShareMenu && (
                     <div className="mt-6 animate-in slide-in-from-bottom-2 duration-300">
                       {/* 移动端：垂直堆叠的大按钮 */}
                       <div className="md:hidden space-y-3">
-                        <button 
+                        <button
                           onClick={shareToWechat}
                           className="w-full flex items-center justify-center gap-4 px-6 py-5 bg-white border-2 border-neutral-200 rounded-2xl hover:border-[#07C160] hover:bg-[#07C160]/5 transition-all active:scale-[0.98] touch-manipulation group"
                         >
@@ -749,8 +698,8 @@ const App: React.FC = () => {
                             <p className="text-xs text-neutral-500 mt-0.5">发送给好友</p>
                           </div>
                         </button>
-                        
-                        <button 
+
+                        <button
                           onClick={shareToXiaohongshu}
                           className="w-full flex items-center justify-center gap-4 px-6 py-5 bg-white border-2 border-neutral-200 rounded-2xl hover:border-[#FF2442] hover:bg-[#FF2442]/5 transition-all active:scale-[0.98] touch-manipulation group"
                         >
@@ -766,8 +715,8 @@ const App: React.FC = () => {
                             <p className="text-xs text-neutral-500 mt-0.5">发布笔记</p>
                           </div>
                         </button>
-                        
-                        <button 
+
+                        <button
                           onClick={copyShareLink}
                           className="w-full flex items-center justify-center gap-4 px-6 py-5 bg-white border-2 border-neutral-200 rounded-2xl hover:border-neutral-900 hover:bg-neutral-50 transition-all active:scale-[0.98] touch-manipulation group"
                         >
@@ -786,7 +735,7 @@ const App: React.FC = () => {
 
                       {/* 桌面端：水平排列的紧凑按钮 */}
                       <div className="hidden md:flex items-center gap-3">
-                        <button 
+                        <button
                           onClick={shareToWechat}
                           className="flex items-center gap-2 px-5 py-3 border border-neutral-200 rounded-lg hover:border-[#07C160] hover:text-[#07C160] hover:bg-[#07C160]/5 transition-all text-sm font-semibold active:scale-[0.98]"
                         >
@@ -795,8 +744,8 @@ const App: React.FC = () => {
                           </svg>
                           微信
                         </button>
-                        
-                        <button 
+
+                        <button
                           onClick={shareToXiaohongshu}
                           className="flex items-center gap-2 px-5 py-3 border border-neutral-200 rounded-lg hover:border-[#FF2442] hover:text-[#FF2442] hover:bg-[#FF2442]/5 transition-all text-sm font-semibold active:scale-[0.98]"
                         >
@@ -807,8 +756,8 @@ const App: React.FC = () => {
                           </svg>
                           小红书
                         </button>
-                        
-                        <button 
+
+                        <button
                           onClick={copyShareLink}
                           className="flex items-center gap-2 px-5 py-3 border border-neutral-200 rounded-lg hover:border-neutral-900 hover:bg-neutral-50 transition-all text-sm font-semibold active:scale-[0.98]"
                         >
@@ -852,13 +801,13 @@ const App: React.FC = () => {
               </div>
               <p className="text-neutral-500 max-w-sm text-xs leading-relaxed font-medium">{t.footer.tagline}</p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-4">
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden">
-                  <img 
-                    src={getAssetUrl(siteSettings?.footer?.wechatQR || "qrcode/wechat.jpg")} 
-                    alt="WeChat QR Code" 
+                  <img
+                    src={getAssetUrl(siteSettings?.footer?.wechatQR || "qrcode/wechat.jpg")}
+                    alt="WeChat QR Code"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-[#E61919]/50 animate-scan opacity-0 group-hover:opacity-100"></div>
@@ -871,9 +820,9 @@ const App: React.FC = () => {
 
               <div className="group bg-neutral-900/30 border border-neutral-800/50 p-6 rounded-sm hover:border-[#E61919]/30 transition-all flex items-center gap-6">
                 <div className="w-16 h-16 bg-white p-1 shrink-0 rounded-sm relative shadow-xl overflow-hidden text-black flex items-center justify-center font-black text-lg">
-                  <img 
-                    src={getAssetUrl(siteSettings?.footer?.xhsQR || "qrcode/xhs.jpg")} 
-                    alt="Xiaohongshu QR Code" 
+                  <img
+                    src={getAssetUrl(siteSettings?.footer?.xhsQR || "qrcode/xhs.jpg")}
+                    alt="Xiaohongshu QR Code"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-[#E61919]/50 animate-scan opacity-0 group-hover:opacity-100"></div>
@@ -891,7 +840,7 @@ const App: React.FC = () => {
       {/* Copyright Footer */}
       <footer className="w-full bg-[#1a1a1a] py-4 border-t border-neutral-800">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
-          <button 
+          <button
             onClick={copyXhsInfo}
             className="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-[#E61919] transition-colors group cursor-pointer bg-transparent border-none"
           >
