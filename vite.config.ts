@@ -43,7 +43,7 @@ export default defineConfig({
         'og-share.jpg'
       ],
       manifest: {
-        id: 'koogdesign-v1', // PWA唯一ID，更新可强制刷新
+        id: 'koogdesign-v1', // 保留已安装 PWA 的稳定身份
         name: 'KOOG DESIGN',
         short_name: 'KOOG',
         description: 'KOOG DESIGN - 创意设计工作室',
@@ -52,7 +52,7 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait',
         scope: '/',
-        start_url: '/?v=1.1.1', // 版本号参数强制刷新
+        start_url: '/?v=1.1.1', // 已安装 PWA 的稳定启动入口，普通发布不修改
         icons: [
           {
             src: '/icons/pwa-192x192.png',
@@ -76,7 +76,7 @@ export default defineConfig({
         importScripts: process.env.NODE_ENV === 'production' ? ['sw-upgrade.js'] : [],
         navigateFallbackDenylist: [/\/admin(?:\/|$)/],
         globIgnores: ['**/admin/**'],
-        cacheId: 'koogdesign-v1.1.1', // 更新版本号强制刷新SW缓存
+        cacheId: 'koogdesign-v1.1.1', // 复用现有缓存，普通发布只按文件 revision 更新
         skipWaiting: true,
         clientsClaim: true,
         cleanupOutdatedCaches: true, // 自动清理旧缓存
